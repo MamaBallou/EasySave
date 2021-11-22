@@ -6,5 +6,14 @@ namespace EasySaveConsole.view
 {
     class ViewConsole
     {
+        public void input(String s)
+        {
+        }
+
+        public String output()
+        {
+            return null;
+        }
+
     }
 }
