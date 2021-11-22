@@ -6,5 +6,10 @@ namespace EasySaveConsole.controller
 {
     class ControllerLanguages
     {
+        private EnumLanguage chosenLanguage;
+
+        public void chooseLanguage()
+        {
+        }
     }
 }
