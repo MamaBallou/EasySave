@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasySaveConsole.model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,5 +7,9 @@ namespace EasySaveConsole.mapper
 {
     class StateMapper
     {
+        public ModelState modelSaveToModelState(ModelSave modelSave)
+        {
+            return null;
+        }
     }
 }
