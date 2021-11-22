@@ -4,7 +4,10 @@ using System.Text;
 
 namespace EasySaveConsole.model
 {
-    class ModelLogger
+    abstract class ModelLogger
     {
+        protected String saveName;
+        protected String sourceFile;
+        protected String targetFile;
     }
 }

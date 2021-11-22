@@ -6,5 +6,8 @@ namespace EasySaveConsole.model
 {
     class ModelLog
     {
+        private double fileSize;
+        private TimeSpan transfertTime;
+        private DateTime startTime;
     }
 }
