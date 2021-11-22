@@ -1,0 +1,4 @@
+./EasySaveConsole/EasySaveConsole.sln
+./EasySaveConsole/.vs/*
+./EasySaveConsole/EasySaveConsole/bin/Debug/*
+./EasySaveConsole/EasySaveConsole/obj/Debug/*
