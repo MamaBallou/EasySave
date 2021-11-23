@@ -4,18 +4,23 @@ using System.Text;
 
 namespace EasySaveConsole.logger
 {
-    public class LogLogger : Logger
+    public sealed class LogLogger
     {
-        private static LogLogger instance;
+        private static string PATH = "../../logs";
+        private static LogLogger _instance;
 
         private LogLogger() { }
 
         public static LogLogger getInstance()
         {
-            return LogLogger.instance;
+            if (_instance == null)
+            {
+                _instance = new LogLogger();
+            }
+            return _instance;
         }
 
-        public override void Write(string data)
+        public void write(string data)
         {
             throw new NotImplementedException();
         }

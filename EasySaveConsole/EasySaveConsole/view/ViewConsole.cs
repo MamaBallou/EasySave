@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EasySaveConsole.view
 {
-    class ViewConsole
+    public class ViewConsole
     {
         public void input(String s)
         {

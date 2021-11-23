@@ -4,17 +4,30 @@ using System.Text;
 
 namespace EasySaveConsole.model
 {
-    abstract class ModelSave
+    public abstract class ModelSave
     {
         protected String name;
         protected Uri sourceFile;
         protected Uri targetFile;
 
-        public ModelSave()
+        public ModelSave(string name, string sourceFile, string targetFile)
         {
             throw new NotImplementedException();
         }
 
-        public abstract void save();
+        public abstract void save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ModelState toModelState()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ModelLog toModelLog()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

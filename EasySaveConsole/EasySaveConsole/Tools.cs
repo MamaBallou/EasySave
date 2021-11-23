@@ -6,10 +6,10 @@ namespace EasySaveConsole
 {
     public class Tools
     {
-        private static Tools uniqueInstance;
+        private static Tools _uniqueInstance;
         public static Tools getInstance()
         {
-            return uniqueInstance;
+            return _uniqueInstance;
         }
         private Tools() { }
 

@@ -6,7 +6,7 @@ namespace EasySaveConsole.model
 {
     class ModelLog : ModelLogger
     {
-        private double fileSize;
-        private TimeSpan transfertTime;
+        private int fileSize;
+        private int transfertTime;
     }
 }

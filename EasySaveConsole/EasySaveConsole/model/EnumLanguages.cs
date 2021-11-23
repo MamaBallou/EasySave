@@ -6,7 +6,7 @@ namespace EasySaveConsole.model
 {
     public enum EnumLanguages
     {
-        FRANCAIS,
-        ANGLAIS
+        Francais,
+        English
     }
 }

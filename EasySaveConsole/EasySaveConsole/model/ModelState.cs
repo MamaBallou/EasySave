@@ -6,10 +6,10 @@ namespace EasySaveConsole.model
 {
     class ModelState : ModelLogger
     {
-        private String state;
+        private string state;
         private int totalFilesToCopy;
-        private double totalFileSize;
+        private int totalFileSize;
         private int nbFilesLeftToDo;
-        private int progression;
+        private double progression;
     }
 }
