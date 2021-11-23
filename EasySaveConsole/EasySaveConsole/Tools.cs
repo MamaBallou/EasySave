@@ -4,6 +4,7 @@ using System.Text;
 
 namespace EasySaveConsole
 {
+    public class Tools
    public class Tools
     {
         private static Tools uniqueInstance;

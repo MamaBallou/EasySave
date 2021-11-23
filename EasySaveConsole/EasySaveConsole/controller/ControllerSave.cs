@@ -19,22 +19,27 @@ namespace EasySaveConsole.controller
 
         public void run()
         {
+            throw new NotImplementedException();
         }
 
         private void createNewSave()
         {
+            throw new NotImplementedException();
         }
 
         private void deleteSave(int saveNumber)
         {
+            throw new NotImplementedException();
         }
 
         private void runAllSaves()
         {
+            throw new NotImplementedException();
         }
 
         private void runSave(int saveNumber)
         {
+            throw new NotImplementedException();
         }
     }
 }

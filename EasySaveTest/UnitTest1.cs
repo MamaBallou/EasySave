@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using EasySaveConsole.logger;
 
 namespace EasySaveTest
 {
@@ -12,7 +13,10 @@ namespace EasySaveTest
         [Test]
         public void Test1()
         {
-            Assert.Pass();
+            LogLogger logLogger = LogLogger.getInstance();
+            logLogger.Write("toto");
+            string result =
+            Assert.AreEqual("toto", result);
         }
     }
 }

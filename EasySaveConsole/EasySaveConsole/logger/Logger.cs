@@ -4,14 +4,19 @@ using System.Text;
 
 namespace EasySaveConsole.logger
 {
-    abstract class Logger
+    public abstract class Logger
     {
         protected static Logger uniqueInstance;
-        private Uri filePath;
+        protected Uri filePath;
 
         protected Logger()
         {
             throw new NotImplementedException();
+        }
+
+        protected Logger(Uri filePath)
+        {
+            this.filePath = filePath;
         }
 
         public static Logger getInstance()
