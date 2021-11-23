@@ -16,11 +16,12 @@ namespace EasySaveConsole.controller
 
         public ControllerLogger()
         {
+            throw new NotImplementedException();
         }
 
         public void log(ModelSave modelSave)
         {
-
+            throw new NotImplementedException();
         }
     }
 }

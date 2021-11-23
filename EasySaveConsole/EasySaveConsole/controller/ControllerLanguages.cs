@@ -10,6 +10,7 @@ namespace EasySaveConsole.controller
 
         public void chooseLanguage()
         {
+            throw new NotImplementedException();
         }
     }
 }

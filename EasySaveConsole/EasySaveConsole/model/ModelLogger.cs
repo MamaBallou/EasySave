@@ -9,5 +9,6 @@ namespace EasySaveConsole.model
         protected String saveName;
         protected String sourceFile;
         protected String targetFile;
+        // TODO : ajouter TimeStamp, type ?
     }
 }

@@ -12,9 +12,7 @@ namespace EasySaveConsole.model
 
         public ModelSave()
         {
-            this.name = "";
-            this.sourceFile = new Uri("");
-            this.targetFile = new Uri("");
+            throw new NotImplementedException();
         }
 
         public abstract void save();

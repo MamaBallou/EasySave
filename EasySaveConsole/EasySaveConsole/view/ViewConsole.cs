@@ -8,11 +8,12 @@ namespace EasySaveConsole.view
     {
         public void input(String s)
         {
+            throw new NotImplementedException();
         }
 
         public String output()
         {
-            return null;
+            throw new NotImplementedException();
         }
 
     }

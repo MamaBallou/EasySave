@@ -11,11 +11,12 @@ namespace EasySaveConsole.logger
 
         protected Logger()
         {
+            throw new NotImplementedException();
         }
 
         public static Logger getInstance()
         {
-            return null;
+            throw new NotImplementedException();
         }
 
         public abstract void Write(String data);

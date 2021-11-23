@@ -13,6 +13,7 @@ namespace EasySaveConsole.controller
 
         public ControllerSave(ModelSave[] modelsSave, ViewConsole view)
         {
+            throw new NotImplementedException();
         }
 
         public void run()

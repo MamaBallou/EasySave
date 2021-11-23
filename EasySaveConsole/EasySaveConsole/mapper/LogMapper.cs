@@ -9,7 +9,7 @@ namespace EasySaveConsole.mapper
     {
         public ModelLog modelSaveToModelLog(ModelSave modelsave)
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
 }
