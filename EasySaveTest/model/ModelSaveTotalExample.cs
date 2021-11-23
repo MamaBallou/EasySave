@@ -1,3 +1,5 @@
+/*récupérer tous les fichiers texte d’un répertoire et de ses sous-répertoires, puis les déplacer vers un nouveau répertoire. 
+Une fois les fichiers déplacés, ils n’existent plus dans les répertoires d’origine.*/
 using System;
 using System.IO;
 namespace ConsoleApp1
