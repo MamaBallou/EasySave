@@ -911,6 +911,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "EasySaveConsole/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/EasySaveConsole.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EasySaveConsole.dll": {}
+        }
       }
     }
   },
@@ -4005,10 +4015,16 @@
         "system.xml.xdocument.4.0.11.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "EasySaveConsole/1.0.0": {
+      "type": "project",
+      "path": "../EasySaveConsole/EasySaveConsole/EasySaveConsole.csproj",
+      "msbuildProject": "../EasySaveConsole/EasySaveConsole/EasySaveConsole.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "EasySaveConsole >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.0.0",
       "NUnit >= 3.13.2",
       "NUnit.Console >= 3.12.0",
@@ -4047,7 +4063,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\mathi\\Downloads\\MamaBallou\\EasySave\\EasySaveConsole\\EasySaveConsole\\EasySaveConsole.csproj": {
+              "projectPath": "C:\\Users\\mathi\\Downloads\\MamaBallou\\EasySave\\EasySaveConsole\\EasySaveConsole\\EasySaveConsole.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

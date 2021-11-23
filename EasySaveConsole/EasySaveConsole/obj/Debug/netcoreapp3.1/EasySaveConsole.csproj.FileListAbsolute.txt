@@ -17,7 +17,6 @@ C:\Users\mathi\Downloads\MamaBallou\EasySave\EasySaveConsole\EasySaveConsole\bin
 C:\Users\mathi\Downloads\MamaBallou\EasySave\EasySaveConsole\EasySaveConsole\bin\Debug\netcoreapp3.1\EasySaveConsole.runtimeconfig.dev.json
 C:\Users\mathi\Downloads\MamaBallou\EasySave\EasySaveConsole\EasySaveConsole\bin\Debug\netcoreapp3.1\EasySaveConsole.dll
 C:\Users\mathi\Downloads\MamaBallou\EasySave\EasySaveConsole\EasySaveConsole\bin\Debug\netcoreapp3.1\EasySaveConsole.pdb
-C:\Users\mathi\Downloads\MamaBallou\EasySave\EasySaveConsole\EasySaveConsole\obj\Debug\netcoreapp3.1\EasySaveConsole.csproj.AssemblyReference.cache
 C:\Users\mathi\Downloads\MamaBallou\EasySave\EasySaveConsole\EasySaveConsole\obj\Debug\netcoreapp3.1\EasySaveConsole.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\mathi\Downloads\MamaBallou\EasySave\EasySaveConsole\EasySaveConsole\obj\Debug\netcoreapp3.1\EasySaveConsole.AssemblyInfoInputs.cache
 C:\Users\mathi\Downloads\MamaBallou\EasySave\EasySaveConsole\EasySaveConsole\obj\Debug\netcoreapp3.1\EasySaveConsole.AssemblyInfo.cs
