@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasySaveConsole.model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,7 @@ namespace EasySaveConsole.controller
 {
     class ControllerLanguages
     {
-        private EnumLanguage chosenLanguage;
+        private EnumLanguages chosenLanguage;
 
         public void chooseLanguage()
         {
