@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using EasySaveConsole.model;
+using System;
 using System.IO;
-using EasySaveConsole.model;
 using System.Text.Json;
 
 namespace EasySaveConsole.logger

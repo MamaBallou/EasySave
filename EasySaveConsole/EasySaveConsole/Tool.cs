@@ -51,7 +51,7 @@ namespace EasySaveConsole
 
         public uint getNbFiles(string path)
         {
-            
+
             return (uint)Directory.GetFiles(path, ".", SearchOption.AllDirectories).Length;
         }
     }

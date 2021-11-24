@@ -2,8 +2,6 @@
 using EasySaveConsole.view;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using EasySaveConsole.logger;
 using System.Globalization;
 using System.Resources;
 

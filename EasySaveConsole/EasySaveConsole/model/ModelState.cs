@@ -8,27 +8,27 @@
         private uint nbFilesLeftToDo;
         private double progression;
 
-        public State State { get { return state; } set { state = value; } }
-        public uint TotalFilesToCopy { get { return totalFilesToCopy; } set { totalFilesToCopy = value; } }
-        public uint TotalFileSize { get { return totalFileSize; } set { totalFileSize = value; } }
-        public uint NbFilesLeftToDo { get { return nbFilesLeftToDo; } set { nbFilesLeftToDo = value; } }
-        public double Progression { get { return progression; } set { progression = value; } }
+        public State State { get => state; set => state = value; }
+        public uint TotalFilesToCopy { get => totalFilesToCopy; set => totalFilesToCopy = value; }
+        public uint TotalFileSize { get => totalFileSize; set => totalFileSize = value; }
+        public uint NbFilesLeftToDo { get => nbFilesLeftToDo; set => nbFilesLeftToDo = value; }
+        public double Progression { get => progression; set => progression = value; }
 
-        public ModelState(string saveName, string sourceFile, string targetFile) 
+        public ModelState(string saveName, string sourceFile, string targetFile)
             : base(saveName, sourceFile, targetFile)
         {
-            this.state = State.NotStarted;
+            state = State.NotStarted;
             Tool tool = Tool.getInstance();
-            this.totalFileSize = tool.getFileSize(sourceFile);
-            this.totalFilesToCopy = tool.getNbFiles(sourceFile);
-            this.nbFilesLeftToDo = totalFilesToCopy;
-            this.progression = 0.0;
+            totalFileSize = tool.getFileSize(sourceFile);
+            totalFilesToCopy = tool.getNbFiles(sourceFile);
+            nbFilesLeftToDo = totalFilesToCopy;
+            progression = 0.0;
         }
 
         public double calcProg()
         {
-            return progression = (double)(this.totalFilesToCopy * 100) / 
-                (double)(this.totalFilesToCopy - this.nbFilesLeftToDo);
+            return progression = totalFilesToCopy * 100 /
+                (double)(totalFilesToCopy - nbFilesLeftToDo);
         }
     }
 }
