@@ -22,7 +22,7 @@ namespace EasySaveConsole.model
                     foreach (string currentFile in TotalFiles)
                     {
                         string fileName = Path.GetFileName(currentFile.ToString());
-                        File.Copy(currentFile, String.Concat(targetFile, "/", fileName));
+                        File.Copy(currentFile, String.Concat(targetFile, "/", fileName), true) ;
                         //Directory.Move(currentFile, Path.Combine(targetFile, fileName));
                     }
                 }

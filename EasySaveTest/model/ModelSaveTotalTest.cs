@@ -24,8 +24,8 @@ namespace EasySaveTest.model
         [Test]
         public void Test1()
         {
-            ModelSaveTotal  modelSaveTotal = new ModelSaveTotal("save1", @"C:\MyDir", @"C:\archive");
-            modelSaveTotal.save();
+            ModelSaveTotal  modelSaveTotal1 = new ModelSaveTotal("save1", @"C:\MyDir", @"C:\archive");
+            modelSaveTotal1.save();
             // TODO : Check if archive has been created
             Assert.IsTrue(File.Exists(@"C:\archive"));
 
