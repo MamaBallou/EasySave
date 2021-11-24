@@ -21,7 +21,7 @@ namespace EasySaveConsole.model
             this.targetFile = targetFile;
         }
 
-        protected void save(ref ModelState modelState)
+        public void save(ref ModelState modelState)
         {
             //define source and target path in bool
             Tool tool = Tool.getInstance();
