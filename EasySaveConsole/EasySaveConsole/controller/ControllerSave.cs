@@ -4,15 +4,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using EasySaveConsole.logger;
+using System.Globalization;
+using System.Resources;
 
 namespace EasySaveConsole.controller
 {
-    class ControllerSave
+    public class ControllerSave
     {
+        private EnumLanguages chosenLanguage;
         private List<ModelSave> modelSaves;
         private ViewConsole view;
         private LogLogger logLogger;
         private StateLogger stateLogger;
+
+        private ResourceManager res_man;    // declare Resource manager to access to specific cultureinfo
+        private CultureInfo cul;            // declare culture info
 
         public ControllerSave(List<ModelSave> modelSaves, ViewConsole view)
         {
@@ -20,6 +26,14 @@ namespace EasySaveConsole.controller
             this.view = view;
             logLogger = LogLogger.getInstance();
             stateLogger = StateLogger.getInstance();
+            chosenLanguage = EnumLanguages.English;
+            cul = CultureInfo.CreateSpecificCulture("en");
+            res_man = new ResourceManager("EasySaveConsole.Properties.Res", typeof(ControllerSave).Assembly);
+        }
+
+        public void chooseLanguage()
+        {
+            view.output(res_man.GetString("welcome", cul));
         }
 
         public void run()

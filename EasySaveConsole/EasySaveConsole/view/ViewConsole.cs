@@ -6,14 +6,14 @@ namespace EasySaveConsole.view
 {
     public class ViewConsole
     {
-        public void input(String s)
+        public string input(String s)
         {
             throw new NotImplementedException();
         }
 
-        public String output()
+        public void output(String s)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(s);
         }
 
     }
