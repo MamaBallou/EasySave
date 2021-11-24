@@ -4,13 +4,19 @@ using System.Text;
 
 namespace EasySaveConsole
 {
-    class Tools
+    public class Tools
     {
-        public Tools() { }
+        private static Tools _uniqueInstance;
+        public static Tools getInstance()
+        {
+            return _uniqueInstance;
+        }
+        private Tools() { }
 
         public int getFileSize(Uri path)
         {
             throw new NotImplementedException();
+
         }
 
         public Boolean checkAccess(Uri path)
