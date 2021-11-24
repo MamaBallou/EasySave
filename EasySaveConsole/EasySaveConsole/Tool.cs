@@ -15,7 +15,7 @@ namespace EasySaveConsole
         /// to access the tools instance and make it unique
         /// </summary>
         /// <returns></returns>
-        public static Tool GetInstance()
+        public static Tool getInstance()
         {
             if (uniqueInstance == null)
             {

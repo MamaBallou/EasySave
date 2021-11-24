@@ -15,8 +15,8 @@ namespace EasySaveConsole.model
         public override void save()
         {
             //define source and target path in bool
-            bool sourceExists = Tools.getInstance().checkExistance(sourceFile);
-            bool targetExists = Tools.getInstance().checkExistance(targetFile);
+            bool sourceExists = Tool.getInstance().checkExistance(sourceFile);
+            bool targetExists = Tool.getInstance().checkExistance(targetFile);
 
             try
             {

@@ -6,7 +6,7 @@ namespace EasySaveTest
 {
     public class ToolsTest
     {
-        Tool tool = Tool.GetInstance();
+        Tool tool = Tool.getInstance();
 
         [Test]
         public void testGetFileSize()
