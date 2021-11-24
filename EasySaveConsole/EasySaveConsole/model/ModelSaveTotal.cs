@@ -12,7 +12,7 @@ namespace EasySaveConsole.model
 
         public override void save()
         {
-            throw new NotImplementedException();
+            LogLogger ll = LogLogger.getInstance();
         }
     }
 }
