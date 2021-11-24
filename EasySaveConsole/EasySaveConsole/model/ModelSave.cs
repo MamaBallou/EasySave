@@ -12,20 +12,22 @@ namespace EasySaveConsole.model
 
         public ModelSave(string name, string sourceFile, string targetFile)
         {
-            throw new NotImplementedException();
+            this.name = name;
+            this.sourceFile = new Uri(sourceFile);
+            this.targetFile = new Uri(targetFile);
         }
 
-        public abstract void save()
+        public virtual void save()
         {
             throw new NotImplementedException();
         }
 
-        public ModelState toModelState()
+        public virtual ModelState toModelState()
         {
             throw new NotImplementedException();
         }
 
-        public ModelLog toModelLog()
+        public virtual ModelLog toModelLog()
         {
             throw new NotImplementedException();
         }

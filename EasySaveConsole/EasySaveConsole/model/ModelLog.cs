@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EasySaveConsole.model
 {
-    class ModelLog : ModelLogger
+    public class ModelLog : ModelLogger
     {
         private int fileSize;
         private int transfertTime;

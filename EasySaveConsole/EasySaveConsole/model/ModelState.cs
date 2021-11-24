@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EasySaveConsole.model
 {
-    class ModelState : ModelLogger
+    public class ModelState : ModelLogger
     {
         private string state;
         private int totalFilesToCopy;

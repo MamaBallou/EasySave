@@ -7,34 +7,35 @@ using System.Text;
 
 namespace EasySaveConsole.model
 {
-    class ModelSaveTotal : ModelSave
+    public class ModelSaveTotal : ModelSave
     {
+        public ModelSaveTotal(string name, string sourceFile, string targetFile) : base(name, sourceFile, targetFile) { }
         public override void save()
         {
-          
-                bool sourceExists = ModelSaveTotal.sourceFile.Exists();
-                bool targetExists = ModelSaveTotal.targetFile.Exixts();
-                if (sourceExists & targetExists)
+            bool sourceExists = Tools.getInstance().checkExistance(sourceFile);
+            bool targetExists = Tools.getInstance().checkExistance(targetFile);
+            if (sourceExists & targetExists)
+            {
+                try
                 {
-                    try
+                    var TotalFiles = Directory.EnumerateFiles(sourceFile.ToString());
+                    foreach (string currentFile in TotalFiles)
                     {
-                        var TotalFiles = Directory.EnumerateFiles(sourceFile);
-                        foreach (string currentFile in TotalFiles)
-                        {
-                            string fileName = currentFile.Substring(sourceFile.Length + 1);
-                            Directory.Move(currentFile, Path.Combine(targetFile, fileName));
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
+                        string fileName = Path.GetFileName(currentFile.ToString());
+                        File.Copy(currentFile, String.Concat(targetFile, "/", fileName));
+                        //Directory.Move(currentFile, Path.Combine(targetFile, fileName));
                     }
                 }
-                else
+                catch (Exception e)
                 {
-                    Console.WriteLine("ERROR!!! Please verify directories syntax, they not exist ");
+                    Console.WriteLine(e.Message);
                 }
-            
+            }
+            else
+            {
+                Console.WriteLine("ERROR!!! Please verify directories syntax, they not exist ");
+            }
+
 
         }
     }
