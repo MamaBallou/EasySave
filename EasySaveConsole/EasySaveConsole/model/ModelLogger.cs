@@ -4,11 +4,19 @@ using System.Text;
 
 namespace EasySaveConsole.model
 {
-    abstract class ModelLogger
+    public abstract class ModelLogger
     {
         protected String saveName;
         protected String sourceFile;
         protected String targetFile;
-        // TODO : ajouter TimeStamp, type ?
+        protected DateTime timeStamp;
+
+        public ModelLogger(String saveName, String sourceFile, String targetFile, DateTime timeStamp)
+        {
+            this.saveName = saveName;
+            this.sourceFile = sourceFile;
+            this.targetFile = targetFile;
+            this.timeStamp = timeStamp;
+        }
     }
 }

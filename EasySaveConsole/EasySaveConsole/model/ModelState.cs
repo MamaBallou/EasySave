@@ -4,12 +4,16 @@ using System.Text;
 
 namespace EasySaveConsole.model
 {
-    class ModelState : ModelLogger
+    public class ModelState : ModelLogger
     {
-        private String state;
+        private string state;
         private int totalFilesToCopy;
-        private double totalFileSize;
+        private int totalFileSize;
         private int nbFilesLeftToDo;
-        private int progression;
+        private double progression;
+
+        public ModelState(string saveName, string sourceFile, string targetFile, DateTime timeStamp) : base(saveName, sourceFile, targetFile, timeStamp)
+        {
+        }
     }
 }

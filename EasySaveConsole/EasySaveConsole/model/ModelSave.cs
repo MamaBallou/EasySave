@@ -1,20 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace EasySaveConsole.model
 {
-    abstract class ModelSave
+    public abstract class ModelSave
     {
-        protected String name;
-        protected Uri sourceFile;
-        protected Uri targetFile;
+        protected string name;
+        protected string sourceFile;
+        protected string targetFile;
 
-        public ModelSave()
+        public ModelSave(string name, string sourceFile, string targetFile)
+        {
+            this.name = name;
+            this.sourceFile = sourceFile;
+            this.targetFile = targetFile;
+        }
+
+        public abstract void save();
+
+        public string getSourcePath()
+        {
+            return this.sourceFile;
+        }
+
+        public string getTargetPath()
+        {
+            return this.targetFile;
+        }
+
+        public ModelState toModelState()
         {
             throw new NotImplementedException();
         }
 
-        public abstract void save();
+        public ModelLog toModelLog(string sourcePath, int numSave, string targetFile)
+        {
+            FileInfo fi = new FileInfo(sourcePath);
+            double fileSize = fi.Length;
+
+            DateTime timeStamp = DateTime.Now;
+
+            return new ModelLog(fileSize, 3, "Save" + numSave, sourcePath, targetFile, timeStamp);
+        }
     }
 }
