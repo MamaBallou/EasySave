@@ -4,7 +4,7 @@ using System.IO;
 namespace EasySaveConsole
 {
     /// <summary>
-    /// it is a tool that allows us to have information on the file
+    /// It is a tool that allows us to have informations on a file.
     /// </summary>
     public class Tool
     {
@@ -12,9 +12,9 @@ namespace EasySaveConsole
 
         private Tool() { }
         /// <summary>
-        /// to access the tools instance and make it unique
+        /// To access the Tool instance because it's unique (Singleton).
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Instance of Tool.</returns>
         public static Tool getInstance()
         {
             if (uniqueInstance == null)
@@ -25,10 +25,10 @@ namespace EasySaveConsole
         }
 
         /// <summary>
-        /// method getFileSize allows you to determine the size of a file 
+        /// Allows you to determine the size of a file.
         /// </summary>
-        /// <param name="path">this parameter is for the access path to the file</param>
-        /// <returns>it returns the size of the file a int</returns>
+        /// <param name="path">tAccess path to the file.</param>
+        /// <returns>Size of the file.</returns>
         public int getFileSize(Uri path)
         {
             FileInfo fi = new FileInfo(@path.ToString());
@@ -38,26 +38,10 @@ namespace EasySaveConsole
         }
 
         /// <summary>
-        /// method checkAccess allows you to see if you have access to a file;
+        /// Allows you to see if a file exists.
         /// </summary>
-        /// <param name="path">this parameter for the access path to the file </param>
-        /// <returns>it returns a boolean telling if you have access to the file or not</returns>
-        public Boolean checkAccess(Uri path)
-        {
-            /*
-            //throw new NotImplementedException();
-            Boolean resultat = File.ReadAllText("test_files.txt");
-            Boolean resultat = File.ReadAllText("String path");
-            return resultat;
-            */
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// method checkExistance allows you to see if a file exists;
-        /// </summary>
-        /// <param name="path">this parameter for the access path to the file</param>
-        /// <returns>it returns a boolean telling you if a file exists or not</returns>
+        /// <param name="path">Access path to the file.</param>
+        /// <returns>A boolean telling you if a file exists.</returns>
         public Boolean checkExistance(Uri path)
         {
             //throw new NotImplementedException();
