@@ -1,0 +1,22 @@
+{
+	"Name" : "Save0",
+	"FileSource" : "..\..\..\filesToCopy\fileA.txt",
+	"FileTarget" : "..\..\..\filesCopied\fileA.txt",
+	"destPath" : "",
+	"FileSize" : 1714176,
+	"FileTransfertTime" : 3,
+	"time" : "24/11/2021 16:34:20"
+}
+
+
+{
+	"Name" : "Save0",
+	"FileSource" : "..\..\..\filesToCopy\fileB.txt",
+	"FileTarget" : "..\..\..\filesCopied\fileB.txt",
+	"destPath" : "",
+	"FileSize" : 6,
+	"FileTransfertTime" : 3,
+	"time" : "24/11/2021 16:34:20"
+}
+
+
