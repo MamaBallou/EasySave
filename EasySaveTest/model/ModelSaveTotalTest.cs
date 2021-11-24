@@ -10,13 +10,13 @@ namespace EasySaveTest.model
         [SetUp]
         public void Setup()
         {
-            // TODO : Create c:/current
+            // Create a source path
             // Try to create the directory.
             string path = @"c:\MyDir";
             DirectoryInfo di = Directory.CreateDirectory(path);
             Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
 
-            // TODO : Delete c:/archive
+            // Delete target path to be sure that save function create target path
             string subPath = @"C:\archive";
             Directory.Delete(subPath);
         }
@@ -26,7 +26,7 @@ namespace EasySaveTest.model
         {
             ModelSaveTotal  modelSaveTotal1 = new ModelSaveTotal("save1", @"C:\MyDir", @"C:\archive");
             modelSaveTotal1.save();
-            // TODO : Check if archive has been created
+            // Check if archive has been created
             Assert.IsTrue(File.Exists(@"C:\archive"));
 
         }

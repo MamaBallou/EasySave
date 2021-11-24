@@ -1,5 +1,4 @@
-﻿/*récupérer tous les fichiers texte d’un répertoire et de ses sous-répertoires, puis les déplacer vers un nouveau répertoire. 
- Une fois les fichiers déplacés, ils n’existent plus dans les répertoires d’origine.*/
+﻿
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -12,6 +11,7 @@ namespace EasySaveConsole.model
         public ModelSaveTotal(string name, string sourceFile, string targetFile) : base(name, sourceFile, targetFile) { }
         public override void save()
         {
+            //define source and target path in bool
             bool sourceExists = Tools.getInstance().checkExistance(sourceFile);
             bool targetExists = Tools.getInstance().checkExistance(targetFile);
             if (sourceExists & targetExists)
@@ -19,11 +19,12 @@ namespace EasySaveConsole.model
                 try
                 {
                     var TotalFiles = Directory.EnumerateFiles(sourceFile.ToString());
+                    //for each file in Directory, copy this.
                     foreach (string currentFile in TotalFiles)
                     {
                         string fileName = Path.GetFileName(currentFile.ToString());
                         File.Copy(currentFile, String.Concat(targetFile, "/", fileName), true) ;
-                        //Directory.Move(currentFile, Path.Combine(targetFile, fileName));
+                        
                     }
                 }
                 catch (Exception e)
@@ -33,6 +34,7 @@ namespace EasySaveConsole.model
             }
             else
             {
+                //if source doesn't exist do exception
                 Console.WriteLine("ERROR!!! Please verify directories syntax, they not exist ");
             }
 

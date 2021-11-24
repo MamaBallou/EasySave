@@ -14,6 +14,7 @@ namespace EasySaveConsole.model
 
         public override void save()
         {
+            //define source and target path in bool
             bool sourceExists = Tools.getInstance().checkExistance(sourceFile);
             bool targetExists = Tools.getInstance().checkExistance(targetFile);
 
@@ -21,8 +22,7 @@ namespace EasySaveConsole.model
             {
                 if (!sourceExists)
                 {
-                    // This statement ensures that the file is created,
-                    // but the handle is not kept.
+                    //Exception if source doesn't exist do exception
                     throw new PathNotFoundException();
                 }
                 
@@ -31,8 +31,6 @@ namespace EasySaveConsole.model
                 string fileName = Path.GetFileName(sourceFile.ToString());
                 File.Copy(sourceFile.ToString(), String.Concat(targetFile, "/", fileName));
                 Console.WriteLine("{0} was moved to {1}.", sourceFile.ToString(), targetFile.ToString());
-                //File.Move(sourceFile.ToString(), targetFile.ToString());
-                //File.Delete(sourceFile.ToString());
 
             }
             catch (ArgumentException e)

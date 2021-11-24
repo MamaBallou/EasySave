@@ -8,17 +8,16 @@ namespace EasySaveTest.model
     internal class ModelSaveDifferentialTest
     {
         [SetUp]
+        
         public void Setup()
         {
-            // TODO : Create c:/current
+            // Create a source path
             // Try to create the directory.
-            string path = @"c:\MyDir\test1.txt";
-            File.Create(path);
+            File.Create(@"c:\MyDir\test1.txt");
             Console.WriteLine("The directory was created successfully .");
 
-            // TODO : Delete c:/archive
-            string subPath = @"C:\archive\test1.txt";
-            File.Delete(subPath);
+            // Delete target path to be sure that save function create target path
+            File.Delete(@"C:\archive\test1.txt");
         }
 
         [Test]
@@ -26,8 +25,9 @@ namespace EasySaveTest.model
         {
             ModelSaveDifferential modelSaveDifferential1 = new ModelSaveDifferential("save1", @"C:\MyDir\test1.txt", @"C:\archive\test1.txt");
             modelSaveDifferential1.save();
-            // TODO : Check if archive has been created
+            // Check if archive has been created
             Assert.IsTrue(File.Exists(@"C:\archive\save1"));
+            // Check if test1.txt has been created
             Assert.IsTrue(File.Exists(@"C:\archive\save1\test1.txt"));
 
 
@@ -37,9 +37,9 @@ namespace EasySaveTest.model
         {
             ModelSaveDifferential modelSaveDifferential2 = new ModelSaveDifferential("save1", @"C:\MyDir", @"C:\archive\test1.txt");
             modelSaveDifferential2.save();
-            // TODO : Check if archive has been created
             File.Create(@"c:\MyDir\test2.txt");
             modelSaveDifferential2.save();
+            //Check if test2.txt created is in save1 
             Assert.IsTrue(File.Exists(@"C:\archive\save1\test2.txt"));
 
         }
