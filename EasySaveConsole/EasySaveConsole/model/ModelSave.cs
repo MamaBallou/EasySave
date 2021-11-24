@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace EasySaveConsole.model
@@ -16,7 +14,7 @@ namespace EasySaveConsole.model
             throw new NotImplementedException();
         }
 
-        public abstract void save()
+        public virtual void save()
         {
             throw new NotImplementedException();
         }
@@ -29,6 +27,26 @@ namespace EasySaveConsole.model
         public ModelLog toModelLog()
         {
             throw new NotImplementedException();
+        }
+
+        public string getSourcePath()
+        {
+            return sourceFile.ToString();
+        }
+
+        public string getTargetPath()
+        {
+            return targetFile.ToString();
+        }
+
+        public ModelLog toModelLog(string sourcePath, int numSave, string targetFile)
+        {
+            FileInfo fi = new FileInfo(sourcePath);
+            uint fileSize = (uint) fi.Length;
+
+            DateTime timeStamp = DateTime.Now;
+
+            return new ModelLog(fileSize, 3, "Save" + numSave, sourcePath, targetFile, timeStamp);
         }
     }
 }
