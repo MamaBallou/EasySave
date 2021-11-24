@@ -1,5 +1,4 @@
 ﻿using EasySaveConsole.controller;
-using EasySaveConsole.exception;
 using EasySaveConsole.logger;
 using System;
 using System.IO;
