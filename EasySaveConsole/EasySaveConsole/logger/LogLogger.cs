@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using EasySaveConsole.model;
+using System.Text.Json;
 
 namespace EasySaveConsole.logger
 {
@@ -22,35 +23,10 @@ namespace EasySaveConsole.logger
             return _instance;
         }
 
-        public String getPATH()
+        public void write(ModelLogger data)
         {
-            return LogLogger.PATH;
-        }
-
-        public void write(ModelSave[] data)
-        {
-            int i = 0;
-
-            foreach (ModelSave ms in data)
-            {
-                if(ms.GetType().Name == "ModelSaveTotal")
-                {
-                    foreach (string file in Directory.GetFiles(ms.getSourcePath()))
-                    {
-                        string[] lines = File.ReadAllLinesAsync(file).Result;
-
-                        File.WriteAllLinesAsync(ms.getTargetPath() + Path.GetFileName(file), lines);
-
-                        ModelLog ml = ms.toModelLog(ms.getSourcePath() + Path.GetFileName(file), i, ms.getTargetPath() + Path.GetFileName(file));
-                        File.AppendAllLinesAsync(PATH + "log" + i + ".txt", ml.toString());
-                    }
-                }
-                else if(ms.GetType().Name == "ModelSaveDifferential")
-                {
-                    Console.WriteLine("ModelSaveDifferential");
-                }
-                i++;
-            }
+            string jsonString = JsonSerializer.Serialize(data);
+            File.AppendAllText(String.Concat(PATH, @"\log.json"), jsonString);
         }
     }
 }

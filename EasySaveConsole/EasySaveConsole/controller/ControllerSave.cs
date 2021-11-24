@@ -14,8 +14,7 @@ namespace EasySaveConsole.controller
         private EnumLanguages chosenLanguage;
         private List<ModelSave> modelSaves;
         private ViewConsole view;
-        private LogLogger logLogger;
-        private StateLogger stateLogger;
+        public static List<ModelState> modelStates = new List<ModelState>();
 
         private ResourceManager res_man;    // declare Resource manager to access to specific cultureinfo
         private CultureInfo cul;            // declare culture info
@@ -24,8 +23,6 @@ namespace EasySaveConsole.controller
         {
             this.modelSaves = modelSaves;
             this.view = view;
-            logLogger = LogLogger.getInstance();
-            stateLogger = StateLogger.getInstance();
             chosenLanguage = EnumLanguages.English;
             cul = CultureInfo.CreateSpecificCulture("en");
             res_man = new ResourceManager("EasySaveConsole.Properties.Res", typeof(ControllerSave).Assembly);

@@ -5,18 +5,18 @@ namespace EasySaveConsole.model
 {
     public abstract class ModelSave
     {
-        protected String name;
-        protected Uri sourceFile;
-        protected Uri targetFile;
+        protected string name;
+        protected string sourceFile;
+        protected string targetFile;
 
         public ModelSave(string name, string sourceFile, string targetFile)
         {
             this.name = name;
-            this.sourceFile = new Uri(sourceFile);
-            this.targetFile = new Uri(targetFile);
+            this.sourceFile = sourceFile;
+            this.targetFile = targetFile;
         }
 
-        public virtual void save()
+        public virtual void save(ref ModelState modelState)
         {
             throw new NotImplementedException();
         }
@@ -33,22 +33,12 @@ namespace EasySaveConsole.model
 
         public string getSourcePath()
         {
-            return sourceFile.ToString();
+            return sourceFile;
         }
 
         public string getTargetPath()
         {
-            return targetFile.ToString();
-        }
-
-        public ModelLog toModelLog(string sourcePath, int numSave, string targetFile)
-        {
-            FileInfo fi = new FileInfo(sourcePath);
-            uint fileSize = (uint) fi.Length;
-
-            DateTime timeStamp = DateTime.Now;
-
-            return new ModelLog(fileSize, 3, "Save" + numSave, sourcePath, targetFile, timeStamp);
+            return targetFile;
         }
     }
 }

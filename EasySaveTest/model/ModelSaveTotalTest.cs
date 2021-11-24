@@ -25,7 +25,8 @@ namespace EasySaveTest.model
         public void Test1()
         {
             ModelSaveTotal  modelSaveTotal1 = new ModelSaveTotal("save1", @"C:\MyDir", @"C:\archive");
-            modelSaveTotal1.save();
+            ModelState modelState = new ModelState("save1", @"C:\MyDir\test1.txt", @"C:\archive\test1.txt");
+            modelSaveTotal1.save(ref modelState);
             // Check if archive has been created
             Assert.IsTrue(File.Exists(@"C:\archive"));
 

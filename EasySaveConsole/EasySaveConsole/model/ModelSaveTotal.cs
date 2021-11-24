@@ -1,44 +1,66 @@
 ﻿
+using EasySaveConsole.controller;
+using EasySaveConsole.exception;
+using EasySaveConsole.logger;
 using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EasySaveConsole.model
 {
     public class ModelSaveTotal : ModelSave
     {
+        private LogLogger log = LogLogger.getInstance();
+        private StateLogger stateLogger = StateLogger.getInstance();
         public ModelSaveTotal(string name, string sourceFile, string targetFile) : base(name, sourceFile, targetFile) { }
-        public override void save()
+        public override void save(ref ModelState modelState)
         {
             //define source and target path in bool
-            bool sourceExists = Tool.getInstance().checkExistance(sourceFile);
-            bool targetExists = Tool.getInstance().checkExistance(targetFile);
-            if (sourceExists & targetExists)
+            Tool tool = Tool.getInstance();
+            bool sourceExists = tool.checkExistance(sourceFile);
+            bool targetExists = tool.checkExistance(targetFile);
+
+            if (!sourceExists)
             {
-                try
+                //Exception if source doesn't exist do exception
+                throw new PathNotFoundException();
+            }
+
+            // get the file attributes for file or directory
+            FileAttributes attr = File.GetAttributes(sourceFile);
+
+            modelState.State = State.OnGoing;
+            stateLogger.write(ControllerSave.modelStates);
+            //detect whether its a directory or file
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+            {
+                var TotalFiles = Directory.EnumerateFiles(sourceFile);
+                //for each file in Directory, copy this.
+                foreach (string currentFile in TotalFiles)
                 {
-                    var TotalFiles = Directory.EnumerateFiles(sourceFile.ToString());
-                    //for each file in Directory, copy this.
-                    foreach (string currentFile in TotalFiles)
-                    {
-                        string fileName = Path.GetFileName(currentFile.ToString());
-                        File.Copy(currentFile, String.Concat(targetFile, "/", fileName), true) ;
-                        
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                    saveAFile(ref modelState, currentFile);
                 }
             }
             else
             {
-                //if source doesn't exist do exception
-                Console.WriteLine("ERROR!!! Please verify directories syntax, they not exist ");
+                saveAFile(ref modelState, sourceFile);
             }
+            modelState.State = State.Finish;
+            stateLogger.write(ControllerSave.modelStates);
+        }
 
-
+        private void saveAFile(ref ModelState modelState, string currentFile)
+        {
+            string fileName = Path.GetFileName(currentFile.ToString());
+            string currentTarget = String.Concat(targetFile, "/", fileName);
+            DateTime start = DateTime.Now;
+            File.Copy(currentFile, currentTarget, true);
+            TimeSpan span = DateTime.Now - start;
+            ModelLog modelLog = new ModelLog(name, currentFile, currentTarget,
+                span.TotalMilliseconds);
+            log.write(modelLog);
+            modelState.TotalFilesToCopy--;
+            modelState.calcProg();
+            stateLogger.write(ControllerSave.modelStates);
         }
     }
 }

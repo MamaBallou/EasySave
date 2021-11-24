@@ -29,12 +29,12 @@ namespace EasySaveConsole
         /// </summary>
         /// <param name="path">tAccess path to the file.</param>
         /// <returns>Size of the file.</returns>
-        public int getFileSize(Uri path)
+        public uint getFileSize(string path)
         {
-            FileInfo fi = new FileInfo(@path.ToString());
+            FileInfo fi = new FileInfo(@path);
             //int resultat = FileInfo.Lenght;
             int resultat = (int)fi.Length;
-            return resultat;
+            return (uint)resultat;
         }
 
         /// <summary>
@@ -42,11 +42,17 @@ namespace EasySaveConsole
         /// </summary>
         /// <param name="path">Access path to the file.</param>
         /// <returns>A boolean telling you if a file exists.</returns>
-        public Boolean checkExistance(Uri path)
+        public Boolean checkExistance(string path)
         {
             //throw new NotImplementedException();
-            Boolean res = File.Exists(path.ToString());
+            Boolean res = File.Exists(@path);
             return res;
+        }
+
+        public uint getNbFiles(string path)
+        {
+            
+            return (uint)Directory.GetFiles(path, ".", SearchOption.AllDirectories).Length;
         }
     }
 }

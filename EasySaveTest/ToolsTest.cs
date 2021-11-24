@@ -1,6 +1,6 @@
-﻿using System;
-using EasySaveConsole;
+﻿using EasySaveConsole;
 using NUnit.Framework;
+using System;
 
 namespace EasySaveTest
 {
@@ -11,16 +11,16 @@ namespace EasySaveTest
         [Test]
         public void testGetFileSize()
         {
-            Uri path = new Uri(@"../../../test_files/TestTools.txt", UriKind.Relative);
-            int actual = tool.getFileSize(path);
-            int expected = 10;
+            string path = "../../../test_files/TestTools.txt";
+            uint actual = tool.getFileSize(path);
+            uint expected = 10;
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void testcheckExistance1()
         {
-            Uri path = new Uri(@"../../../testtest/testTools.txt", UriKind.Relative);
+            string path = "../../../testtest/testTools.txt";
             Boolean actual = tool.checkExistance(path);
             Boolean expected = false;
             Assert.AreEqual(expected, actual);
@@ -30,22 +30,10 @@ namespace EasySaveTest
         public void testcheckExistance2()
         {
 
-            Uri path = new Uri(@"../../../test_files/TestTools.txt", UriKind.Relative);
+            string path = "../../../test_files/TestTools.txt";
             Boolean actual = tool.checkExistance(path);
             Boolean expected = true;
             Assert.AreEqual(expected, actual);
         }
-
-
-
-
-        void testcheckAccess()
-        {
-            Uri path = new Uri(@"../test_files/TestTools.txt", UriKind.Relative);
-            Boolean actual = tool.checkAccess(path);
-            Boolean expected = true;
-            Assert.AreEqual(actual, expected);
-        }
-        
     }
 }

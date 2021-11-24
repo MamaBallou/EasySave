@@ -1,22 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EasySaveConsole.model
 {
     public abstract class ModelLogger
     {
-        protected String saveName;
-        protected String sourceFile;
-        protected String targetFile;
+        protected string saveName;
+        protected string sourceFile;
+        protected string targetFile;
         protected DateTime timeStamp;
 
-        public ModelLogger(String saveName, String sourceFile, String targetFile, DateTime timeStamp)
+        public ModelLogger(string saveName, string sourceFile,
+            string targetFile)
         {
             this.saveName = saveName;
             this.sourceFile = sourceFile;
             this.targetFile = targetFile;
-            this.timeStamp = timeStamp;
+            timeStamp = DateTime.Now;
         }
     }
 }

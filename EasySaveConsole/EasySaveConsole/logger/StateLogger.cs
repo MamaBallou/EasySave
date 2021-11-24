@@ -1,6 +1,8 @@
-﻿using System;
+﻿using EasySaveConsole.model;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Text.Json;
 
 namespace EasySaveConsole.logger
 {
@@ -20,9 +22,10 @@ namespace EasySaveConsole.logger
             return _instance;
         }
 
-        public void write(string data)
+        public void write(List<ModelState> data)
         {
-            throw new NotImplementedException();
+            string jsonString = JsonSerializer.Serialize(data.ToArray());
+            File.WriteAllText(String.Concat(PATH, @"\log.json"), jsonString);
         }
     }
 }

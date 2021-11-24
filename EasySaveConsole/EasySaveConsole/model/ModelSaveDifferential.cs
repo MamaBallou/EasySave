@@ -1,42 +1,69 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Text;
+﻿using EasySaveConsole.controller;
 using EasySaveConsole.exception;
+using EasySaveConsole.logger;
+using System;
+using System.IO;
 
 namespace EasySaveConsole.model
 {
     public class ModelSaveDifferential : ModelSave
     {
-        public ModelSaveDifferential(string name, string sourceFile, string targetFile) : base(name, sourceFile, targetFile)
+        private LogLogger log = LogLogger.getInstance();
+        private StateLogger stateLogger = StateLogger.getInstance();
+        public ModelSaveDifferential(string name, string sourceFile,
+            string targetFile) : base(name, sourceFile, targetFile)
         {
         }
 
-        public override void save()
+        public override void save(ref ModelState modelState)
         {
             //define source and target path in bool
-            bool sourceExists = Tool.getInstance().checkExistance(sourceFile);
-            bool targetExists = Tool.getInstance().checkExistance(targetFile);
+            Tool tool = Tool.getInstance();
+            bool sourceExists = tool.checkExistance(sourceFile);
+            bool targetExists = tool.checkExistance(targetFile);
 
-            try
+            if (!sourceExists)
             {
-                if (!sourceExists)
+                //Exception if source doesn't exist do exception
+                throw new PathNotFoundException();
+            }
+
+            // get the file attributes for file or directory
+            FileAttributes attr = File.GetAttributes(sourceFile);
+
+            modelState.State = State.OnGoing;
+            stateLogger.write(ControllerSave.modelStates);
+            //detect whether its a directory or file
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+            {
+                var TotalFiles = Directory.EnumerateFiles(sourceFile);
+                //for each file in Directory, copy this.
+                foreach (string currentFile in TotalFiles)
                 {
-                    //Exception if source doesn't exist do exception
-                    throw new PathNotFoundException();
+                    saveAFile(ref modelState, currentFile);
                 }
-                
-
-                // Move the file.
-                string fileName = Path.GetFileName(sourceFile.ToString());
-                File.Copy(sourceFile.ToString(), String.Concat(targetFile, "/", fileName));
-                Console.WriteLine("{0} was moved to {1}.", sourceFile.ToString(), targetFile.ToString());
-
             }
-            catch (ArgumentException e)
+            else
             {
-                Console.WriteLine("The process failed: {0}", e.ToString());
+                saveAFile(ref modelState, sourceFile);
             }
+            modelState.State = State.Finish;
+            stateLogger.write(ControllerSave.modelStates);
+        }
+
+        private void saveAFile(ref ModelState modelState, string currentFile)
+        {
+            string fileName = Path.GetFileName(currentFile.ToString());
+            string currentTarget = String.Concat(targetFile, "/", fileName);
+            DateTime start = DateTime.Now;
+            File.Copy(currentFile, currentTarget);
+            TimeSpan span = DateTime.Now - start;
+            ModelLog modelLog = new ModelLog(name, currentFile, currentTarget,
+                span.TotalMilliseconds);
+            log.write(modelLog);
+            modelState.TotalFilesToCopy--;
+            modelState.calcProg();
+            stateLogger.write(ControllerSave.modelStates);
         }
     }
 }
