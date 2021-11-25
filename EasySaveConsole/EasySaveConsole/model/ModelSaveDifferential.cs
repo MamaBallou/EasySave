@@ -1,18 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using EasySaveConsole.controller;
 using EasySaveConsole.logger;
 
 namespace EasySaveConsole.model
 {
+    /// <summary>
+    /// Differential save class, extends from ModelSave.
+    /// </summary>
     public class ModelSaveDifferential : ModelSave
     {
+        /// <summary>
+        /// Logger object.
+        /// </summary>
         private Logger logger = Logger.getInstance();
+
+        /// <summary>
+        /// Contructor.
+        /// </summary>
+        /// <param name="name">Save name.</param>
+        /// <param name="sourceFile">Source path.</param>
+        /// <param name="targetFile">Target path.</param>
         public ModelSaveDifferential(string name, string sourceFile,
             string targetFile) : base(name, sourceFile, targetFile)
         { }
 
+        /// <summary>
+        /// Method to save one file if does not exists in target.
+        /// </summary>
+        /// <param name="modelState"></param>
+        /// <param name="currentFile"></param>
         protected override void saveAFile(ref ModelState modelState,
             string currentFile)
         {
@@ -40,11 +57,6 @@ namespace EasySaveConsole.model
             modelState.NbFilesLeftToDo--;
             modelState.calcProg();
             this.logger.write(ControllerSave.modelStates);
-        }
-
-        public static implicit operator List<object>(ModelSaveDifferential v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

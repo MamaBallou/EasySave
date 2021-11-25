@@ -8,9 +8,16 @@ namespace EasySaveConsole
     /// </summary>
     public class Tool
     {
+        /// <summary>
+        /// Unique instance of Tool.
+        /// </summary>
         private static Tool uniqueInstance;
 
+        /// <summary>
+        /// Private constructor.
+        /// </summary>
         private Tool() { }
+
         /// <summary>
         /// To access the Tool instance because it's unique (Singleton).
         /// </summary>
@@ -38,7 +45,8 @@ namespace EasySaveConsole
             {
                 DirectoryInfo directoryInfo = new DirectoryInfo(path);
                 uint folderSize = 0;
-                foreach (FileInfo file in directoryInfo.GetFiles("*", SearchOption.TopDirectoryOnly))
+                foreach (FileInfo file in
+                    directoryInfo.GetFiles("*", SearchOption.TopDirectoryOnly))
                 {
                     folderSize += (uint)file.Length;
                 }
@@ -59,7 +67,8 @@ namespace EasySaveConsole
             {
                 // get the file attributes for file or directory
                 attr = File.GetAttributes(path);
-            } catch
+            }
+            catch
             {
                 return false;
             }
@@ -72,9 +81,15 @@ namespace EasySaveConsole
             return File.Exists(@path);
         }
 
+        /// <summary>
+        /// Get number of file in top directory from path.
+        /// </summary>
+        /// <param name="path">Path to directory.</param>
+        /// <returns></returns>
         public uint getNbFiles(string path)
         {
-            return (uint)Directory.GetFiles(path, ".", SearchOption.TopDirectoryOnly).Length;
+            return (uint)Directory.GetFiles(
+                path, ".", SearchOption.TopDirectoryOnly).Length;
         }
     }
 }
