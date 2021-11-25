@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EasySaveConsole.model
+﻿namespace EasySaveConsole.model
 {
     public enum EnumLanguages
     {
-        FRANCAIS,
-        ANGLAIS
+        Francais,
+        English
     }
 }

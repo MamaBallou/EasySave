@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30413.136
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySaveConsole", "EasySaveConsole\EasySaveConsole.csproj", "{3418EAD5-40C5-4050-80E8-7788CCFDCE85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySaveConsole", "EasySaveConsole\EasySaveConsole.csproj", "{3418EAD5-40C5-4050-80E8-7788CCFDCE85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySaveTest", "..\EasySaveTest\EasySaveTest.csproj", "{0457016F-190B-46B7-AB10-AAAE168CEE23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3418EAD5-40C5-4050-80E8-7788CCFDCE85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3418EAD5-40C5-4050-80E8-7788CCFDCE85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3418EAD5-40C5-4050-80E8-7788CCFDCE85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0457016F-190B-46B7-AB10-AAAE168CEE23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0457016F-190B-46B7-AB10-AAAE168CEE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0457016F-190B-46B7-AB10-AAAE168CEE23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0457016F-190B-46B7-AB10-AAAE168CEE23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

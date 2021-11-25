@@ -1,14 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using EasySaveConsole.controller;
+using EasySaveConsole.logger;
+using System;
+using System.IO;
 
 namespace EasySaveConsole.model
 {
-    class ModelSaveDifferential : ModelSave
+    public class ModelSaveDifferential : ModelSave
     {
-        public override void save()
+        private LogLogger log = LogLogger.getInstance();
+        private StateLogger stateLogger = StateLogger.getInstance();
+        public ModelSaveDifferential(string name, string sourceFile,
+            string targetFile) : base(name, sourceFile, targetFile)
+        { }
+
+        protected override void saveAFile(ref ModelState modelState, string currentFile)
         {
-            throw new NotImplementedException();
+            string fileName = Path.GetFileName(currentFile.ToString());
+            string currentTarget = String.Concat(targetFile, "/", fileName);
+            DateTime start = DateTime.Now;
+            File.Copy(currentFile, currentTarget);
+            TimeSpan span = DateTime.Now - start;
+            ModelLog modelLog = new ModelLog(name, currentFile, currentTarget,
+                span.TotalMilliseconds);
+            log.write(modelLog);
+            modelState.TotalFilesToCopy--;
+            modelState.calcProg();
+            stateLogger.write(ControllerSave.modelStates);
         }
     }
 }

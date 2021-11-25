@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EasySaveConsole.model
+﻿namespace EasySaveConsole.model
 {
-    class ModelLog
+    public class ModelLog : ModelLogger
     {
+        private uint fileSize;
+        private double transfertTime;
+
+        public ModelLog(string saveName, string sourceFile, string targetFile, double transfertTime) : base(saveName, sourceFile, targetFile)
+        {
+            Tool tool = Tool.getInstance();
+            fileSize = tool.getFileSize(sourceFile);
+            this.transfertTime = transfertTime;
+        }
     }
 }
