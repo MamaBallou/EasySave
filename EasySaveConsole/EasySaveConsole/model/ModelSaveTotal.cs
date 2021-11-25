@@ -1,6 +1,5 @@
 ﻿
 using EasySaveConsole.controller;
-using EasySaveConsole.exception;
 using EasySaveConsole.logger;
 using System;
 using System.IO;
@@ -15,9 +14,18 @@ namespace EasySaveConsole.model
         protected override void saveAFile(ref ModelState modelState, string currentFile)
         {
             string fileName = Path.GetFileName(currentFile.ToString());
-            string currentTarget = String.Concat(targetFile, "/", fileName);
+            string currentTarget = String.Concat(targetFile, name, "/", fileName);
             DateTime start = DateTime.Now;
-            File.Copy(currentFile, currentTarget, true);
+            bool success = false;
+            do
+            {
+                try
+                {
+                    File.Copy(currentFile, currentTarget, true);
+                    success = true;
+                }
+                catch { }
+            } while (!success);
             TimeSpan span = DateTime.Now - start;
             ModelLog modelLog = new ModelLog(name, currentFile, currentTarget,
                 span.TotalMilliseconds);
