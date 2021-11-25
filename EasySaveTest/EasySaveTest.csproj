@@ -19,4 +19,8 @@
     <ProjectReference Include="..\EasySaveConsole\EasySaveConsole\EasySaveConsole.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="target\" />
+  </ItemGroup>
+
 </Project>

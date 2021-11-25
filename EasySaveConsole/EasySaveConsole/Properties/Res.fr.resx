@@ -157,7 +157,7 @@
     <value>1 : Créé une sauvegarde</value>
   </data>
   <data name="delete_comfirm" xml:space="preserve">
-    <value>Confirmez-vous la suppression de {0} ? o/n</value>
+    <value>Confirmez-vous la suppression de {0} ? y/n</value>
   </data>
   <data name="delete_end" xml:space="preserve">
     <value>La sauvegarde {0} a bien été supprimée.</value>

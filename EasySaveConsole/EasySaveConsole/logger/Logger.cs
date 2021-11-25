@@ -33,7 +33,7 @@ namespace EasySaveConsole.logger
         /// Write in a log.json file the logs of the save
         /// </summary>
         /// <param name="data">A ModelLogger : a class with all the logs to write in the log.json file</param>
-        public void write(ModelLogger data)
+        public void write(ModelLog data)
         {
             string jsonString = JsonSerializer.Serialize(data);
             if (!Tool.getInstance().checkExistance(PATH))

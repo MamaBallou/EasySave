@@ -13,7 +13,7 @@ namespace EasySaveConsole.model
         private uint totalFileSize;
         public uint TotalFileSize { get { return totalFileSize; } }
         private uint nbFilesLeftToDo;
-        public uint NbFilesLeftToDo { get { return nbFilesLeftToDo; } }
+        public uint NbFilesLeftToDo { get { return nbFilesLeftToDo; } set { nbFilesLeftToDo = value; } }
         private double progression;
         public double Progression { get { return progression; } }
 
@@ -30,8 +30,7 @@ namespace EasySaveConsole.model
 
         public double calcProg()
         {
-            return progression = totalFilesToCopy * 100 /
-                (double)(totalFilesToCopy - nbFilesLeftToDo);
+            return progression = ((double)(totalFileSize - nbFilesLeftToDo) / (double)totalFileSize) * 100.0;
         }
     }
 }

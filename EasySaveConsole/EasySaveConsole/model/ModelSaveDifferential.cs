@@ -37,7 +37,7 @@ namespace EasySaveConsole.model
                     currentTarget, span.TotalMilliseconds);
                 this.logger.write(modelLog);
             }
-            modelState.TotalFilesToCopy--;
+            modelState.NbFilesLeftToDo--;
             modelState.calcProg();
             this.logger.write(ControllerSave.modelStates);
         }

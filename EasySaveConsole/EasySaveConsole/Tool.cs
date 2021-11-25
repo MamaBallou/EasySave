@@ -38,7 +38,7 @@ namespace EasySaveConsole
             {
                 DirectoryInfo directoryInfo = new DirectoryInfo(path);
                 uint folderSize = 0;
-                foreach (FileInfo file in directoryInfo.GetFiles("*", SearchOption.AllDirectories))
+                foreach (FileInfo file in directoryInfo.GetFiles("*", SearchOption.TopDirectoryOnly))
                 {
                     folderSize += (uint)file.Length;
                 }
@@ -74,7 +74,7 @@ namespace EasySaveConsole
 
         public uint getNbFiles(string path)
         {
-            return (uint)Directory.GetFiles(path, ".", SearchOption.AllDirectories).Length;
+            return (uint)Directory.GetFiles(path, ".", SearchOption.TopDirectoryOnly).Length;
         }
     }
 }

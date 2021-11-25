@@ -6,13 +6,30 @@ using EasySaveConsole.logger;
 
 namespace EasySaveConsole.model
 {
+    /// <summary>
+    /// Abstract Class for Save methods.
+    /// </summary>
     public abstract class ModelSave
     {
-        private Logger log = Logger.getInstance();
-        private Logger stateLogger = Logger.getInstance();
+        /// <summary>
+        /// Logger attribute.
+        /// </summary>
+        private Logger logger = Logger.getInstance();
+        /// <summary>
+        /// Name of the Save.
+        /// </summary>
         protected string name;
-        public string Name => this.name;
+        /// <summary>
+        /// Getter name attribute.
+        /// </summary>
+        public string Name { get { return name; } }
+        /// <summary>
+        /// Source path.
+        /// </summary>
         protected string sourceFile;
+        /// <summary>
+        /// Target path.
+        /// </summary>
         protected string targetFile;
 
         public ModelSave(string name, string sourceFile, string targetFile)
@@ -46,7 +63,7 @@ namespace EasySaveConsole.model
             FileAttributes attr = File.GetAttributes(this.sourceFile);
 
             modelState._State = State.OnGoing;
-            this.stateLogger.write(ControllerSave.modelStates);
+            this.logger.write(ControllerSave.modelStates);
             //detect whether its a directory or file
             if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
             {
@@ -62,7 +79,7 @@ namespace EasySaveConsole.model
                 saveAFile(ref modelState, this.sourceFile);
             }
             modelState._State = State.Finish;
-            this.stateLogger.write(ControllerSave.modelStates);
+            this.logger.write(ControllerSave.modelStates);
         }
 
         protected virtual void saveAFile(ref ModelState modelState,
