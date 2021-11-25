@@ -58,7 +58,8 @@ namespace EasySaveTest.model
             //Check if testSave.txt is created is in save1 
             File.Create(@String.Concat(SourcePath, "testSave2.txt"));
             modelSaveDifferential2.save(ref modelState);
-            Assert.IsTrue(File.Exists(@String.Concat(TargetPath, SaveName, "/", "testSave2.txt")));
+            string filePath = @String.Concat(TargetPath, SaveName, "/", "testSave2.txt");
+            Assert.IsTrue(File.Exists(filePath));
         }
 
         [TearDown]
