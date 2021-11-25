@@ -1,0 +1,47 @@
+private void deleteSave(string path)
+        {
+            // get list of save; 
+            List<string> sauvegardes = new List<string>();
+            // Ajouter des éléments à la liste              
+                             
+            Console.WriteLine("Parcourir la liste avec la boucle for-each:");
+            Console.WriteLine("list of save");
+            foreach (string item in sauvegardes)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("choose an element from the list");
+            Console.WriteLine("confirm your choise (Yes/No)");
+            string choise = Console.ReadLine();
+            if (choise == "Yes")
+            {
+                //pour verifier si le fichier existe 
+                Boolean resFileExists = Tool.getInstance().checkExistance(path);
+
+                //verifier si tu as access au fichier 
+                Boolean resFileAccess = Tool.getInstance().checkAccess(path);
+
+                if (resFileExists == false)
+                {
+                    Console.WriteLine("Show exception message");
+                    Console.WriteLine("Exception save not found");
+                } 
+                else if (resFileExists == true)
+                {
+                    if(resFileAccess == false)
+                    {
+                        Console.WriteLine("Show exception message");
+                        Console.WriteLine("Exception access denied");
+                    }
+                    else if (resFileAccess == true)
+                    {
+                        File.Delete(path); //pour supprimer le fichier
+                        Console.WriteLine("file deleted "); //Log new save state in state logger
+                    } 
+                }  
+            }
+            else if(choise == "No")
+            {
+                Console.WriteLine("Sorry! we cannot delete ");
+            }
