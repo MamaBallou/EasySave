@@ -35,5 +35,14 @@ namespace EasySaveTest
             Boolean expected = true;
             Assert.AreEqual(expected, actual);
         }
+
+         [Test]
+         public void testFolderSize()
+        {
+            string folder = "../../../test_files";
+            uint expected = 10;
+            uint actual = tool.getFileSize(folder);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
