@@ -3,16 +3,15 @@
     public class ModelState : ModelLogger
     {
         private State state;
+        public State State { get { return state; } set { state = value; } }
         private uint totalFilesToCopy;
+        public uint TotalFilesToCopy { get { return totalFilesToCopy; } set { totalFilesToCopy = value; } }
         private uint totalFileSize;
+        public uint TotalFileSize { get { return totalFileSize; } }
         private uint nbFilesLeftToDo;
+        public uint NbFilesLeftToDo { get { return nbFilesLeftToDo; } }
         private double progression;
-
-        public State State { get => state; set => state = value; }
-        public uint TotalFilesToCopy { get => totalFilesToCopy; set => totalFilesToCopy = value; }
-        public uint TotalFileSize { get => totalFileSize; set => totalFileSize = value; }
-        public uint NbFilesLeftToDo { get => nbFilesLeftToDo; set => nbFilesLeftToDo = value; }
-        public double Progression { get => progression; set => progression = value; }
+        public double Progression { get { return progression; } }
 
         public ModelState(string saveName, string sourceFile, string targetFile)
             : base(saveName, sourceFile, targetFile)
