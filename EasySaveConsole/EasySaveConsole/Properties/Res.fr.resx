@@ -169,16 +169,19 @@
     <value>Trop de sauvegardes ont été créés. Le maximum est {0}. Supprimez en une avant d'en créer un nouvelle.</value>
   </data>
   <data name="language_en" xml:space="preserve">
-    <value>English</value>
+    <value>2 : English</value>
   </data>
   <data name="language_fr" xml:space="preserve">
-    <value>Français</value>
+    <value>1 : Français</value>
   </data>
   <data name="language_ok" xml:space="preserve">
     <value>La langue est bien passée en Français.</value>
   </data>
   <data name="language_selection" xml:space="preserve">
     <value>Veuillez choisir la langue parmis les choix ci-dessous.</value>
+  </data>
+  <data name="leave" xml:space="preserve">
+    <value>Quitter</value>
   </data>
   <data name="run_all_save" xml:space="preserve">
     <value>Exécuter toutes les sauvegardes</value>

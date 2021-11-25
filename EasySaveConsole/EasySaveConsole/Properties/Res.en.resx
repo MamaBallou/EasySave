@@ -151,7 +151,7 @@
     <value>Choose a backup among the list below.</value>
   </data>
   <data name="create_save" xml:space="preserve">
-    <value>Create a backup</value>
+    <value>1 : Create a backup</value>
   </data>
   <data name="delete_comfirm" xml:space="preserve">
     <value>Do you confirm deletion of {0} ?</value>
@@ -160,7 +160,7 @@
     <value>The backup {0} has been deleted.</value>
   </data>
   <data name="delete_save" xml:space="preserve">
-    <value>Delete a backup</value>
+    <value>2 : Delete a backup</value>
   </data>
   <data name="exception_pathnotfound" xml:space="preserve">
     <value>The path {0} not found. Check your selection.</value>
@@ -169,10 +169,10 @@
     <value>Too much backups created. Max is {0}. Delete a backup before creating a new one.</value>
   </data>
   <data name="language_en" xml:space="preserve">
-    <value>English</value>
+    <value>2 : English</value>
   </data>
   <data name="language_fr" xml:space="preserve">
-    <value>Français</value>
+    <value>1 : Français</value>
   </data>
   <data name="language_ok" xml:space="preserve">
     <value>Language has been switched to English successfully.</value>
@@ -180,11 +180,14 @@
   <data name="language_selection" xml:space="preserve">
     <value>Choose a language among choices below.</value>
   </data>
+  <data name="leave" xml:space="preserve">
+    <value>5 : Leave</value>
+  </data>
   <data name="run_all_save" xml:space="preserve">
-    <value>Run all backups</value>
+    <value>3 : Run all backups</value>
   </data>
   <data name="run_one_save" xml:space="preserve">
-    <value>Run one backup</value>
+    <value>4 : Run one backup</value>
   </data>
   <data name="save_created" xml:space="preserve">
     <value>Backup {0} created.</value>
