@@ -16,13 +16,25 @@ namespace EasySaveConsole.model
         protected override void saveAFile(ref ModelState modelState, string currentFile)
         {
             string fileName = Path.GetFileName(currentFile.ToString());
-            string currentTarget = String.Concat(targetFile, "/", fileName);
-            DateTime start = DateTime.Now;
-            File.Copy(currentFile, currentTarget);
-            TimeSpan span = DateTime.Now - start;
-            ModelLog modelLog = new ModelLog(name, currentFile, currentTarget,
-                span.TotalMilliseconds);
-            log.write(modelLog);
+            string currentTarget = String.Concat(targetFile, name, "/", fileName);
+            if (!File.Exists(currentTarget))
+            {
+                DateTime start = DateTime.Now;
+                bool success = false;
+                do
+                {
+                    try
+                    {
+                        File.Copy(currentFile, currentTarget);
+                        success = true;
+                    }
+                    catch { }
+                } while (!success);
+                TimeSpan span = DateTime.Now - start;
+                ModelLog modelLog = new ModelLog(name, currentFile, currentTarget,
+                    span.TotalMilliseconds);
+                log.write(modelLog);
+            }
             modelState.TotalFilesToCopy--;
             modelState.calcProg();
             stateLogger.write(ControllerSave.modelStates);

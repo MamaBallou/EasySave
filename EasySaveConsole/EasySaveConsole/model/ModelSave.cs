@@ -23,15 +23,22 @@ namespace EasySaveConsole.model
 
         public void save(ref ModelState modelState)
         {
+            string targetFolderPath = @String.Concat(targetFile, name, "/");
             //define source and target path in bool
             Tool tool = Tool.getInstance();
             bool sourceExists = tool.checkExistance(sourceFile);
-            bool targetExists = tool.checkExistance(targetFile);
+            bool targetExists = tool.checkExistance(targetFolderPath);
+
 
             if (!sourceExists)
             {
                 //Exception if source doesn't exist do exception
                 throw new PathNotFoundException();
+            }
+            if (!targetExists)
+            {
+                //Exception if source doesn't exist do exception
+                Directory.CreateDirectory(targetFolderPath);
             }
 
             // get the file attributes for file or directory
