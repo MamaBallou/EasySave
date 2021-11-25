@@ -31,10 +31,20 @@ namespace EasySaveConsole
         /// <returns>Size of the file.</returns>
         public uint getFileSize(string path)
         {
-            FileInfo fi = new FileInfo(@path);
-            //int resultat = FileInfo.Lenght;
-            int resultat = (int)fi.Length;
-            return (uint)resultat;
+            // get the file attributes for file or directory
+            FileAttributes attr = File.GetAttributes(path);
+            //detect whether its a directory or file
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+            {
+                DirectoryInfo directoryInfo = new DirectoryInfo(path);
+                uint folderSize = 0;
+                foreach (FileInfo file in directoryInfo.GetFiles("*", SearchOption.AllDirectories))
+                {
+                    folderSize += (uint)file.Length;
+                }
+                return folderSize;
+            }
+            return (uint)new FileInfo(path).Length;   
         }
 
         /// <summary>
