@@ -56,7 +56,10 @@ namespace EasySaveTest.model
             ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             ModelSaveTotal2.save(ref modelState);
             //Check if testSave.txt is created is in save1 
-            File.Create(@String.Concat(SourcePath, "testSave2.txt"));
+            using (var stream = File.Create(@String.Concat(SourcePath, "testSave2.txt")))
+            {
+                
+            }
             ModelSaveTotal2.save(ref modelState);
             string filePath = @String.Concat(TargetPath, SaveName, "/", "testSave2.txt");
             Assert.IsTrue(File.Exists(filePath));
