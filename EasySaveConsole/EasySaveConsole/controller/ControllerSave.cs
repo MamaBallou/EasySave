@@ -180,6 +180,7 @@ namespace EasySaveConsole.controller
         {
             view.output(res_man.GetString("choice_delete", cul));
 
+
         }
 
         private void runAllSaves()

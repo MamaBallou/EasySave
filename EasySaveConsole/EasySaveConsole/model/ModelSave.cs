@@ -8,8 +8,8 @@ namespace EasySaveConsole.model
 {
     public abstract class ModelSave
     {
-        private LogLogger log = LogLogger.getInstance();
-        private StateLogger stateLogger = StateLogger.getInstance();
+        private Logger log = Logger.getInstance();
+        private Logger stateLogger = Logger.getInstance();
         protected string name;
         protected string sourceFile;
         protected string targetFile;

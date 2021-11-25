@@ -8,8 +8,7 @@ namespace EasySaveConsole.model
 {
     public class ModelSaveTotal : ModelSave
     {
-        private LogLogger log = LogLogger.getInstance();
-        private StateLogger stateLogger = StateLogger.getInstance();
+        private Logger logger = Logger.getInstance();
         public ModelSaveTotal(string name, string sourceFile, string targetFile) : base(name, sourceFile, targetFile) { }
         protected override void saveAFile(ref ModelState modelState, string currentFile)
         {
@@ -29,10 +28,10 @@ namespace EasySaveConsole.model
             TimeSpan span = DateTime.Now - start;
             ModelLog modelLog = new ModelLog(name, currentFile, currentTarget,
                 span.TotalMilliseconds);
-            log.write(modelLog);
+            logger.write(modelLog);
             modelState.TotalFilesToCopy--;
             modelState.calcProg();
-            stateLogger.write(ControllerSave.modelStates);
+            logger.write(ControllerSave.modelStates);
         }
     }
 }

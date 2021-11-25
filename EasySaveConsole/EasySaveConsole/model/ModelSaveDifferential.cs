@@ -8,8 +8,7 @@ namespace EasySaveConsole.model
 {
     public class ModelSaveDifferential : ModelSave
     {
-        private LogLogger log = LogLogger.getInstance();
-        private StateLogger stateLogger = StateLogger.getInstance();
+        private Logger logger = Logger.getInstance();
         public ModelSaveDifferential(string name, string sourceFile,
             string targetFile) : base(name, sourceFile, targetFile)
         { }
@@ -34,11 +33,11 @@ namespace EasySaveConsole.model
                 TimeSpan span = DateTime.Now - start;
                 ModelLog modelLog = new ModelLog(name, currentFile, currentTarget,
                     span.TotalMilliseconds);
-                log.write(modelLog);
+                logger.write(modelLog);
             }
             modelState.TotalFilesToCopy--;
             modelState.calcProg();
-            stateLogger.write(ControllerSave.modelStates);
+            logger.write(ControllerSave.modelStates);
         }
 
         public static implicit operator List<object>(ModelSaveDifferential v)
