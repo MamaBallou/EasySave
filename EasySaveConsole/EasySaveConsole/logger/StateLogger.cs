@@ -8,7 +8,7 @@ namespace EasySaveConsole.logger
 {
     public class StateLogger
     {
-        private static string PATH = "../../logs";
+        private static string PATH = "../../../logs";
         private static StateLogger _instance;
 
         private StateLogger() { }
@@ -29,7 +29,7 @@ namespace EasySaveConsole.logger
             {
                 Directory.CreateDirectory(PATH);
             }
-            File.WriteAllText(String.Concat(PATH, @"/log.json"), jsonString);
+            File.WriteAllText(String.Concat(PATH, @"/state.json"), jsonString);
         }
     }
 }

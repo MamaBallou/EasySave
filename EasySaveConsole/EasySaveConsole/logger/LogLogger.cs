@@ -34,12 +34,11 @@ namespace EasySaveConsole.logger
         public void write(ModelLogger data)
         {
             string jsonString = JsonConvert.SerializeObject(data);
-            Console.WriteLine(jsonString);
             if (!Tool.getInstance().checkExistance(PATH))
             {
                 Directory.CreateDirectory(PATH);
             }
-            File.AppendAllText(String.Concat(PATH, @"\log.json"), jsonString + '\n');
+            File.AppendAllText(String.Concat(PATH, @"\log.json"), jsonString + ",\n");
         }
     }
 }
