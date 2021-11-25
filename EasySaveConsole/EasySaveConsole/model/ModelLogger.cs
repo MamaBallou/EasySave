@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace EasySaveConsole.model
 {
@@ -10,21 +10,25 @@ namespace EasySaveConsole.model
         /// </summary>
         [JsonProperty("SaveName")]
         protected string saveName;
+        public string SaveName { get { return saveName; } set { saveName = value; } }
         /// <summary>
         /// The path to the source file.
         /// </summary>
         [JsonProperty("SourceFile")]
         protected string sourceFile;
+        public string SourceFile { get { return sourceFile; } set { sourceFile = value; } }
         /// <summary>
         /// The path to the target file.
         /// </summary>
         [JsonProperty("TargetFile")]
         protected string targetFile;
+        public string TargetFile { get { return targetFile; } set { targetFile = value; } }
         /// <summary>
         /// The date and time when the save is made.
         /// </summary>
         [JsonProperty("TimeStamp")]
         protected DateTime timeStamp;
+        public DateTime TimeStamp { get { return timeStamp; } set { timeStamp = value; } }
 
         /// <summary>
         /// Constructor for the ModelLogger.
@@ -38,7 +42,7 @@ namespace EasySaveConsole.model
             this.saveName = saveName;
             this.sourceFile = sourceFile;
             this.targetFile = targetFile;
-            timeStamp = DateTime.Now;
+            this.timeStamp = DateTime.Now;
         }
 
         /// <summary>

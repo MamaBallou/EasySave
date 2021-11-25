@@ -9,11 +9,13 @@ namespace EasySaveConsole.model
         /// </summary>
         [JsonProperty("FileSize")]
         private uint fileSize;
+        public uint FileSize { get { return fileSize; } set { fileSize = value;} }
         /// <summary>
         /// The total time spent doing the transfert.
         /// </summary>
         [JsonProperty("TransfertTime")]
         private double transfertTime;
+        public double TransfertTime { get { return transfertTime; } set { transfertTime = value; } }
 
         /// <summary>
         /// Constructor for ModelLog.
