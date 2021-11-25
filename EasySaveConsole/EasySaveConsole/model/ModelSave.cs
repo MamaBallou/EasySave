@@ -22,7 +22,7 @@ namespace EasySaveConsole.model
         /// <summary>
         /// Getter name attribute.
         /// </summary>
-        public string Name { get { return name; } }
+        public string Name => this.name;
         /// <summary>
         /// Source path.
         /// </summary>
@@ -32,6 +32,12 @@ namespace EasySaveConsole.model
         /// </summary>
         protected string targetFile;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="name">Save name.</param>
+        /// <param name="sourceFile">Source path.</param>
+        /// <param name="targetFile">Target path.</param>
         public ModelSave(string name, string sourceFile, string targetFile)
         {
             this.name = name;
@@ -39,9 +45,16 @@ namespace EasySaveConsole.model
             this.targetFile = targetFile;
         }
 
+        /// <summary>
+        /// Save method copy files from source to target.
+        /// </summary>
+        /// <param name="modelState">Model state attached to the save.</param>
+        /// <exception cref="PathNotFoundException">Thrown when source path not
+        /// found.</exception>
         public void save(ref ModelState modelState)
         {
-            string targetFolderPath = @String.Concat(this.targetFile, this.name, "/");
+            string targetFolderPath =
+                @String.Concat(this.targetFile, this.name, "/");
             //define source and target path in bool
             Tool tool = Tool.getInstance();
             bool sourceExists = tool.checkExistance(this.sourceFile);
@@ -82,12 +95,22 @@ namespace EasySaveConsole.model
             this.logger.write(ControllerSave.modelStates);
         }
 
+        /// <summary>
+        /// Method to save one file passed in parameter.
+        /// </summary>
+        /// <param name="modelState">Model state attached to the save.</param>
+        /// <param name="currentFile">File to save.</param>
+        /// <exception cref="NotImplementedException">Thrown if file not
+        /// found.</exception>
         protected virtual void saveAFile(ref ModelState modelState,
             string currentFile)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// To delete the target folder.
+        /// </summary>
         public void delete()
         {
             Directory.Delete(String.Concat(this.targetFile, this.name), true);

@@ -1,23 +1,30 @@
-﻿using EasySaveConsole.model;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
+using EasySaveConsole.model;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace EasySaveConsole.logger
 {
+    /// <summary>
+    /// Singleton class to log logs and states.
+    /// </summary>
     public sealed class Logger
     {
+        /// <summary>
+        /// Path to the logs.
+        /// </summary>
         private static string PATH = @"..\..\..\logs\";
+        /// <summary>
+        /// Unique instance of the class.
+        /// </summary>
         private static Logger _instance;
 
         private Logger() { }
 
         /// <summary>
-        /// If there's no instance of LogLogger, this creates one. Otherwise it returns the existing instance.
-        /// That makes the instance unique.
+        /// If there's no instance of LogLogger, this creates one. Otherwise
+        /// it returns the existing instance. It makes the instance unique.
         /// </summary>
         /// <returns>Returns the unique instance of LogLogger</returns>
         public static Logger getInstance()
@@ -30,9 +37,10 @@ namespace EasySaveConsole.logger
         }
 
         /// <summary>
-        /// Write in a log.json file the logs of the save
+        /// Write in a log.json file the logs of the save.
         /// </summary>
-        /// <param name="data">A ModelLogger : a class with all the logs to write in the log.json file</param>
+        /// <param name="data">A ModelLog : a class with all the logs to
+        /// write in the log.json file</param>
         public void write(ModelLog data)
         {
             string jsonString = JsonSerializer.Serialize(data);
@@ -40,9 +48,15 @@ namespace EasySaveConsole.logger
             {
                 Directory.CreateDirectory(PATH);
             }
-            File.AppendAllText(String.Concat(PATH, @"\log.json"), jsonString + ",\n");
+            File.AppendAllText(
+                String.Concat(PATH, @"\log.json"), jsonString + ",\n");
         }
 
+        /// <summary>
+        /// Write in a log.json file the logs of the save. 
+        /// </summary>
+        /// <param name="data">A ModelState : a class with all the logs to
+        /// write in the state.json file</param>
         public void write(List<ModelState> data)
         {
             string jsonString = JsonSerializer.Serialize(data.ToArray());

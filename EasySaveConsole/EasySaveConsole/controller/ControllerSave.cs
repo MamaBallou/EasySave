@@ -8,37 +8,131 @@ using EasySaveConsole.view;
 
 namespace EasySaveConsole.controller
 {
+    /// <summary>
+    /// Controller class, used to call all function and display the sequencial
+    /// interraction with user.
+    /// </summary>
     public class ControllerSave
     {
+        /// <summary>
+        /// Store the language choose.
+        /// </summary>
         private EnumLanguages chosenLanguage;
+        /// <summary>
+        /// List of stored saves.
+        /// </summary>
         private List<ModelSave> modelSaves;
+        /// <summary>
+        /// view object.
+        /// </summary>
         private ViewConsole view;
+        /// <summary>
+        /// List of modelStates ordered indentically to the save it represents.
+        /// </summary>
         public static List<ModelState> modelStates = new List<ModelState>();
 
-        private ResourceManager res_man;    // declare Resource manager to access to specific cultureinfo
-        private CultureInfo cul;            // declare culture info
+        /// <summary>
+        /// Declare Resource manager to access to specific cultureinfo.
+        /// </summary>
+        private ResourceManager res_man;
+        /// <summary>
+        /// Declare culture info.
+        /// </summary>
+        private CultureInfo cul;
 
+        /// <summary>
+        /// Contructor.
+        /// </summary>
+        /// <param name="modelSaves">List of model saves.</param>
+        /// <param name="view">Instance of the view.</param>
         public ControllerSave(List<ModelSave> modelSaves, ViewConsole view)
         {
             this.modelSaves = modelSaves;
             this.view = view;
             this.chosenLanguage = EnumLanguages.English;
             this.cul = CultureInfo.CreateSpecificCulture("en");
-            this.res_man = new ResourceManager("EasySaveConsole.Properties.Res", typeof(ControllerSave).Assembly);
+            this.res_man = new ResourceManager("EasySaveConsole.Properties.Res",
+                typeof(ControllerSave).Assembly);
         }
 
+        /// <summary>
+        /// Run function. It organizes calls to all functions.
+        /// </summary>
+        public void run()
+        {
+            this.view.output(this.res_man.GetString("welcome", this.cul));
+            int choiceIndex = 0;
+            // Call chooseLanguage
+            chooseLanguage();
+            // Ask to choose between the following options while no satisfiing
+            // is put.
+            do
+            {
+                this.view.output(
+                    this.res_man.GetString("choose_action", this.cul));
+                bool choiceOk = false;
+                do
+                {
+                    this.view.output(this.res_man.GetString("choose_action",
+                        this.cul));
+                    this.view.output(this.res_man.GetString("create_save",
+                        this.cul));
+                    this.view.output(this.res_man.GetString("delete_save",
+                        this.cul));
+                    this.view.output(this.res_man.GetString("run_all_save",
+                        this.cul));
+                    this.view.output(this.res_man.GetString("run_one_save",
+                        this.cul));
+                    this.view.output(this.res_man.GetString("leave",
+                        this.cul));
+                    string choice = this.view.input();
+                    // Check if entry is a number
+                    choiceOk = int.TryParse(choice, out choiceIndex);
+                } while (!choiceOk);
+                // Call function according to entry
+                switch (choiceIndex)
+                {
+                    case 1:
+                        createNewSave();
+                        break;
+                    case 2:
+                        deleteSave();
+                        break;
+                    case 3:
+                        runAllSaves();
+                        break;
+                    case 4:
+                        runSave();
+                        break;
+                }
+            } while (choiceIndex != 0 && choiceIndex < 5);
+            // If entry 5 exit while loop and exit program
+            this.view.output(this.res_man.GetString("bye", this.cul));
+        }
+
+        /// <summary>
+        /// Function to interact with user to choose language.
+        /// </summary>
         private void chooseLanguage()
         {
+            // Loop while no satisfiing entry if given
             bool again = false;
             do
             {
-                this.view.output(this.res_man.GetString("language_selection", this.cul));
-                this.view.output(String.Concat(this.res_man.GetString("language_fr", this.cul)));
-                this.view.output(String.Concat(this.res_man.GetString("language_en", this.cul)));
+                this.view.output(this.res_man.GetString("language_selection",
+                    this.cul));
+                this.view.output(String.Concat(this.res_man.GetString(
+                    "language_fr",
+                    this.cul)));
+                this.view.output(String.Concat(this.res_man.GetString(
+                    "language_en",
+                    this.cul)));
                 string choice = this.view.input();
                 int choiceIndex = 0;
+                // Check if entry is integer
                 if (int.TryParse(choice, out choiceIndex))
                 {
+                    // Change the language according to entry
                     switch (choiceIndex)
                     {
                         case 1:
@@ -59,44 +153,9 @@ namespace EasySaveConsole.controller
             } while (again);
         }
 
-        public void run()
-        {
-            this.view.output(this.res_man.GetString("welcome", this.cul));
-            int choiceIndex = 0;
-            chooseLanguage();
-            do
-            {
-                bool choiceOk = false;
-                do
-                {
-                    this.view.output(this.res_man.GetString("choose_action", this.cul));
-                    this.view.output(this.res_man.GetString("create_save", this.cul));
-                    this.view.output(this.res_man.GetString("delete_save", this.cul));
-                    this.view.output(this.res_man.GetString("run_all_save", this.cul));
-                    this.view.output(this.res_man.GetString("run_one_save", this.cul));
-                    this.view.output(this.res_man.GetString("leave", this.cul));
-                    string choice = this.view.input();
-                    choiceOk = int.TryParse(choice, out choiceIndex);
-                } while (!choiceOk);
-                switch (choiceIndex)
-                {
-                    case 1:
-                        createNewSave();
-                        break;
-                    case 2:
-                        deleteSave();
-                        break;
-                    case 3:
-                        runAllSaves();
-                        break;
-                    case 4:
-                        runSave();
-                        break;
-                }
-            } while (choiceIndex != 0 && choiceIndex < 5);
-            this.view.output(this.res_man.GetString("bye", this.cul));
-        }
-
+        /// <summary>
+        /// Function to interact with user to create a new baclup.
+        /// </summary>
         private void createNewSave()
         {
             this.view.output(this.res_man.GetString("choice_save", this.cul));
@@ -105,21 +164,26 @@ namespace EasySaveConsole.controller
             //case number of saves <5
             if (Nb < 5)
             {
+                // Ask for backup infos : name, sourcepath, targetPath & type
                 this.view.output(this.res_man.GetString("ask_name", this.cul));
                 string name_tmp = this.view.input();
                 string source_tmp, target_tmp;
                 int type = 0;
                 bool again = false;
                 ModelSave modelSave = null;
+                // Ask path while path not found
                 do
                 {
-                    this.view.output(this.res_man.GetString("ask_sourcepath", this.cul));
+                    this.view.output(this.res_man.GetString("ask_sourcepath",
+                        this.cul));
                     source_tmp = this.view.input();
                     again = !Tool.getInstance().checkExistance(source_tmp);
                 } while (again);
+                // Ask targetPath while targetPath format not recognized
                 do
                 {
-                    this.view.output(this.res_man.GetString("ask_targetpath", this.cul));
+                    this.view.output(this.res_man.GetString("ask_targetpath",
+                        this.cul));
                     target_tmp = this.view.input();
                     FileInfo fi = null;
                     try
@@ -134,74 +198,120 @@ namespace EasySaveConsole.controller
                 try
                 {
                     Directory.CreateDirectory(target_tmp);
-                } catch { }
+                }
+                catch { }
+                // Ask for type while entry incorrect
                 do
                 {
                     do
                     {
-                        this.view.output(this.res_man.GetString("ask_type", this.cul));
-                        this.view.output(this.res_man.GetString("type_total", this.cul));
-                        this.view.output(this.res_man.GetString("type_differential", this.cul));
+                        this.view.output(this.res_man.GetString(
+                            "ask_type",
+                            this.cul));
+                        this.view.output(this.res_man.GetString(
+                            "type_total",
+                            this.cul));
+                        this.view.output(this.res_man.GetString(
+                            "type_differential", this.cul));
                         string type_tmp = this.view.input();
                         again = !int.TryParse(type_tmp, out type);
                     } while (again);
                     again = false;
+                    // Create save according to infos given
                     switch (type)
                     {
                         case 1:
-                            modelSave = new ModelSaveTotal(name_tmp, source_tmp, target_tmp);
-                            view.output(String.Format(res_man.GetString("save_created", cul), name_tmp));
+                            modelSave = new ModelSaveTotal(
+                                name_tmp,
+                                source_tmp,
+                                target_tmp);
+                            this.view.output(String.Format(
+                                this.res_man.GetString("save_created", this.cul),
+                                name_tmp));
                             break;
                         case 2:
-                            modelSave = new ModelSaveDifferential(name_tmp, source_tmp, target_tmp);
-                            view.output(String.Format(res_man.GetString("save_created", cul), name_tmp));
+                            modelSave = new ModelSaveDifferential(
+                                name_tmp,
+                                source_tmp,
+                                target_tmp);
+                            this.view.output(String.Format(
+                                this.res_man.GetString("save_created", this.cul),
+                                name_tmp));
                             break;
                         default:
                             again = true;
                             break;
                     }
-                    modelSaves.Add(modelSave);
+                    this.modelSaves.Add(modelSave);
                 } while (again);
+                // Running save
                 if (modelSave != null)
                 {
-                    ModelState modelState = new ModelState(name_tmp, source_tmp, target_tmp);
+                    ModelState modelState = new ModelState(name_tmp,
+                        source_tmp,
+                        target_tmp);
                     modelStates.Add(modelState);
-                    view.output(String.Format(res_man.GetString("save_run", cul), name_tmp));
+                    this.view.output(String.Format(
+                        this.res_man.GetString("save_run", this.cul),
+                        name_tmp));
                     modelSave.save(ref modelState);
-                    view.output(String.Format(res_man.GetString("save_end", cul), name_tmp));
+                    this.view.output(String.Format(
+                        this.res_man.GetString("save_end", this.cul),
+                        name_tmp));
                 }
             }
+            // If too much saves (> 5)
             else
             {
-                view.output(res_man.GetString("exception_toomuchsaves", cul));
+                this.view.output(
+                    this.res_man.GetString("exception_toomuchsaves",
+                    this.cul));
             }
         }
 
+        /// <summary>
+        /// Function to interact with user to delete a backup.
+        /// </summary>
         private void deleteSave()
         {
-            view.output(res_man.GetString("choice_delete", cul));
+            this.view.output(
+                this.res_man.GetString("choice_delete",
+                this.cul));
             bool again = false;
             int choice = 0;
+            // Ask to choose the save to delete while entry incorrect
             do
             {
-                view.output(res_man.GetString("choose_save", cul));
+                this.view.output(
+                    this.res_man.GetString("choose_save",
+                    this.cul));
                 byte compt = 1;
-                foreach (var modelSave in modelSaves)
+                foreach (var modelSave in this.modelSaves)
                 {
-                    view.output(String.Format("{0} : {1}", compt, modelSave.Name));
+                    this.view.output(
+                        String.Format("{0} : {1}", compt, modelSave.Name));
                 }
-                string choice_tmp = view.input();
+                string choice_tmp = this.view.input();
                 again = !int.TryParse(choice_tmp, out choice);
-            } while (again && choice > 0 && choice <= modelSaves.Count);
-            ModelSave model = modelSaves[choice - 1];
+            } while (again && choice > 0 && choice <= this.modelSaves.Count);
+            ModelSave model = this.modelSaves[choice - 1];
             again = false;
             string answer;
+            // Ask if user if sure to delete while incorrect entry
             do
             {
-                view.output(String.Format(res_man.GetString("delete_comfirm", cul), model.Name));
-                answer = view.input();
-                bool y = String.Equals(answer, "y", StringComparison.OrdinalIgnoreCase);
-                bool n = String.Equals(answer, "n", StringComparison.OrdinalIgnoreCase);
+                this.view.output(String.Format(
+                    this.res_man.GetString("delete_comfirm", this.cul),
+                    model.Name));
+                answer = this.view.input();
+                bool y = String.Equals(
+                    answer,
+                    "y",
+                    StringComparison.OrdinalIgnoreCase);
+                bool n = String.Equals(
+                    answer,
+                    "n",
+                    StringComparison.OrdinalIgnoreCase);
                 again = !(y || n);
             } while (again);
             switch (answer)
@@ -209,51 +319,79 @@ namespace EasySaveConsole.controller
                 case "y":
                 case "Y":
                     model.delete();
-                    modelSaves.Remove(model);
+                    this.modelSaves.Remove(model);
                     modelStates.RemoveAt(choice - 1);
-                    view.output(String.Format(res_man.GetString("delete_end", cul), model.Name));
+                    this.view.output(String.Format(
+                        this.res_man.GetString("delete_end", this.cul),
+                        model.Name));
                     break;
                 case "n":
                 case "N":
-                    view.output(String.Format(res_man.GetString("delete_end", cul), model.Name));
+                    this.view.output(String.Format(
+                        this.res_man.GetString("delete_end", this.cul),
+                        model.Name));
                     break;
             }
         }
 
+        /// <summary>
+        /// Function to interact with user to run all backups.
+        /// </summary>
         private void runAllSaves()
         {
-            view.output(res_man.GetString("choice_runallsaves", cul));
-            for (byte compt = 0; compt < modelSaves.Count; compt++)
+            this.view.output(
+                this.res_man.GetString("choice_runallsaves",
+                this.cul));
+            // Browse the saved backups and run them all
+            for (byte compt = 0; compt < this.modelSaves.Count; compt++)
             {
                 ModelState modelState = modelStates[compt];
-                view.output(String.Format(res_man.GetString("save_run", cul), modelSaves[compt].Name));
-                modelSaves[compt].save(ref modelState);
-                view.output(String.Format(res_man.GetString("save_end", cul), modelSaves[compt].Name));
+                this.view.output(String.Format(
+                    this.res_man.GetString("save_run", this.cul),
+                    this.modelSaves[compt].Name));
+                this.modelSaves[compt].save(ref modelState);
+                this.view.output(String.Format(
+                    this.res_man.GetString("save_end", this.cul),
+                    this.modelSaves[compt].Name));
             }
         }
 
+        /// <summary>
+        /// Function to interact with user to run  one backup.
+        /// </summary>
         private void runSave()
         {
-            view.output(res_man.GetString("choice_runonesave", cul));
-            view.output(res_man.GetString("choose_save", cul));
+            this.view.output(
+                this.res_man.GetString("choice_runonesave",
+                this.cul));
+            this.view.output(this.res_man.GetString("choose_save", this.cul));
             bool again = false;
             int choice = 0;
+            // Ask which backup the user wants to run while incorrect entry.
             do
             {
-                view.output(res_man.GetString("choose_save", cul));
+                this.view.output(
+                    this.res_man.GetString("choose_save",
+                    this.cul));
                 byte compt = 1;
-                foreach (var modelSave in modelSaves)
+                foreach (var modelSave in this.modelSaves)
                 {
-                    view.output(String.Format("{0} : {1}", compt, modelSave.Name));
+                    this.view.output(
+                        String.Format("{0} : {1}", compt, modelSave.Name));
                 }
-                string choice_tmp = view.input();
+                string choice_tmp = this.view.input();
                 again = !int.TryParse(choice_tmp, out choice);
-            } while (again && choice > 0 && choice <= modelSaves.Count);
-            ModelSave model = modelSaves[choice - 1];
+            } while (again && choice > 0 && choice <= this.modelSaves.Count);
+            ModelSave model = this.modelSaves[choice - 1];
             ModelState modelState = modelStates[choice - 1];
-            view.output(String.Format(res_man.GetString("save_run", cul), model.Name));
+            this.view.output(
+                String.Format(
+                    this.res_man.GetString("save_run", this.cul),
+                    model.Name));
             model.save(ref modelState);
-            view.output(String.Format(res_man.GetString("save_end", cul), model.Name));
+            this.view.output(String.Format(
+                    this.res_man.GetString("save_end", this.cul),
+                    model.Name));
         }
     }
 }
