@@ -44,7 +44,7 @@ namespace EasySaveConsole
                 }
                 return folderSize;
             }
-            return (uint)new FileInfo(path).Length;   
+            return (uint)new FileInfo(path).Length;
         }
 
         /// <summary>
@@ -54,9 +54,22 @@ namespace EasySaveConsole
         /// <returns>A boolean telling you if a file exists.</returns>
         public Boolean checkExistance(string path)
         {
+            FileAttributes attr;
+            try
+            {
+                // get the file attributes for file or directory
+                attr = File.GetAttributes(path);
+            } catch (DirectoryNotFoundException)
+            {
+                return false;
+            }
+            //detect whether its a directory or file
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+            {
+                return Directory.Exists(path);
+            }
             //throw new NotImplementedException();
-            Boolean res = File.Exists(@path);
-            return res;
+            return File.Exists(@path);
         }
 
         public uint getNbFiles(string path)
