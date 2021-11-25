@@ -1,14 +1,37 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace EasySaveConsole.model
 {
     public abstract class ModelLogger
     {
+        /// <summary>
+        /// The name of the save.
+        /// </summary>
+        [JsonProperty("SaveName")]
         protected string saveName;
+        /// <summary>
+        /// The path to the source file.
+        /// </summary>
+        [JsonProperty("SourceFile")]
         protected string sourceFile;
+        /// <summary>
+        /// The path to the target file.
+        /// </summary>
+        [JsonProperty("TargetFile")]
         protected string targetFile;
+        /// <summary>
+        /// The date and time when the save is made.
+        /// </summary>
+        [JsonProperty("TimeStamp")]
         protected DateTime timeStamp;
 
+        /// <summary>
+        /// Constructor for the ModelLogger.
+        /// </summary>
+        /// <param name="saveName">Defines the name of the save.</param>
+        /// <param name="sourceFile">Defines the path of the source file.</param>
+        /// <param name="targetFile">Defines the path of the target file.</param>
         public ModelLogger(string saveName, string sourceFile,
             string targetFile)
         {
@@ -18,6 +41,10 @@ namespace EasySaveConsole.model
             timeStamp = DateTime.Now;
         }
 
+        /// <summary>
+        /// Converts all the attributes in String.
+        /// </summary>
+        /// <returns>A string with all the attributes.</returns>
         public override string ToString()
         {
             return base.ToString();
