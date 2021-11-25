@@ -6,9 +6,9 @@ namespace EasySaveConsole.view
 {
     public class ViewConsole
     {
-        public string input(String s)
+        public string input()
         {
-            throw new NotImplementedException();
+            return Console.ReadLine();
         }
 
         public void output(String s)
