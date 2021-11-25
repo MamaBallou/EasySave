@@ -17,5 +17,10 @@ namespace EasySaveConsole.model
             this.targetFile = targetFile;
             timeStamp = DateTime.Now;
         }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

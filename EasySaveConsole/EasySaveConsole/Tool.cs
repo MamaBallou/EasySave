@@ -59,7 +59,7 @@ namespace EasySaveConsole
             {
                 // get the file attributes for file or directory
                 attr = File.GetAttributes(path);
-            } catch (DirectoryNotFoundException)
+            } catch
             {
                 return false;
             }
@@ -74,7 +74,6 @@ namespace EasySaveConsole
 
         public uint getNbFiles(string path)
         {
-
             return (uint)Directory.GetFiles(path, ".", SearchOption.AllDirectories).Length;
         }
     }
