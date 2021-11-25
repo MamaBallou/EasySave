@@ -26,7 +26,7 @@ namespace EasySaveConsole.controller
             this.res_man = new ResourceManager("EasySaveConsole.Properties.Res", typeof(ControllerSave).Assembly);
         }
 
-        public void chooseLanguage()
+        private void chooseLanguage()
         {
             bool again = false;
             do
@@ -74,9 +74,9 @@ namespace EasySaveConsole.controller
                     this.view.output(this.res_man.GetString("run_all_save", this.cul));
                     this.view.output(this.res_man.GetString("run_one_save", this.cul));
                     this.view.output(this.res_man.GetString("leave", this.cul));
-                    string choice = view.input();
+                    string choice = this.view.input();
                     choiceOk = int.TryParse(choice, out choiceIndex);
-                }while (choiceOk);
+                } while (choiceOk);
             } while (choiceIndex != 0);
         }
         /*
