@@ -12,7 +12,7 @@ namespace EasySaveConsole
         {
             Console.WriteLine("Hello World!");
             ControllerSave controller = new ControllerSave(new List<ModelSave>(), new ViewConsole());
-            controller.chooseLanguage();
+            controller.run();
         }
     }
 }
