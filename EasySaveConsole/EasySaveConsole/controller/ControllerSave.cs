@@ -160,6 +160,7 @@ namespace EasySaveConsole.controller
                             again = true;
                             break;
                     }
+                    modelSaves.Add(modelSave);
                 } while (again);
                 if (modelSave != null)
                 {
@@ -179,18 +180,80 @@ namespace EasySaveConsole.controller
         private void deleteSave()
         {
             view.output(res_man.GetString("choice_delete", cul));
-
-
+            bool again = false;
+            int choice = 0;
+            do
+            {
+                view.output(res_man.GetString("choose_save", cul));
+                byte compt = 1;
+                foreach (var modelSave in modelSaves)
+                {
+                    view.output(String.Format("{0} : {1}", compt, modelSave.Name));
+                }
+                string choice_tmp = view.input();
+                again = !int.TryParse(choice_tmp, out choice);
+            } while (again && choice > 0 && choice <= modelSaves.Count);
+            ModelSave model = modelSaves[choice - 1];
+            again = false;
+            string answer;
+            do
+            {
+                view.output(String.Format(res_man.GetString("delete_comfirm", cul), model.Name));
+                answer = view.input();
+                bool y = String.Equals(answer, "y", StringComparison.OrdinalIgnoreCase);
+                bool n = String.Equals(answer, "n", StringComparison.OrdinalIgnoreCase);
+                again = !(y || n);
+            } while (again);
+            switch (answer)
+            {
+                case "y":
+                case "Y":
+                    model.delete();
+                    modelSaves.Remove(model);
+                    modelStates.RemoveAt(choice - 1);
+                    view.output(String.Format(res_man.GetString("delete_end", cul), model.Name));
+                    break;
+                case "n":
+                case "N":
+                    view.output(String.Format(res_man.GetString("delete_end", cul), model.Name));
+                    break;
+            }
         }
 
         private void runAllSaves()
         {
-            throw new NotImplementedException();
+            view.output(res_man.GetString("choice_runallsaves", cul));
+            for (byte compt = 0; compt < modelSaves.Count; compt++)
+            {
+                ModelState modelState = modelStates[compt];
+                view.output(String.Format(res_man.GetString("save_run", cul), modelSaves[compt].Name));
+                modelSaves[compt].save(ref modelState);
+                view.output(String.Format(res_man.GetString("save_end", cul), modelSaves[compt].Name));
+            }
         }
 
         private void runSave()
         {
-            throw new NotImplementedException();
+            view.output(res_man.GetString("choice_runonesave", cul));
+            view.output(res_man.GetString("choose_save", cul));
+            bool again = false;
+            int choice = 0;
+            do
+            {
+                view.output(res_man.GetString("choose_save", cul));
+                byte compt = 1;
+                foreach (var modelSave in modelSaves)
+                {
+                    view.output(String.Format("{0} : {1}", compt, modelSave.Name));
+                }
+                string choice_tmp = view.input();
+                again = !int.TryParse(choice_tmp, out choice);
+            } while (again && choice > 0 && choice <= modelSaves.Count);
+            ModelSave model = modelSaves[choice - 1];
+            ModelState modelState = modelStates[choice - 1];
+            view.output(String.Format(res_man.GetString("save_run", cul), model.Name));
+            model.save(ref modelState);
+            view.output(String.Format(res_man.GetString("save_end", cul), model.Name));
         }
     }
 }

@@ -1,9 +1,13 @@
-﻿namespace EasySaveConsole.model
+﻿using System.Text.Json.Serialization;
+
+namespace EasySaveConsole.model
 {
     public class ModelState : ModelLogger
     {
         private State state;
-        public State State { get { return state; } set { state = value; } }
+        [JsonIgnore]
+        public State _State { get { return state; } set { state = value; } }
+        public string Stata { get { return state.ToString(); } }
         private uint totalFilesToCopy;
         public uint TotalFilesToCopy { get { return totalFilesToCopy; } set { totalFilesToCopy = value; } }
         private uint totalFileSize;

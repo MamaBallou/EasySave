@@ -132,6 +132,9 @@
   <data name="bye" xml:space="preserve">
     <value>Goodbye</value>
   </data>
+  <data name="canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
   <data name="choice_delete" xml:space="preserve">
     <value>You've choose to delete a backup</value>
   </data>
@@ -154,7 +157,7 @@
     <value>1 : Create a backup</value>
   </data>
   <data name="delete_comfirm" xml:space="preserve">
-    <value>Do you confirm deletion of {0} ?</value>
+    <value>Do you confirm deletion of {0} ? y/n</value>
   </data>
   <data name="delete_end" xml:space="preserve">
     <value>The backup {0} has been deleted.</value>

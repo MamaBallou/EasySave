@@ -132,6 +132,9 @@
   <data name="bye" xml:space="preserve">
     <value>Au revoir</value>
   </data>
+  <data name="canceled" xml:space="preserve">
+    <value>Annulé</value>
+  </data>
   <data name="choice_delete" xml:space="preserve">
     <value>Vous avez choisi de supprimer une sauvegarde.</value>
   </data>
@@ -154,13 +157,13 @@
     <value>1 : Créé une sauvegarde</value>
   </data>
   <data name="delete_comfirm" xml:space="preserve">
-    <value>2 : Confirmez-vous la suppression de {0} ?</value>
+    <value>Confirmez-vous la suppression de {0} ? o/n</value>
   </data>
   <data name="delete_end" xml:space="preserve">
     <value>La sauvegarde {0} a bien été supprimée.</value>
   </data>
   <data name="delete_save" xml:space="preserve">
-    <value>Supprimer une sauvegarde</value>
+    <value>2 : Supprimer une sauvegarde</value>
   </data>
   <data name="exception_pathnotfound" xml:space="preserve">
     <value>Le chemin {0} est introuvable. Vérifier votre sélection.</value>

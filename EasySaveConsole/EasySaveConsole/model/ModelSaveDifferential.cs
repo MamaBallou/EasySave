@@ -1,8 +1,8 @@
-﻿using EasySaveConsole.controller;
-using EasySaveConsole.logger;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using EasySaveConsole.controller;
+using EasySaveConsole.logger;
 
 namespace EasySaveConsole.model
 {
@@ -13,10 +13,12 @@ namespace EasySaveConsole.model
             string targetFile) : base(name, sourceFile, targetFile)
         { }
 
-        protected override void saveAFile(ref ModelState modelState, string currentFile)
+        protected override void saveAFile(ref ModelState modelState,
+            string currentFile)
         {
             string fileName = Path.GetFileName(currentFile.ToString());
-            string currentTarget = String.Concat(targetFile, name, "/", fileName);
+            string currentTarget = String.Concat(this.targetFile, this.name,
+                "/", fileName);
             if (!File.Exists(currentTarget))
             {
                 DateTime start = DateTime.Now;
@@ -31,13 +33,13 @@ namespace EasySaveConsole.model
                     catch { }
                 } while (!success);
                 TimeSpan span = DateTime.Now - start;
-                ModelLog modelLog = new ModelLog(name, currentFile, currentTarget,
-                    span.TotalMilliseconds);
-                logger.write(modelLog);
+                ModelLog modelLog = new ModelLog(this.name, currentFile,
+                    currentTarget, span.TotalMilliseconds);
+                this.logger.write(modelLog);
             }
             modelState.TotalFilesToCopy--;
             modelState.calcProg();
-            logger.write(ControllerSave.modelStates);
+            this.logger.write(ControllerSave.modelStates);
         }
 
         public static implicit operator List<object>(ModelSaveDifferential v)

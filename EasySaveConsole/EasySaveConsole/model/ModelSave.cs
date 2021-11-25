@@ -1,8 +1,8 @@
-﻿using EasySaveConsole.controller;
+﻿using System;
+using System.IO;
+using EasySaveConsole.controller;
 using EasySaveConsole.exception;
 using EasySaveConsole.logger;
-using System;
-using System.IO;
 
 namespace EasySaveConsole.model
 {
@@ -11,6 +11,7 @@ namespace EasySaveConsole.model
         private Logger log = Logger.getInstance();
         private Logger stateLogger = Logger.getInstance();
         protected string name;
+        public string Name => this.name;
         protected string sourceFile;
         protected string targetFile;
 
@@ -23,10 +24,10 @@ namespace EasySaveConsole.model
 
         public void save(ref ModelState modelState)
         {
-            string targetFolderPath = @String.Concat(targetFile, name, "/");
+            string targetFolderPath = @String.Concat(this.targetFile, this.name, "/");
             //define source and target path in bool
             Tool tool = Tool.getInstance();
-            bool sourceExists = tool.checkExistance(sourceFile);
+            bool sourceExists = tool.checkExistance(this.sourceFile);
             bool targetExists = tool.checkExistance(targetFolderPath);
 
 
@@ -42,14 +43,14 @@ namespace EasySaveConsole.model
             }
 
             // get the file attributes for file or directory
-            FileAttributes attr = File.GetAttributes(sourceFile);
+            FileAttributes attr = File.GetAttributes(this.sourceFile);
 
-            modelState.State = State.OnGoing;
-            stateLogger.write(ControllerSave.modelStates);
+            modelState._State = State.OnGoing;
+            this.stateLogger.write(ControllerSave.modelStates);
             //detect whether its a directory or file
             if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
             {
-                var TotalFiles = Directory.EnumerateFiles(sourceFile);
+                var TotalFiles = Directory.EnumerateFiles(this.sourceFile);
                 //for each file in Directory, copy this.
                 foreach (string currentFile in TotalFiles)
                 {
@@ -58,15 +59,21 @@ namespace EasySaveConsole.model
             }
             else
             {
-                saveAFile(ref modelState, sourceFile);
+                saveAFile(ref modelState, this.sourceFile);
             }
-            modelState.State = State.Finish;
-            stateLogger.write(ControllerSave.modelStates);
+            modelState._State = State.Finish;
+            this.stateLogger.write(ControllerSave.modelStates);
         }
 
-        protected virtual void saveAFile(ref ModelState modelState, string currentFile)
+        protected virtual void saveAFile(ref ModelState modelState,
+            string currentFile)
         {
             throw new NotImplementedException();
+        }
+
+        public void delete()
+        {
+            Directory.Delete(String.Concat(this.targetFile, this.name), true);
         }
     }
 }
