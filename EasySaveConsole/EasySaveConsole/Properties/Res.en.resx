@@ -199,10 +199,10 @@
     <value>Backup {0} ongoing.</value>
   </data>
   <data name="type_differential" xml:space="preserve">
-    <value>Differential : Save files different from previous backup</value>
+    <value>2 : Differential : Save files different from previous backup</value>
   </data>
   <data name="type_total" xml:space="preserve">
-    <value>Total : Full backup</value>
+    <value>1 : Total : Full backup</value>
   </data>
   <data name="welcome" xml:space="preserve">
     <value>Welcome</value>

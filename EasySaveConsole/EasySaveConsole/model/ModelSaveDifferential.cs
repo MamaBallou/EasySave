@@ -1,6 +1,7 @@
 ﻿using EasySaveConsole.controller;
 using EasySaveConsole.logger;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace EasySaveConsole.model
@@ -38,6 +39,11 @@ namespace EasySaveConsole.model
             modelState.TotalFilesToCopy--;
             modelState.calcProg();
             stateLogger.write(ControllerSave.modelStates);
+        }
+
+        public static implicit operator List<object>(ModelSaveDifferential v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

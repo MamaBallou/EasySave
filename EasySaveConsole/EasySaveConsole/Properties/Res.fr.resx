@@ -151,10 +151,10 @@
     <value>Choisissez une sauvegarde parmi la liste suivante.</value>
   </data>
   <data name="create_save" xml:space="preserve">
-    <value>Créé une sauvegarde</value>
+    <value>1 : Créé une sauvegarde</value>
   </data>
   <data name="delete_comfirm" xml:space="preserve">
-    <value>Confirmez-vous la suppression de {0} ?</value>
+    <value>2 : Confirmez-vous la suppression de {0} ?</value>
   </data>
   <data name="delete_end" xml:space="preserve">
     <value>La sauvegarde {0} a bien été supprimée.</value>
@@ -181,28 +181,28 @@
     <value>Veuillez choisir la langue parmis les choix ci-dessous.</value>
   </data>
   <data name="leave" xml:space="preserve">
-    <value>Quitter</value>
+    <value>5 : Quitter</value>
   </data>
   <data name="run_all_save" xml:space="preserve">
-    <value>Exécuter toutes les sauvegardes</value>
+    <value>3 : Exécuter toutes les sauvegardes</value>
   </data>
   <data name="run_one_save" xml:space="preserve">
-    <value>Exécuter une sauvegarde</value>
+    <value>4 : Exécuter une sauvegarde</value>
   </data>
   <data name="save_created" xml:space="preserve">
     <value>Sauvegarde {0} crée.</value>
   </data>
   <data name="save_end" xml:space="preserve">
-    <value>Sauvegarde {0} exécutée avec succès.</value>
+    <value>Sauvegarde {0} a été exécutée avec succès.</value>
   </data>
   <data name="save_run" xml:space="preserve">
     <value>La sauvegarde {0} est en cours.</value>
   </data>
   <data name="type_differential" xml:space="preserve">
-    <value>Différentiel : Sauvegarde des fichiers différents.</value>
+    <value>2 : Différentiel : Sauvegarde des fichiers différents.</value>
   </data>
   <data name="type_total" xml:space="preserve">
-    <value>Total : Sauvegarde intégrale.</value>
+    <value>1 : Total : Sauvegarde intégrale.</value>
   </data>
   <data name="welcome" xml:space="preserve">
     <value>Bienvenue</value>

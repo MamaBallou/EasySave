@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Resources;
 using EasySaveConsole.model;
 using EasySaveConsole.view;
@@ -76,79 +77,109 @@ namespace EasySaveConsole.controller
                     this.view.output(this.res_man.GetString("leave", this.cul));
                     string choice = this.view.input();
                     choiceOk = int.TryParse(choice, out choiceIndex);
-                } while (choiceOk);
-            } while (choiceIndex != 0);
+                } while (!choiceOk);
+                switch (choiceIndex)
+                {
+                    case 1:
+                        createNewSave();
+                        break;
+                    case 2:
+                        deleteSave();
+                        break;
+                    case 3:
+                        runAllSaves();
+                        break;
+                    case 4:
+                        runSave();
+                        break;
+                }
+            } while (choiceIndex != 0 && choiceIndex < 5);
+            this.view.output(this.res_man.GetString("bye", this.cul));
         }
-        /*
+
         private void createNewSave()
         {
-            //TODO: get input (view) in sourceFile, targetFile and save type
+            this.view.output(this.res_man.GetString("choice_save", this.cul));
             //get number of saves
-            int Nb = modelSaves.Count;
-            //get path access
-            bool sourceAccess = Tool.getInstance().checkExistance(sourceFile);
-            bool targetAccess = Tool.getInstance().checkExistance(targetFile);
-
-            ///////////case number of saves <5
+            int Nb = this.modelSaves.Count;
+            //case number of saves <5
             if (Nb < 5)
             {
+                this.view.output(this.res_man.GetString("ask_name", this.cul));
+                string name_tmp = this.view.input();
+                string source_tmp, target_tmp;
+                int type = 0;
+                bool again = false;
+                ModelSave modelSave = null;
+                do
+                {
+                    this.view.output(this.res_man.GetString("ask_sourcepath", this.cul));
+                    source_tmp = this.view.input();
+                    again = !Tool.getInstance().checkExistance(source_tmp);
+                } while (again);
+                do
+                {
+                    this.view.output(this.res_man.GetString("ask_targetpath", this.cul));
+                    target_tmp = this.view.input();
+                    FileInfo fi = null;
+                    try
+                    {
+                        fi = new FileInfo(target_tmp);
+                    }
+                    catch (ArgumentException) { }
+                    catch (PathTooLongException) { }
+                    catch (NotSupportedException) { }
+                    again = ReferenceEquals(fi, null);
+                } while (again);
                 try
                 {
-
-                    //if mode save is differential create differential save
-                    //TODO: enter differential condition
-                    if (true)
-                    {
-
-                        ModelSaveDifferential TypeDifferential = new ModelSaveDifferential("", @"", @"");
-                        ModelState modelState = new ModelState("name", "source", "target");
-                        TypeDifferential.save(ref modelState);
-                        modelSaves.Add(TypeDifferential);
-                        Console.WriteLine("the save has been created succefull");
-                    }
-
-                    //if mode save is total create total save
-                    //TODO: enter total condition
-                    if (true)
-                    {
-                        ///check the number of file in directory to save
-                        int NbFileToSave = Directory.GetFiles(sourceFile.ToString()).Length;
-                        //check if the Files number to save + the saves number which exist is not more than 5
-                        //if Files number to save + the saves number > 5
-                        if (NbFileToSave + Nb > 5)
-                        {
-                            int NbFileCanSave = 5 - Nb;
-                            Console.WriteLine("Error you can't save more than 5!!!! the number of save is so much, you can only add {0} ", NbFileCanSave);
-                        }
-                        //if Files number to save + the saves number <= 5
-                        else
-                        {
-                            ModelSaveTotal TypeTotal = new ModelSaveTotal("", @"", @"");
-                            ModelState modelState = new ModelState("name", "source", "target");
-                            TypeTotal.save(ref modelState);
-                            modelSaves.Add(TypeTotal);
-                            Console.WriteLine("the save has been created succefull");
-
-                        }
-                    }
-
-                }
-                catch (Exception e)
+                    Directory.CreateDirectory(target_tmp);
+                } catch { }
+                do
                 {
-                    Console.WriteLine(e.Message);
+                    do
+                    {
+                        this.view.output(this.res_man.GetString("ask_type", this.cul));
+                        this.view.output(this.res_man.GetString("type_total", this.cul));
+                        this.view.output(this.res_man.GetString("type_differential", this.cul));
+                        string type_tmp = this.view.input();
+                        again = !int.TryParse(type_tmp, out type);
+                    } while (again);
+                    again = false;
+                    switch (type)
+                    {
+                        case 1:
+                            modelSave = new ModelSaveTotal(name_tmp, source_tmp, target_tmp);
+                            view.output(String.Format(res_man.GetString("save_created", cul), name_tmp));
+                            break;
+                        case 2:
+                            modelSave = new ModelSaveDifferential(name_tmp, source_tmp, target_tmp);
+                            view.output(String.Format(res_man.GetString("save_created", cul), name_tmp));
+                            break;
+                        default:
+                            again = true;
+                            break;
+                    }
+                } while (again);
+                if (modelSave != null)
+                {
+                    ModelState modelState = new ModelState(name_tmp, source_tmp, target_tmp);
+                    modelStates.Add(modelState);
+                    view.output(String.Format(res_man.GetString("save_run", cul), name_tmp));
+                    modelSave.save(ref modelState);
+                    view.output(String.Format(res_man.GetString("save_end", cul), name_tmp));
                 }
             }
             else
             {
-                //if number of save >= 5
-                Console.WriteLine("ERROR!!! you can't create a new save, the number of save is already 5 ");
-
+                view.output(res_man.GetString("exception_toomuchsaves", cul));
             }
-        }*/
+        }
 
-        private void deleteSave(int saveNumber)
+        private void deleteSave()
         {
-            throw new NotImplementedException();
+            view.output(res_man.GetString("choice_delete", cul));
+
         }
 
         private void runAllSaves()
@@ -156,7 +187,7 @@ namespace EasySaveConsole.controller
             throw new NotImplementedException();
         }
 
-        private void runSave(int saveNumber)
+        private void runSave()
         {
             throw new NotImplementedException();
         }
