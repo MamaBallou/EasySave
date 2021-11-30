@@ -11,6 +11,7 @@ namespace EasySaveTest.model
         const string TargetPath = "../../../test_files/archive/";
         const string FileName = "testSave.txt";
         const string SaveName = "save1";
+
         [SetUp]
         public void Setup()
         {
@@ -35,7 +36,7 @@ namespace EasySaveTest.model
             // Check if archive/save1 has been created
             Assert.IsTrue(Directory.Exists(@String.Concat(TargetPath, SaveName)));
             // Check if testSave.txt has been created
-            Assert.IsTrue(File.Exists(@String.Concat(TargetPath, SaveName, "/", FileName)));
+            Assert.IsTrue(File.Exists(@String.Concat(TargetPath, SaveName, "/initial/", FileName)));
         }
 
         [Test]
@@ -44,7 +45,7 @@ namespace EasySaveTest.model
             ModelSaveTotal ModelSaveTotal2 = new ModelSaveTotal(SaveName, SourcePath, TargetPath);
             ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             ModelSaveTotal2.save(ref modelState);
-            string toFind = @String.Concat(TargetPath, SaveName, "/", FileName);
+            string toFind = @String.Concat(TargetPath, SaveName, "/initial/", FileName);
             //Check if testSave.txt is created is in save1 
             Assert.IsTrue(File.Exists(toFind));
         }
@@ -61,7 +62,7 @@ namespace EasySaveTest.model
                 
             }
             ModelSaveTotal2.save(ref modelState);
-            string filePath = @String.Concat(TargetPath, SaveName, "/", "testSave2.txt");
+            string filePath = @String.Concat(TargetPath, SaveName, "/initial/", "testSave2.txt");
             Assert.IsTrue(File.Exists(filePath));
         }
 
