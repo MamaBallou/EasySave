@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using EasySaveConsole.controller;
 using EasySaveConsole.logger;
 
 namespace EasySaveConsole.model
@@ -30,21 +29,28 @@ namespace EasySaveConsole.model
         /// </summary>
         /// <param name="sourceFile">Source file path</param>
         /// <param name="targetPath">Target directory path</param>
-        public override bool checkIfToSave(string sourceFile, 
+        /// <returns>True if to be save, false if not.</returns>
+        public override bool checkIfToSave(string sourceFile,
             string targetPath)
         {
+            // Get name of source file.
             string fileName = Path.GetFileName(sourceFile);
-            string currentTarget = String.Concat(targetPath, "/", fileName);
-
+            // Check if file exists in target.
             if (File.Exists(@String.Concat(targetPath, fileName)))
             {
-                DateTime sourceLastWrite = File.GetLastWriteTimeUtc(sourceFile);
-                DateTime targetLastWrite = File.GetLastWriteTimeUtc(string.Concat(targetPath, fileName));
+                // Get Last write dates of source and target files.
+                DateTime sourceLastWrite =
+                    File.GetLastWriteTimeUtc(sourceFile);
+                DateTime targetLastWrite = File.GetLastWriteTimeUtc(
+                    string.Concat(targetPath, fileName));
+                // Check if source and target date are the same.
+                // If they are, return false.
                 if (DateTime.Equals(sourceLastWrite, targetLastWrite))
                 {
                     return false;
                 }
             }
+            // Else true.
             return true;
         }
     }
