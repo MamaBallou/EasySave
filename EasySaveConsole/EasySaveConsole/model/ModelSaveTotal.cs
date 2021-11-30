@@ -26,34 +26,15 @@ namespace EasySaveConsole.model
             : base(name, sourceFile, targetFile) { }
 
         /// <summary>
-        /// Save a file and overrite it if exists.
+        /// Check if file is to be saved.
         /// </summary>
-        /// <param name="modelState">ModelState attached to the save.</param>
-        /// <param name="currentFile">Path of the file to copy.</param>
-        protected override void saveAFile(ref ModelState modelState,
-            string currentFile)
+        /// <param name="sourceFile">Source file path.</param>
+        /// <param name="targetPath">Target directory path</param>
+        /// <returns>Allways true for Total save.</returns>
+        public override bool checkIfToSave(string sourceFile,
+            string targetPath)
         {
-            string fileName = Path.GetFileName(currentFile.ToString());
-            string currentTarget = String.Concat(this.targetFile, this.name, 
-                "/", fileName);
-            DateTime start = DateTime.Now;
-            bool success = false;
-            do
-            {
-                try
-                {
-                    File.Copy(currentFile, currentTarget, true);
-                    success = true;
-                }
-                catch { }
-            } while (!success);
-            TimeSpan span = DateTime.Now - start;
-            ModelLog modelLog = new ModelLog(this.name, currentFile,
-                currentTarget, span.TotalMilliseconds);
-            this.logger.write(modelLog);
-            modelState.NbFilesLeftToDo--;
-            modelState.calcProg();
-            this.logger.write(ControllerSave.modelStates);
+            return true;
         }
     }
 }

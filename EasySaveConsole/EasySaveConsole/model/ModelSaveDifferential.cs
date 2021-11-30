@@ -26,37 +26,26 @@ namespace EasySaveConsole.model
         { }
 
         /// <summary>
-        /// Method to save one file if does not exists in target.
+        /// Check if the file is to be saved depending on its save type.
         /// </summary>
-        /// <param name="modelState"></param>
-        /// <param name="currentFile"></param>
-        protected override void saveAFile(ref ModelState modelState,
-            string currentFile)
+        /// <param name="sourceFile">Source file path</param>
+        /// <param name="targetPath">Target directory path</param>
+        public override bool checkIfToSave(string sourceFile, 
+            string targetPath)
         {
-            string fileName = Path.GetFileName(currentFile.ToString());
-            string currentTarget = String.Concat(this.targetFile, this.name,
-                "/", fileName);
-            if (!File.Exists(currentTarget))
+            string fileName = Path.GetFileName(sourceFile);
+            string currentTarget = String.Concat(targetPath, "/", fileName);
+
+            if (File.Exists(@String.Concat(targetPath, fileName)))
             {
-                DateTime start = DateTime.Now;
-                bool success = false;
-                do
+                DateTime sourceLastWrite = File.GetLastWriteTimeUtc(sourceFile);
+                DateTime targetLastWrite = File.GetLastWriteTimeUtc(string.Concat(targetPath, fileName));
+                if (DateTime.Equals(sourceLastWrite, targetLastWrite))
                 {
-                    try
-                    {
-                        File.Copy(currentFile, currentTarget);
-                        success = true;
-                    }
-                    catch { }
-                } while (!success);
-                TimeSpan span = DateTime.Now - start;
-                ModelLog modelLog = new ModelLog(this.name, currentFile,
-                    currentTarget, span.TotalMilliseconds);
-                this.logger.write(modelLog);
+                    return false;
+                }
             }
-            modelState.NbFilesLeftToDo--;
-            modelState.calcProg();
-            this.logger.write(ControllerSave.modelStates);
+            return true;
         }
     }
 }
