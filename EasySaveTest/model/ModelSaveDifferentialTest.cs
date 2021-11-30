@@ -33,9 +33,9 @@ namespace EasySaveTest.model
             ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             modelSaveDifferential1.save(ref modelState);
             // Check if archive/save1 has been created
-            Assert.IsTrue(Directory.Exists(@String.Concat(TargetPath, SaveName)));
+            Assert.IsTrue(Directory.Exists(@String.Concat(TargetPath, SaveName, "/initial/")));
             // Check if testSave.txt has been created
-            Assert.IsTrue(File.Exists(@String.Concat(TargetPath, SaveName, "/", FileName)));
+            Assert.IsTrue(File.Exists(@String.Concat(TargetPath, SaveName, "/initial/", FileName)));
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace EasySaveTest.model
             ModelSaveDifferential modelSaveDifferential2 = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             modelSaveDifferential2.save(ref modelState);
-            string toFind = @String.Concat(TargetPath, SaveName, "/", FileName);
+            string toFind = @String.Concat(TargetPath, SaveName, "/initial/", FileName);
             //Check if testSave.txt is created is in save1 
             Assert.IsTrue(File.Exists(toFind));
         }
@@ -56,10 +56,25 @@ namespace EasySaveTest.model
             ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             modelSaveDifferential2.save(ref modelState);
             //Check if testSave.txt is created is in save1 
-            File.Create(@String.Concat(SourcePath, "testSave2.txt"));
+            var stream = File.Create(@String.Concat(SourcePath, "testSave2.txt"));
+            stream.Close();
             modelSaveDifferential2.save(ref modelState);
-            string filePath = @String.Concat(TargetPath, SaveName, "/", "testSave2.txt");
+            string filePath = @String.Concat(TargetPath, SaveName, "/initial/", "testSave2.txt");
             Assert.IsTrue(File.Exists(filePath));
+        }
+
+        [Test]
+        public void TestCheckToSave()
+        {
+            string targetInitPath = String.Concat(TargetPath, SaveName, "/initial/");
+            Directory.CreateDirectory(targetInitPath);
+            ModelSave save = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            string sourceFile = String.Concat(SourcePath, FileName);
+            Assert.IsTrue(save.checkIfToSave(sourceFile, targetInitPath));
+            File.Copy(sourceFile, String.Concat(targetInitPath, FileName));
+            Assert.IsFalse(save.checkIfToSave(sourceFile, targetInitPath));
+            File.WriteAllText(sourceFile, "Shololololo !!");
+            Assert.IsTrue(save.checkIfToSave(sourceFile, targetInitPath));
         }
 
         [TearDown]
