@@ -32,7 +32,8 @@ namespace EasySaveConsole
         }
 
         /// <summary>
-        /// Allows you to determine the size of a file.
+        /// Allows you to determine the size of a file or of all directories of
+        /// path.
         /// </summary>
         /// <param name="path">tAccess path to the file.</param>
         /// <returns>Size of the file.</returns>
@@ -46,7 +47,7 @@ namespace EasySaveConsole
                 DirectoryInfo directoryInfo = new DirectoryInfo(path);
                 uint folderSize = 0;
                 foreach (FileInfo file in
-                    directoryInfo.GetFiles("*", SearchOption.TopDirectoryOnly))
+                    directoryInfo.GetFiles("*", SearchOption.AllDirectories))
                 {
                     folderSize += (uint)file.Length;
                 }
@@ -82,14 +83,14 @@ namespace EasySaveConsole
         }
 
         /// <summary>
-        /// Get number of file in top directory from path.
+        /// Get number of file in all directories from path.
         /// </summary>
         /// <param name="path">Path to directory.</param>
         /// <returns></returns>
         public uint getNbFiles(string path)
         {
             return (uint)Directory.GetFiles(
-                path, ".", SearchOption.TopDirectoryOnly).Length;
+                path, ".", SearchOption.AllDirectories).Length;
         }
     }
 }
