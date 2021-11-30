@@ -59,8 +59,18 @@ namespace EasySaveTest.model
             var stream = File.Create(@String.Concat(SourcePath, "testSave2.txt"));
             stream.Close();
             modelSaveDifferential2.save(ref modelState);
-            string filePath = @String.Concat(TargetPath, SaveName, "/initial/", "testSave2.txt");
-            Assert.IsTrue(File.Exists(filePath));
+            string filePath = @String.Concat(TargetPath, SaveName, "/initial/");
+            Assert.IsFalse(File.Exists(String.Concat(filePath, "testSave2.txt")));
+            Assert.IsTrue(File.Exists(String.Concat(filePath, FileName)));
+            foreach (var dir in Directory.GetDirectories(String.Concat(TargetPath, SaveName)))
+            {
+                string? dirName = (new DirectoryInfo(dir)).Name;
+                if (dirName != "initial")
+                {
+                    Assert.IsTrue(File.Exists(String.Concat(dir,"/testSave2.txt")));
+                    Assert.IsFalse(File.Exists(String.Concat(dir, "/", FileName)));
+                }
+            }
         }
 
         [Test]

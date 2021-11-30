@@ -37,10 +37,23 @@ namespace EasySaveTest.model
             ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             modelSave.saveFolder(SourcePath, TargetPath, ref modelState);
-            Assert.IsTrue(Directory.Exists(@String.Concat(TargetPath, SaveName, "/initial")));
-            Assert.IsTrue(File.Exists(@String.Concat(TargetPath, SaveName, "/initial/", FileName)));
-            Assert.IsTrue(Directory.Exists(@String.Concat(TargetPath, SaveName, "/initial/", subdir)));
-            Assert.IsTrue(File.Exists(@String.Concat(TargetPath, SaveName, "/initial/", subdir, FileName)));
+            Assert.IsTrue(Directory.Exists(String.Concat(TargetPath)));
+            Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));
+            Assert.IsTrue(Directory.Exists(String.Concat(TargetPath, subdir)));
+            Assert.IsTrue(File.Exists(String.Concat(TargetPath, subdir, FileName)));
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            try
+            {
+                Directory.Delete(SourcePath, true);
+            } catch { }
+            try
+            {
+                Directory.Delete(TargetPath, true);
+            }catch { }
         }
     }
 }
