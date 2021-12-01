@@ -210,4 +210,7 @@
   <data name="welcome" xml:space="preserve">
     <value>Welcome</value>
   </data>
+  <data name="wrong_path" xml:space="preserve">
+    <value>Error : file/directory not found !</value>
+  </data>
 </root>

@@ -127,7 +127,7 @@
     <value>Entrez le dossier de destination de la sauvegarde :</value>
   </data>
   <data name="ask_type" xml:space="preserve">
-    <value>Sélectionnez un type parmi la liste ci-dessous.</value>
+    <value>Sélectionnez un type parmi la liste ci-dessous :</value>
   </data>
   <data name="bye" xml:space="preserve">
     <value>Au revoir</value>
@@ -148,13 +148,13 @@
     <value>Vous avez choisi de créer un sauvegarde.</value>
   </data>
   <data name="choose_action" xml:space="preserve">
-    <value>Que voulez vous faire ? Choisissez parmi les choix ci-dessous.</value>
+    <value>Que voulez vous faire ? Choisissez parmi les choix ci-dessous :</value>
   </data>
   <data name="choose_save" xml:space="preserve">
     <value>Choisissez une sauvegarde parmi la liste suivante.</value>
   </data>
   <data name="create_save" xml:space="preserve">
-    <value>1 : Créé une sauvegarde</value>
+    <value>1 : Créer une sauvegarde</value>
   </data>
   <data name="delete_comfirm" xml:space="preserve">
     <value>Confirmez-vous la suppression de {0} ? y/n</value>
@@ -166,10 +166,10 @@
     <value>2 : Supprimer une sauvegarde</value>
   </data>
   <data name="exception_pathnotfound" xml:space="preserve">
-    <value>Le chemin {0} est introuvable. Vérifier votre sélection.</value>
+    <value>Le chemin {0} est introuvable. Vérifiez votre sélection.</value>
   </data>
   <data name="exception_toomuchsaves" xml:space="preserve">
-    <value>Trop de sauvegardes ont été créés. Le maximum est {0}. Supprimez en une avant d'en créer un nouvelle.</value>
+    <value>Trop de sauvegardes ont été créées. Le maximum est {0}. Supprimez-en une avant d'en créer un nouvelle.</value>
   </data>
   <data name="language_en" xml:space="preserve">
     <value>2 : English</value>
@@ -181,7 +181,7 @@
     <value>La langue est bien passée en Français.</value>
   </data>
   <data name="language_selection" xml:space="preserve">
-    <value>Veuillez choisir la langue parmis les choix ci-dessous.</value>
+    <value>Veuillez choisir la langue parmi les choix ci-dessous.</value>
   </data>
   <data name="leave" xml:space="preserve">
     <value>5 : Quitter</value>
@@ -193,7 +193,7 @@
     <value>4 : Exécuter une sauvegarde</value>
   </data>
   <data name="save_created" xml:space="preserve">
-    <value>Sauvegarde {0} crée.</value>
+    <value>Sauvegarde {0} créée.</value>
   </data>
   <data name="save_end" xml:space="preserve">
     <value>Sauvegarde {0} a été exécutée avec succès.</value>
@@ -209,5 +209,8 @@
   </data>
   <data name="welcome" xml:space="preserve">
     <value>Bienvenue</value>
+  </data>
+  <data name="wrong_path" xml:space="preserve">
+    <value>Erreur : fichier/dossier introuvable !</value>
   </data>
 </root>

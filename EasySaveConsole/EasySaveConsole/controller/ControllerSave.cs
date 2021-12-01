@@ -68,8 +68,8 @@ namespace EasySaveConsole.controller
             // is put.
             do
             {
-                this.view.output(
-                    this.res_man.GetString("choose_action", this.cul));
+                /*this.view.output(
+                    this.res_man.GetString("choose_action", this.cul));*/
                 bool choiceOk = false;
                 do
                 {
@@ -178,6 +178,10 @@ namespace EasySaveConsole.controller
                         this.cul));
                     source_tmp = this.view.input();
                     again = !Tool.getInstance().checkExistance(source_tmp);
+                    if (again)
+                    {
+                        this.view.output(this.res_man.GetString("wrong_path", this.cul));
+                    }
                 } while (again);
                 // Ask targetPath while targetPath format not recognized
                 do
@@ -297,7 +301,7 @@ namespace EasySaveConsole.controller
             ModelSave model = this.modelSaves[choice - 1];
             again = false;
             string answer;
-            // Ask if user if sure to delete while incorrect entry
+            // Ask if user is sure to delete while incorrect entry
             do
             {
                 this.view.output(String.Format(
