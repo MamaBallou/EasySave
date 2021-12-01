@@ -116,9 +116,10 @@ namespace EasySaveConsole.controller
         private void chooseLanguage()
         {
             // Loop while no satisfiing entry if given
-            bool again = false;
+            bool again;
             do
             {
+                again = false;
                 this.view.output(this.res_man.GetString("language_selection",
                     this.cul));
                 this.view.output(String.Concat(this.res_man.GetString(
