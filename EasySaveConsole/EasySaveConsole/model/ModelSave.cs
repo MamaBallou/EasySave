@@ -120,6 +120,7 @@ namespace EasySaveConsole.model
         public void delete()
         {
             Directory.Delete(String.Concat(this.targetPath, this.name), true);
+            logger.write(ControllerSave.modelStates);
         }
 
         /// <summary>
