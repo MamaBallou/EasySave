@@ -85,8 +85,8 @@ namespace EasySaveConsole.model
         public double calcProg()
         {
             return this.progression =
-                ((this.totalFileSize - this.nbFilesLeftToDo)
-                / (double)this.totalFileSize) * 100.0;
+                ((this.totalFilesToCopy - this.nbFilesLeftToDo)
+                / (double)this.totalFilesToCopy) * 100.0;
         }
     }
 }
