@@ -358,9 +358,9 @@ namespace EasySaveConsole.controller
             {
                 case "y":
                 case "Y":
-                    model.delete();
                     this.modelSaves.Remove(model);
                     modelStates.RemoveAt(choice - 1);
+                    model.delete();
                     this.view.output(String.Format(
                         this.res_man.GetString("delete_end", this.cul),
                         model.Name));

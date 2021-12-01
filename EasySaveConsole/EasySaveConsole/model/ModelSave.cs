@@ -112,10 +112,7 @@ namespace EasySaveConsole.model
         /// <param name="currentFile">File to save.</param>
         /// <exception cref="NotImplementedException">Thrown if file not
         /// found.</exception>
-        public virtual bool checkIfToSave(string sourceFile, string targetPath)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract bool checkIfToSave(string sourceFile, string targetPath);
 
         /// <summary>
         /// To delete the target folder.
@@ -123,6 +120,7 @@ namespace EasySaveConsole.model
         public void delete()
         {
             Directory.Delete(String.Concat(this.targetPath, this.name), true);
+            logger.write(ControllerSave.modelStates);
         }
 
         /// <summary>
@@ -146,13 +144,21 @@ namespace EasySaveConsole.model
             {
                 Directory.CreateDirectory(folderTargetPath);
             }
+            string subdir = "";
+            bool inSubDir = String.Equals(Path.GetFullPath(folderSourcePath), Path.GetFullPath(this.sourcePath), StringComparison.InvariantCultureIgnoreCase);
+            if (!inSubDir)
+            {
+                string dirSrc = new DirectoryInfo(this.sourcePath).Name;
+                int index = folderSourcePath.LastIndexOf(dirSrc, StringComparison.InvariantCultureIgnoreCase) + dirSrc.Length + 1;
+                subdir = String.Concat(folderSourcePath.Substring(index), "/");
+            }
             // For each file in the source directory, save it in the target
             // directory if to be saved.
             foreach (string currentFile in
                 Directory.EnumerateFiles(folderSourcePath))
             {
                 if (checkIfToSave(currentFile, String.Concat(this.targetPath,
-                    this.name, "/initial/")))
+                    this.name, "/initial/", subdir))) // TODO : Vérifier si ça prend les sous fichier du source ?
                 {
                     saveAFile(currentFile, folderTargetPath, ref modelState);
                 }
