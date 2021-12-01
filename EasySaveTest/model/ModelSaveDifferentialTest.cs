@@ -11,6 +11,9 @@ namespace EasySaveTest.model
         const string TargetPath = "../../../test_files/archive/";
         const string FileName = "testSave.txt";
         const string SaveName = "save1";
+        private const string subdir = "subDir/";
+        private const string FileName2 = "testSave2.txt";
+
         [SetUp]
         public void Setup()
         {
@@ -56,19 +59,41 @@ namespace EasySaveTest.model
             ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             modelSaveDifferential2.save(ref modelState);
             //Check if testSave.txt is created is in save1 
-            var stream = File.Create(@String.Concat(SourcePath, "testSave2.txt"));
+            var stream = File.Create(@String.Concat(SourcePath, FileName2));
             stream.Close();
             modelSaveDifferential2.save(ref modelState);
             string filePath = @String.Concat(TargetPath, SaveName, "/initial/");
-            Assert.IsFalse(File.Exists(String.Concat(filePath, "testSave2.txt")));
+            Assert.IsFalse(File.Exists(String.Concat(filePath, FileName2)));
             Assert.IsTrue(File.Exists(String.Concat(filePath, FileName)));
             foreach (var dir in Directory.GetDirectories(String.Concat(TargetPath, SaveName)))
             {
                 string? dirName = (new DirectoryInfo(dir)).Name;
                 if (dirName != "initial")
                 {
-                    Assert.IsTrue(File.Exists(String.Concat(dir,"/testSave2.txt")));
+                    Assert.IsTrue(File.Exists(String.Concat(dir, "/", FileName2)));
                     Assert.IsFalse(File.Exists(String.Concat(dir, "/", FileName)));
+                }
+            }
+        }
+
+        [Test]
+        public void TestSaveSubFolder()
+        {
+            Directory.CreateDirectory(String.Concat(SourcePath, subdir));
+            File.WriteAllText(String.Concat(SourcePath, subdir, FileName2), "World");
+            ModelSaveDifferential modelSaveDifferential2 = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
+            modelSaveDifferential2.save(ref modelState);
+            File.WriteAllText(String.Concat(SourcePath, FileName), "Zoulou");
+            modelSaveDifferential2.save(ref modelState);
+
+            foreach (var dir in Directory.GetDirectories(String.Concat(TargetPath, SaveName)))
+            {
+                string? dirName = (new DirectoryInfo(dir)).Name;
+                if (dirName != "initial")
+                {
+                    Assert.IsFalse(File.Exists(String.Concat(dir, "/", FileName2)));
+                    Assert.IsTrue(File.Exists(String.Concat(dir, "/", subdir, FileName)));
                 }
             }
         }
