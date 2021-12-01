@@ -92,8 +92,8 @@ namespace EasySaveTest.model
                 string? dirName = (new DirectoryInfo(dir)).Name;
                 if (dirName != "initial")
                 {
-                    Assert.IsFalse(File.Exists(String.Concat(dir, "/", FileName2)));
-                    Assert.IsTrue(File.Exists(String.Concat(dir, "/", subdir, FileName)));
+                    Assert.IsTrue(File.Exists(String.Concat(dir, "/", FileName)));
+                    Assert.IsFalse(File.Exists(String.Concat(dir, "/", subdir, FileName2)));
                 }
             }
         }
