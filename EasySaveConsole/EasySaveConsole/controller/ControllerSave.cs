@@ -68,8 +68,7 @@ namespace EasySaveConsole.controller
             // is put.
             do
             {
-                /*this.view.output(
-                    this.res_man.GetString("choose_action", this.cul));*/
+                Console.Clear();
                 bool choiceOk = false;
                 do
                 {
@@ -107,6 +106,7 @@ namespace EasySaveConsole.controller
                 }
             } while (choiceIndex != 0 && choiceIndex < 5);
             // If entry 5 exit while loop and exit program
+            Console.Clear();
             this.view.output(this.res_man.GetString("bye", this.cul));
         }
 
@@ -145,6 +145,8 @@ namespace EasySaveConsole.controller
                             this.cul = CultureInfo.CreateSpecificCulture("en");
                             break;
                         default:
+                            Console.Clear();
+                            this.view.output(this.res_man.GetString("wrong_option_selection", this.cul));
                             again = true;
                             break;
                     }
@@ -159,6 +161,7 @@ namespace EasySaveConsole.controller
         /// </summary>
         private void createNewSave()
         {
+            Console.Clear();
             this.view.output(this.res_man.GetString("choice_save", this.cul));
             //get number of saves
             int Nb = this.modelSaves.Count;
@@ -172,33 +175,43 @@ namespace EasySaveConsole.controller
                 int type = 0;
                 bool again = false;
                 ModelSave modelSave = null;
+                Console.Clear();
                 // Ask path while path not found
                 do
                 {
                     this.view.output(this.res_man.GetString("ask_sourcepath",
                         this.cul));
                     source_tmp = this.view.input();
+                    source_tmp = Tool.completePath(source_tmp);
                     again = !Tool.getInstance().checkExistance(source_tmp);
                     if (again)
                     {
+                        Console.Clear();
                         this.view.output(this.res_man.GetString("wrong_path", this.cul));
                     }
                 } while (again);
                 // Ask targetPath while targetPath format not recognized
                 do
                 {
+                    Console.Clear();
                     this.view.output(this.res_man.GetString("ask_targetpath",
                         this.cul));
                     target_tmp = this.view.input();
+                    target_tmp = Tool.completePath(target_tmp);
                     FileInfo fi = null;
                     try
                     {
                         fi = new FileInfo(target_tmp);
                     }
-                    catch (ArgumentException) { }
-                    catch (PathTooLongException) { }
-                    catch (NotSupportedException) { }
+                    catch (ArgumentException) { this.view.output("non"); }
+                    catch (PathTooLongException) { this.view.output("non");  }
+                    catch (NotSupportedException) { this.view.output("non");  }
                     again = ReferenceEquals(fi, null);
+                    if (again)
+                    {
+                        Console.Clear();
+                        this.view.output(this.res_man.GetString("wrong_path", this.cul));
+                    }
                 } while (again);
                 try
                 {
@@ -206,6 +219,7 @@ namespace EasySaveConsole.controller
                 }
                 catch { }
                 // Ask for type while entry incorrect
+                Console.Clear();
                 do
                 {
                     do
@@ -223,6 +237,7 @@ namespace EasySaveConsole.controller
                     } while (again);
                     again = false;
                     // Create save according to infos given
+                    Console.Clear();
                     switch (type)
                     {
                         case 1:
@@ -248,10 +263,16 @@ namespace EasySaveConsole.controller
                             break;
                     }
                     this.modelSaves.Add(modelSave);
+                    if (again)
+                    {
+                        Console.Clear();
+                        this.view.output(this.res_man.GetString("wrong_option_selection", this.cul));
+                    }
                 } while (again);
                 // Running save
                 if (modelSave != null)
                 {
+                    Console.Clear();
                     ModelState modelState = new ModelState(name_tmp,
                         source_tmp,
                         target_tmp);
@@ -264,10 +285,12 @@ namespace EasySaveConsole.controller
                         this.res_man.GetString("save_end", this.cul),
                         name_tmp));
                 }
+                this.view.input();
             }
             // If too much saves (> 5)
             else
             {
+                Console.Clear();
                 this.view.output(
                     this.res_man.GetString("exception_toomuchsaves",
                     this.cul));
@@ -279,6 +302,7 @@ namespace EasySaveConsole.controller
         /// </summary>
         private void deleteSave()
         {
+            Console.Clear();
             this.view.output(
                 this.res_man.GetString("choice_delete",
                 this.cul));
@@ -298,6 +322,11 @@ namespace EasySaveConsole.controller
                 }
                 string choice_tmp = this.view.input();
                 again = !int.TryParse(choice_tmp, out choice);
+                if (again)
+                {
+                    Console.Clear();
+                    this.view.output(this.res_man.GetString("wrong_option_selection", this.cul));
+                }
             } while (again && choice > 0 && choice <= this.modelSaves.Count);
             ModelSave model = this.modelSaves[choice - 1];
             again = false;
@@ -305,6 +334,7 @@ namespace EasySaveConsole.controller
             // Ask if user is sure to delete while incorrect entry
             do
             {
+                Console.Clear();
                 this.view.output(String.Format(
                     this.res_man.GetString("delete_comfirm", this.cul),
                     model.Name));
@@ -318,6 +348,11 @@ namespace EasySaveConsole.controller
                     "n",
                     StringComparison.OrdinalIgnoreCase);
                 again = !(y || n);
+                if (again)
+                {
+                    Console.Clear();
+                    this.view.output(this.res_man.GetString("wrong_option_selection", this.cul));
+                }
             } while (again);
             switch (answer)
             {
@@ -344,6 +379,7 @@ namespace EasySaveConsole.controller
         /// </summary>
         private void runAllSaves()
         {
+            Console.Clear();
             this.view.output(
                 this.res_man.GetString("choice_runallsaves",
                 this.cul));
@@ -366,6 +402,7 @@ namespace EasySaveConsole.controller
         /// </summary>
         private void runSave()
         {
+            Console.Clear();
             this.view.output(
                 this.res_man.GetString("choice_runonesave",
                 this.cul));
@@ -386,6 +423,11 @@ namespace EasySaveConsole.controller
                 }
                 string choice_tmp = this.view.input();
                 again = !int.TryParse(choice_tmp, out choice);
+                if (again)
+                {
+                    Console.Clear();
+                    this.view.output(this.res_man.GetString("wrong_option_selection", this.cul));
+                }
             } while (again && choice > 0 && choice <= this.modelSaves.Count);
             ModelSave model = this.modelSaves[choice - 1];
             ModelState modelState = modelStates[choice - 1];

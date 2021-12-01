@@ -210,6 +210,9 @@
   <data name="welcome" xml:space="preserve">
     <value>Bienvenue</value>
   </data>
+  <data name="wrong_option_selection" xml:space="preserve">
+    <value>Erreur : veuillez sélectionner une option valide !</value>
+  </data>
   <data name="wrong_path" xml:space="preserve">
     <value>Erreur : fichier/dossier introuvable !</value>
   </data>
