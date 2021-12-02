@@ -54,7 +54,7 @@ namespace EasySaveConsole.logger
 
 
             XmlSerializer x = new XmlSerializer(typeof(ModelLog));
-            var stream = File.CreateText(String.Concat(PATH, @"/log.xml"));
+            var stream = File.AppendText(String.Concat(PATH, @"/log.xml"));
             x.Serialize(stream, data);
             stream.Close();
         }
