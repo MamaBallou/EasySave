@@ -19,7 +19,7 @@ namespace EasySaveConsole.model
         /// <summary>
         /// String Getter of state.
         /// </summary>
-        public string Stata => this.state.ToString();
+        public string State => this.state.ToString();
         /// <summary>
         /// Number of files to copy from source.
         /// </summary>

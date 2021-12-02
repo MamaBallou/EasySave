@@ -72,14 +72,5 @@ namespace EasySaveConsole.model
             this.targetFile = targetFile;
             this.timeStamp = DateTime.Now;
         }
-
-        /// <summary>
-        /// Converts all the attributes in String.
-        /// </summary>
-        /// <returns>A string with all the attributes.</returns>
-        public override string ToString()
-        {
-            return base.ToString();
-        }
     }
 }
