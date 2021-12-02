@@ -10,11 +10,6 @@ namespace EasySaveConsole.model
     public class ModelSaveDifferential : ModelSave
     {
         /// <summary>
-        /// Logger object.
-        /// </summary>
-        private Logger logger = Logger.getInstance();
-
-        /// <summary>
         /// Contructor.
         /// </summary>
         /// <param name="name">Save name.</param>

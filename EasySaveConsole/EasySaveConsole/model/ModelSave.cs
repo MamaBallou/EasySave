@@ -14,7 +14,7 @@ namespace EasySaveConsole.model
         /// <summary>
         /// Logger attribute.
         /// </summary>
-        private Logger logger = Logger.getInstance();
+        protected Logger logger = Logger.getInstance();
         /// <summary>
         /// Name of the Save.
         /// </summary>
@@ -90,7 +90,7 @@ namespace EasySaveConsole.model
             // get the file attributes for file or directory
             FileAttributes attr = File.GetAttributes(this.sourcePath);
 
-            modelState._State = EnumState.OnGoing;
+            modelState.initStart();
             this.logger.write(ControllerSave.modelStates);
             //detect whether its a directory or file
             if ((attr & FileAttributes.Directory) == FileAttributes.Directory)

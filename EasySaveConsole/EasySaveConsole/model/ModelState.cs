@@ -93,5 +93,13 @@ namespace EasySaveConsole.model
                 ((this.totalFilesToCopy - this.nbFilesLeftToDo)
                 / (double)this.totalFilesToCopy) * 100.0;
         }
+
+        public void initStart()
+        {
+            this.state = EnumState.OnGoing;
+            this.totalFilesToCopy = Tool.getInstance().getNbFiles(this.sourceFile);
+            this.nbFilesLeftToDo = totalFilesToCopy;
+            this.totalFileSize = Tool.getInstance().getFileSize(this.sourceFile);
+        }
     }
 }
