@@ -90,7 +90,7 @@ namespace EasySaveConsole.model
             // get the file attributes for file or directory
             FileAttributes attr = File.GetAttributes(this.sourcePath);
 
-            modelState._State = State.OnGoing;
+            modelState._State = EnumState.OnGoing;
             this.logger.write(ControllerSave.modelStates);
             //detect whether its a directory or file
             if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
@@ -101,7 +101,7 @@ namespace EasySaveConsole.model
             {
                 saveAFile(this.sourcePath, targetFolderPath, ref modelState);
             }
-            modelState._State = State.Finish;
+            modelState._State = EnumState.Finish;
             this.logger.write(ControllerSave.modelStates);
         }
 
@@ -112,7 +112,8 @@ namespace EasySaveConsole.model
         /// <param name="currentFile">File to save.</param>
         /// <exception cref="NotImplementedException">Thrown if file not
         /// found.</exception>
-        public abstract bool checkIfToSave(string sourceFile, string targetPath);
+        protected abstract bool checkIfToSave(
+            string sourceFile, string targetPath);
 
         /// <summary>
         /// To delete the target folder.
@@ -120,7 +121,7 @@ namespace EasySaveConsole.model
         public void delete()
         {
             Directory.Delete(String.Concat(this.targetPath, this.name), true);
-            logger.write(ControllerSave.modelStates);
+            this.logger.write(ControllerSave.modelStates);
         }
 
         /// <summary>
@@ -129,7 +130,7 @@ namespace EasySaveConsole.model
         /// <param name="folderSourcePath">Source folder path.</param>
         /// <param name="folderTargetPath">Target folder path.</param>
         /// <param name="modelState">Reference to model state.</param>
-        public void saveFolder(string folderSourcePath,
+        protected void saveFolder(string folderSourcePath,
             string folderTargetPath, ref ModelState modelState)
         {
             // Check if source directory exists.
@@ -145,11 +146,17 @@ namespace EasySaveConsole.model
                 Directory.CreateDirectory(folderTargetPath);
             }
             string subdir = "";
-            bool inSubDir = String.Equals(Path.GetFullPath(folderSourcePath), Path.GetFullPath(this.sourcePath), StringComparison.InvariantCultureIgnoreCase);
+            bool inSubDir = String.Equals(
+                Path.GetFullPath(folderSourcePath),
+                Path.GetFullPath(this.sourcePath),
+                StringComparison.InvariantCultureIgnoreCase);
             if (!inSubDir)
             {
                 string dirSrc = new DirectoryInfo(this.sourcePath).Name;
-                int index = folderSourcePath.LastIndexOf(dirSrc, StringComparison.InvariantCultureIgnoreCase) + dirSrc.Length + 1;
+                int index = folderSourcePath.LastIndexOf(
+                    dirSrc,
+                    StringComparison.InvariantCultureIgnoreCase)
+                    + dirSrc.Length + 1;
                 subdir = String.Concat(folderSourcePath.Substring(index), "/");
             }
             // For each file in the source directory, save it in the target
@@ -158,7 +165,7 @@ namespace EasySaveConsole.model
                 Directory.EnumerateFiles(folderSourcePath))
             {
                 if (checkIfToSave(currentFile, String.Concat(this.targetPath,
-                    this.name, "/initial/", subdir))) // TODO : Vérifier si ça prend les sous fichier du source ?
+                    this.name, "/initial/", subdir)))
                 {
                     saveAFile(currentFile, folderTargetPath, ref modelState);
                 }
@@ -191,10 +198,14 @@ namespace EasySaveConsole.model
             DateTime start = DateTime.Now;
             File.Copy(currentFile, destFilePath);
             TimeSpan span = DateTime.Now - start;
-            logger.write(new ModelLog(name, currentFile, destFilePath, span.TotalMilliseconds));
+            this.logger.write(new ModelLog(
+                this.name,
+                currentFile,
+                destFilePath,
+                span.TotalMilliseconds));
             modelState.NbFilesLeftToDo--;
             modelState.calcProg();
-            logger.write(ControllerSave.modelStates);
+            this.logger.write(ControllerSave.modelStates);
         }
     }
 }

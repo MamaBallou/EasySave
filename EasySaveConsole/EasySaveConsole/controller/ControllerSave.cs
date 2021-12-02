@@ -146,7 +146,8 @@ namespace EasySaveConsole.controller
                             break;
                         default:
                             Console.Clear();
-                            this.view.output(this.res_man.GetString("wrong_option_selection", this.cul));
+                            this.view.output(this.res_man.GetString(
+                                "wrong_option_selection", this.cul));
                             again = true;
                             break;
                     }
@@ -187,7 +188,8 @@ namespace EasySaveConsole.controller
                     if (again)
                     {
                         Console.Clear();
-                        this.view.output(this.res_man.GetString("wrong_path", this.cul));
+                        this.view.output(
+                            this.res_man.GetString("wrong_path", this.cul));
                     }
                 } while (again);
                 // Ask targetPath while targetPath format not recognized
@@ -204,13 +206,14 @@ namespace EasySaveConsole.controller
                         fi = new FileInfo(target_tmp);
                     }
                     catch (ArgumentException) { this.view.output("non"); }
-                    catch (PathTooLongException) { this.view.output("non");  }
-                    catch (NotSupportedException) { this.view.output("non");  }
+                    catch (PathTooLongException) { this.view.output("non"); }
+                    catch (NotSupportedException) { this.view.output("non"); }
                     again = ReferenceEquals(fi, null);
                     if (again)
                     {
                         Console.Clear();
-                        this.view.output(this.res_man.GetString("wrong_path", this.cul));
+                        this.view.output(
+                            this.res_man.GetString("wrong_path", this.cul));
                     }
                 } while (again);
                 try
@@ -266,7 +269,8 @@ namespace EasySaveConsole.controller
                     if (again)
                     {
                         Console.Clear();
-                        this.view.output(this.res_man.GetString("wrong_option_selection", this.cul));
+                        this.view.output(this.res_man.GetString(
+                            "wrong_option_selection", this.cul));
                     }
                 } while (again);
                 // Running save
@@ -325,7 +329,8 @@ namespace EasySaveConsole.controller
                 if (again)
                 {
                     Console.Clear();
-                    this.view.output(this.res_man.GetString("wrong_option_selection", this.cul));
+                    this.view.output(this.res_man.GetString(
+                        "wrong_option_selection", this.cul));
                 }
             } while (again && choice > 0 && choice <= this.modelSaves.Count);
             ModelSave model = this.modelSaves[choice - 1];
@@ -351,7 +356,8 @@ namespace EasySaveConsole.controller
                 if (again)
                 {
                     Console.Clear();
-                    this.view.output(this.res_man.GetString("wrong_option_selection", this.cul));
+                    this.view.output(this.res_man.GetString(
+                        "wrong_option_selection", this.cul));
                 }
             } while (again);
             switch (answer)
@@ -426,7 +432,8 @@ namespace EasySaveConsole.controller
                 if (again)
                 {
                     Console.Clear();
-                    this.view.output(this.res_man.GetString("wrong_option_selection", this.cul));
+                    this.view.output(this.res_man.GetString(
+                        "wrong_option_selection", this.cul));
                 }
             } while (again && choice > 0 && choice <= this.modelSaves.Count);
             ModelSave model = this.modelSaves[choice - 1];

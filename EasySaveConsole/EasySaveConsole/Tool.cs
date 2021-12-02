@@ -96,7 +96,7 @@ namespace EasySaveConsole
         public static String completePath(String path)
         {
             String completedPath = path;
-            if(path.Substring(path.Length -1) != "\\")
+            if (path.Substring(path.Length - 1) != "\\")
             {
                 completedPath = String.Concat(completedPath, "\\").ToString();
             }

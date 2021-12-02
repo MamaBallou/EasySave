@@ -31,7 +31,7 @@ namespace EasySaveConsole.model
         /// <param name="sourceFile">Source file path.</param>
         /// <param name="targetPath">Target directory path</param>
         /// <returns>Allways true for Total save.</returns>
-        public override bool checkIfToSave(string sourceFile,
+        protected override bool checkIfToSave(string sourceFile,
             string targetPath)
         {
             return true;
