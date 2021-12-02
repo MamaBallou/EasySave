@@ -25,7 +25,7 @@ namespace EasySaveConsole.model
         /// </summary>
         private uint totalFilesToCopy;
         /// <summary>
-        /// Getter & Setter of totalFilesToCopy
+        /// Getter & Setter of totalFilesToCopy.
         /// </summary>
         public uint TotalFilesToCopy
         {
@@ -78,6 +78,9 @@ namespace EasySaveConsole.model
             this.progression = 0.0;
         }
 
+        /// <summary>
+        /// Empty constructor.
+        /// </summary>
         public ModelState():base() { }
 
         /// <summary>

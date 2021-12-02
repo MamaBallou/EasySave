@@ -187,7 +187,7 @@ namespace EasySaveConsole.model
         /// </summary>
         /// <param name="currentFile">Path of file to copy.</param>
         /// <param name="folderTargetPath">
-        /// Path of directory where to copy
+        /// Path of directory where to copy.
         /// </param>
         /// <param name="modelState">Reference to model state.</param>
         protected void saveAFile(string currentFile, string folderTargetPath,

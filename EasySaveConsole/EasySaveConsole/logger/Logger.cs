@@ -27,7 +27,7 @@ namespace EasySaveConsole.logger
         /// If there's no instance of LogLogger, this creates one. Otherwise
         /// it returns the existing instance. It makes the instance unique.
         /// </summary>
-        /// <returns>Returns the unique instance of LogLogger</returns>
+        /// <returns>Returns the unique instance of LogLogger.</returns>
         public static Logger getInstance()
         {
             if (_instance == null)
@@ -38,10 +38,10 @@ namespace EasySaveConsole.logger
         }
 
         /// <summary>
-        /// Write in a log.json file the logs of the save.
+        /// Write in a log.json and a log.xml file the logs of the save.
         /// </summary>
         /// <param name="data">A ModelLog : a class with all the logs to
-        /// write in the log.json file</param>
+        /// write in the log.json and the log.xml file.</param>
         public void write(ModelLog data)
         {
             string jsonString = JsonSerializer.Serialize(data);
@@ -60,10 +60,10 @@ namespace EasySaveConsole.logger
         }
 
         /// <summary>
-        /// Write in a log.json file the logs of the save. 
+        /// Write in a state.json and a state.xml file the logs of the save. 
         /// </summary>
         /// <param name="data">A ModelState : a class with all the logs to
-        /// write in the state.json file</param>
+        /// write in the state.json and the state.xml file.</param>
         public void write(List<ModelState> data)
         {
             string jsonString = JsonSerializer.Serialize(data.ToArray());
