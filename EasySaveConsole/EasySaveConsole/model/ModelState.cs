@@ -10,16 +10,16 @@ namespace EasySaveConsole.model
         /// <summary>
         /// State of the save.
         /// </summary>
-        private State state;
+        private EnumState state;
         /// <summary>
         /// Getter & Setter of state.
         /// </summary>
         [JsonIgnore]
-        public State _State { get => this.state; set => this.state = value; }
+        public EnumState _State { get => this.state; set => this.state = value; }
         /// <summary>
         /// String Getter of state.
         /// </summary>
-        public string Stata => this.state.ToString();
+        public string State => this.state.ToString();
         /// <summary>
         /// Number of files to copy from source.
         /// </summary>
@@ -70,7 +70,7 @@ namespace EasySaveConsole.model
         public ModelState(string saveName, string sourceFile, string targetFile)
             : base(saveName, sourceFile, targetFile)
         {
-            this.state = State.NotStarted;
+            this.state = EnumState.NotStarted;
             Tool tool = Tool.getInstance();
             this.totalFileSize = tool.getFileSize(sourceFile);
             this.totalFilesToCopy = tool.getNbFiles(sourceFile);

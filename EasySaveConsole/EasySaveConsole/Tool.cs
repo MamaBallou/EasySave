@@ -93,10 +93,15 @@ namespace EasySaveConsole
                 path, ".", SearchOption.AllDirectories).Length;
         }
 
+        /// <summary>
+        /// Add a backslash at the end of path.
+        /// </summary>
+        /// <param name="path">Path to check.</param>
+        /// <returns>The modified path.</returns>
         public static String completePath(String path)
         {
             String completedPath = path;
-            if(path.Substring(path.Length -1) != "\\")
+            if (path.Substring(path.Length - 1) != "\\")
             {
                 completedPath = String.Concat(completedPath, "\\").ToString();
             }
