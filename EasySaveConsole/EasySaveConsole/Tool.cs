@@ -92,5 +92,16 @@ namespace EasySaveConsole
             return (uint)Directory.GetFiles(
                 path, ".", SearchOption.AllDirectories).Length;
         }
+
+        public static String completePath(String path)
+        {
+            String completedPath = path;
+            if(path.Substring(path.Length -1) != "\\")
+            {
+                completedPath = String.Concat(completedPath, "\\").ToString();
+            }
+
+            return completedPath;
+        }
     }
 }
