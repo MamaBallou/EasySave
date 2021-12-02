@@ -106,14 +106,27 @@ namespace EasySaveConsole.model
         }
 
         /// <summary>
-        /// Method to save one file passed in parameter.
+        /// Check if the file is to be saved or not.
         /// </summary>
-        /// <param name="modelState">Model state attached to the save.</param>
-        /// <param name="currentFile">File to save.</param>
-        /// <exception cref="NotImplementedException">Thrown if file not
-        /// found.</exception>
+        /// <param name="sourceFile">Source file.</param>
+        /// <param name="targetPath">Target path to check the existance of the 
+        /// souce one.</param>
+        /// <returns>Boolean value, true if to be save, false 
+        /// otherwise.</returns>
         protected abstract bool checkIfToSave(
             string sourceFile, string targetPath);
+
+        /// <summary>
+        /// Callable function for tests only.
+        /// </summary>
+        /// <param name="sourceFile">Source file.</param>
+        /// <param name="targetPath">Target path to check the existance of the 
+        /// souce one.</param>
+        /// <returns>Boolean value, true if to be save, false 
+        /// otherwise.</returns>
+        public bool CheckIfToSave(
+            string sourceFile, 
+            string targetPath) => checkIfToSave(sourceFile, targetPath);
 
         /// <summary>
         /// To delete the target folder.
@@ -181,6 +194,15 @@ namespace EasySaveConsole.model
                     "/"), ref modelState);
             }
         }
+
+        /// <summary>
+        /// Callable method used in tests only.
+        /// </summary>
+        /// <param name="folderSourcePath">Source folder path.</param>
+        /// <param name="folderTargetPath">Target folder path.</param>
+        /// <param name="modelState">Reference to model state.</param>
+        public void SaveFolder(string folderSourcePath,
+            string folderTargetPath, ref ModelState modelState) => saveFolder(folderSourcePath, folderTargetPath, ref modelState);
 
         /// <summary>
         /// Copy file to directory.

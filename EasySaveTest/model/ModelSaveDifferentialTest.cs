@@ -105,11 +105,11 @@ namespace EasySaveTest.model
             Directory.CreateDirectory(targetInitPath);
             ModelSave save = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             string sourceFile = String.Concat(SourcePath, FileName);
-            Assert.IsTrue(save.checkIfToSave(sourceFile, targetInitPath));
+            Assert.IsTrue(save.CheckIfToSave(sourceFile, targetInitPath));
             File.Copy(sourceFile, String.Concat(targetInitPath, FileName));
-            Assert.IsFalse(save.checkIfToSave(sourceFile, targetInitPath));
+            Assert.IsFalse(save.CheckIfToSave(sourceFile, targetInitPath));
             File.WriteAllText(sourceFile, "Shololololo !!");
-            Assert.IsTrue(save.checkIfToSave(sourceFile, targetInitPath));
+            Assert.IsTrue(save.CheckIfToSave(sourceFile, targetInitPath));
         }
 
         [TearDown]
