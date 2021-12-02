@@ -146,8 +146,7 @@ namespace EasySaveConsole.controller
                             break;
                         default:
                             Console.Clear();
-                            this.view.output(this.res_man.GetString(
-                                "wrong_option_selection", this.cul));
+                            this.view.output(this.res_man.GetString("wrong_option_selection", this.cul) + "\n");
                             again = true;
                             break;
                     }
@@ -188,8 +187,7 @@ namespace EasySaveConsole.controller
                     if (again)
                     {
                         Console.Clear();
-                        this.view.output(
-                            this.res_man.GetString("wrong_path", this.cul));
+                        this.view.output(this.res_man.GetString("wrong_option_selection", this.cul) + "\n");
                     }
                 } while (again);
                 // Ask targetPath while targetPath format not recognized
@@ -206,14 +204,13 @@ namespace EasySaveConsole.controller
                         fi = new FileInfo(target_tmp);
                     }
                     catch (ArgumentException) { this.view.output("non"); }
-                    catch (PathTooLongException) { this.view.output("non"); }
-                    catch (NotSupportedException) { this.view.output("non"); }
+                    catch (PathTooLongException) { this.view.output("non");  }
+                    catch (NotSupportedException) { this.view.output("non");  }
                     again = ReferenceEquals(fi, null);
                     if (again)
                     {
                         Console.Clear();
-                        this.view.output(
-                            this.res_man.GetString("wrong_path", this.cul));
+                        this.view.output(this.res_man.GetString("wrong_option_selection", this.cul) + "\n");
                     }
                 } while (again);
                 try
@@ -269,8 +266,7 @@ namespace EasySaveConsole.controller
                     if (again)
                     {
                         Console.Clear();
-                        this.view.output(this.res_man.GetString(
-                            "wrong_option_selection", this.cul));
+                        this.view.output(this.res_man.GetString("wrong_option_selection", this.cul) + "\n");
                     }
                 } while (again);
                 // Running save
@@ -310,73 +306,81 @@ namespace EasySaveConsole.controller
             this.view.output(
                 this.res_man.GetString("choice_delete",
                 this.cul));
-            bool again = false;
-            int choice = 0;
-            // Ask to choose the save to delete while entry incorrect
-            do
+            // We need at least 1 save to ask the user which save they want to delete
+            if (this.modelSaves.Count != 0)
             {
-                this.view.output(
-                    this.res_man.GetString("choose_save",
-                    this.cul));
-                byte compt = 1;
-                foreach (var modelSave in this.modelSaves)
+                bool again = false;
+                int choice = 0;
+                // Ask to choose the save to delete while entry incorrect
+                do
                 {
                     this.view.output(
-                        String.Format("{0} : {1}", compt, modelSave.Name));
-                }
-                string choice_tmp = this.view.input();
-                again = !int.TryParse(choice_tmp, out choice);
-                if (again)
+                        this.res_man.GetString("choose_save",
+                        this.cul));
+                    byte compt = 1;
+                    // If the list of saves is empty, print a message. Else display all the saves of the list.
+                    foreach (var modelSave in this.modelSaves)
+                    {
+                        this.view.output(
+                            String.Format("{0} : {1}", compt, modelSave.Name));
+                    }
+                    string choice_tmp = this.view.input();
+                    again = !int.TryParse(choice_tmp, out choice);
+                    if (again)
+                    {
+                        Console.Clear();
+                        this.view.output(this.res_man.GetString("wrong_option_selection", this.cul) + "\n");
+                    }
+                } while (again && choice > 0 && choice <= this.modelSaves.Count);
+                ModelSave model = this.modelSaves[choice - 1];
+                again = false;
+                string answer;
+                // Ask if user is sure to delete while incorrect entry
+                do
                 {
                     Console.Clear();
-                    this.view.output(this.res_man.GetString(
-                        "wrong_option_selection", this.cul));
-                }
-            } while (again && choice > 0 && choice <= this.modelSaves.Count);
-            ModelSave model = this.modelSaves[choice - 1];
-            again = false;
-            string answer;
-            // Ask if user is sure to delete while incorrect entry
-            do
-            {
-                Console.Clear();
-                this.view.output(String.Format(
-                    this.res_man.GetString("delete_comfirm", this.cul),
-                    model.Name));
-                answer = this.view.input();
-                bool y = String.Equals(
-                    answer,
-                    "y",
-                    StringComparison.OrdinalIgnoreCase);
-                bool n = String.Equals(
-                    answer,
-                    "n",
-                    StringComparison.OrdinalIgnoreCase);
-                again = !(y || n);
-                if (again)
+                    this.view.output(String.Format(
+                        this.res_man.GetString("delete_comfirm", this.cul),
+                        model.Name));
+                    answer = this.view.input();
+                    bool y = String.Equals(
+                        answer,
+                        "y",
+                        StringComparison.OrdinalIgnoreCase);
+                    bool n = String.Equals(
+                        answer,
+                        "n",
+                        StringComparison.OrdinalIgnoreCase);
+                    again = !(y || n);
+                    if (again)
+                    {
+                        Console.Clear();
+                        this.view.output(this.res_man.GetString("wrong_option_selection", this.cul) + "\n");
+                    }
+                } while (again);
+                switch (answer)
                 {
-                    Console.Clear();
-                    this.view.output(this.res_man.GetString(
-                        "wrong_option_selection", this.cul));
+                    case "y":
+                    case "Y":
+                        this.modelSaves.Remove(model);
+                        modelStates.RemoveAt(choice - 1);
+                        model.delete();
+                        this.view.output(String.Format(
+                            this.res_man.GetString("delete_end", this.cul),
+                            model.Name));
+                        break;
+                    case "n":
+                    case "N":
+                        this.view.output(String.Format(
+                            this.res_man.GetString("delete_end", this.cul),
+                            model.Name));
+                        break;
                 }
-            } while (again);
-            switch (answer)
+            }
+            else
             {
-                case "y":
-                case "Y":
-                    this.modelSaves.Remove(model);
-                    modelStates.RemoveAt(choice - 1);
-                    model.delete();
-                    this.view.output(String.Format(
-                        this.res_man.GetString("delete_end", this.cul),
-                        model.Name));
-                    break;
-                case "n":
-                case "N":
-                    this.view.output(String.Format(
-                        this.res_man.GetString("delete_end", this.cul),
-                        model.Name));
-                    break;
+                this.view.output("\n" + this.res_man.GetString("no_save", this.cul));
+                this.view.input();
             }
         }
 
@@ -389,17 +393,27 @@ namespace EasySaveConsole.controller
             this.view.output(
                 this.res_man.GetString("choice_runallsaves",
                 this.cul));
-            // Browse the saved backups and run them all
-            for (byte compt = 0; compt < this.modelSaves.Count; compt++)
+            // We need at least 1 save to be able to run all saves
+            if(this.modelSaves.Count != 0)
             {
-                ModelState modelState = modelStates[compt];
-                this.view.output(String.Format(
-                    this.res_man.GetString("save_run", this.cul),
-                    this.modelSaves[compt].Name));
-                this.modelSaves[compt].save(ref modelState);
-                this.view.output(String.Format(
-                    this.res_man.GetString("save_end", this.cul),
-                    this.modelSaves[compt].Name));
+                // Browse the saved backups and run them all
+                for (byte compt = 0; compt < this.modelSaves.Count; compt++)
+                {
+                    ModelState modelState = modelStates[compt];
+                    this.view.output(String.Format(
+                        this.res_man.GetString("save_run", this.cul),
+                        this.modelSaves[compt].Name));
+                    this.modelSaves[compt].save(ref modelState);
+                    this.view.output(String.Format(
+                        this.res_man.GetString("save_end", this.cul),
+                        this.modelSaves[compt].Name));
+                    this.view.input();
+                }
+            }
+            else
+            {
+                this.view.output("\n" + this.res_man.GetString("no_save", this.cul));
+                this.view.input();
             }
         }
 
@@ -412,40 +426,48 @@ namespace EasySaveConsole.controller
             this.view.output(
                 this.res_man.GetString("choice_runonesave",
                 this.cul));
-            this.view.output(this.res_man.GetString("choose_save", this.cul));
-            bool again = false;
-            int choice = 0;
-            // Ask which backup the user wants to run while incorrect entry.
-            do
+            // We need at least 1 save to ask user whiwh save they want to run
+            if (this.modelSaves.Count != 0)
             {
-                this.view.output(
-                    this.res_man.GetString("choose_save",
-                    this.cul));
-                byte compt = 1;
-                foreach (var modelSave in this.modelSaves)
+                this.view.output(this.res_man.GetString("choose_save", this.cul));
+                bool again = false;
+                int choice = 0;
+                // Ask which backup the user wants to run while incorrect entry.
+                do
                 {
                     this.view.output(
-                        String.Format("{0} : {1}", compt, modelSave.Name));
-                }
-                string choice_tmp = this.view.input();
-                again = !int.TryParse(choice_tmp, out choice);
-                if (again)
-                {
-                    Console.Clear();
-                    this.view.output(this.res_man.GetString(
-                        "wrong_option_selection", this.cul));
-                }
-            } while (again && choice > 0 && choice <= this.modelSaves.Count);
-            ModelSave model = this.modelSaves[choice - 1];
-            ModelState modelState = modelStates[choice - 1];
-            this.view.output(
-                String.Format(
-                    this.res_man.GetString("save_run", this.cul),
-                    model.Name));
-            model.save(ref modelState);
-            this.view.output(String.Format(
-                    this.res_man.GetString("save_end", this.cul),
-                    model.Name));
+                        this.res_man.GetString("choose_save",
+                        this.cul));
+                    byte compt = 1;
+                    foreach (var modelSave in this.modelSaves)
+                    {
+                        this.view.output(
+                            String.Format("{0} : {1}", compt, modelSave.Name));
+                    }
+                    string choice_tmp = this.view.input();
+                    again = !int.TryParse(choice_tmp, out choice);
+                    if (again)
+                    {
+                        Console.Clear();
+                        this.view.output(this.res_man.GetString("wrong_option_selection", this.cul) + "\n");
+                    }
+                } while (again && choice > 0 && choice <= this.modelSaves.Count);
+                ModelSave model = this.modelSaves[choice - 1];
+                ModelState modelState = modelStates[choice - 1];
+                this.view.output(
+                    String.Format(
+                        this.res_man.GetString("save_run", this.cul),
+                        model.Name));
+                model.save(ref modelState);
+                this.view.output(String.Format(
+                        this.res_man.GetString("save_end", this.cul),
+                        model.Name));
+            }
+            else
+            {
+                this.view.output("\n" + this.res_man.GetString("no_save", this.cul));
+                this.view.input();
+            }
         }
     }
 }

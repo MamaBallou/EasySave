@@ -186,6 +186,9 @@
   <data name="leave" xml:space="preserve">
     <value>5 : Leave</value>
   </data>
+  <data name="no_save" xml:space="preserve">
+    <value>No save exists for now...</value>
+  </data>
   <data name="run_all_save" xml:space="preserve">
     <value>3 : Run all backups</value>
   </data>

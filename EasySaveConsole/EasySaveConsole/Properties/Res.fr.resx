@@ -186,6 +186,9 @@
   <data name="leave" xml:space="preserve">
     <value>5 : Quitter</value>
   </data>
+  <data name="no_save" xml:space="preserve">
+    <value>Aucune sauvegarde n'existe pour le moment...</value>
+  </data>
   <data name="run_all_save" xml:space="preserve">
     <value>3 : Exécuter toutes les sauvegardes</value>
   </data>
