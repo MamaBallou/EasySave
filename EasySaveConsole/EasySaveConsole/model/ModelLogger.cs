@@ -72,5 +72,7 @@ namespace EasySaveConsole.model
             this.targetFile = targetFile;
             this.timeStamp = DateTime.Now;
         }
+
+        public ModelLogger() { }
     }
 }
