@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Serialization;
 using EasySaveConsole.model;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -50,6 +51,12 @@ namespace EasySaveConsole.logger
             }
             File.AppendAllText(
                 String.Concat(PATH, @"\log.json"), jsonString + ",\n");
+
+
+            XmlSerializer x = new XmlSerializer(typeof(ModelLog));
+            var stream = File.CreateText(String.Concat(PATH, @"/log.xml"));
+            x.Serialize(stream, data);
+            stream.Close();
         }
 
         /// <summary>
@@ -65,6 +72,11 @@ namespace EasySaveConsole.logger
                 Directory.CreateDirectory(PATH);
             }
             File.WriteAllText(String.Concat(PATH, @"/state.json"), jsonString);
+
+            XmlSerializer x = new XmlSerializer(typeof(List<ModelState>));
+            var stream = File.CreateText(String.Concat(PATH, @"/state.xml"));
+            x.Serialize(stream, data);
+            stream.Close();
         }
     }
 }

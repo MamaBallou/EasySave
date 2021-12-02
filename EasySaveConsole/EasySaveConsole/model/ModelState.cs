@@ -78,6 +78,8 @@ namespace EasySaveConsole.model
             this.progression = 0.0;
         }
 
+        public ModelState():base() { }
+
         /// <summary>
         /// Calculate progression rate.
         /// </summary>
