@@ -25,14 +25,19 @@
                 HorizontalAlignment="Left"
                 Margin="10,4,0,0"
                 Width="120"/>
-
+            
             <TextBlock
+                x:Name="close"
                 FontSize="35"
                 FontWeight="Bold"
                 ToolTip="Fermer"
-                Cursor="Hand"
                 HorizontalAlignment="Left"
-                Margin="1243,-6,0,6">X</TextBlock>
+                Margin="1243,-6,0,6"
+                MouseLeftButtonDown="close_MouseLeftButtonDown"
+                MouseEnter="close_MouseEnter"
+                MouseLeave="close_MouseLeave">
+                X
+            </TextBlock>
 
         </Grid>
         <Image

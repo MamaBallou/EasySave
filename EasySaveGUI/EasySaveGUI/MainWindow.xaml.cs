@@ -24,5 +24,36 @@ namespace EasySaveGUI
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// When we click the close button, it shuts down the window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void close_MouseLeftButtonDown(object sender, MouseEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        /// <summary>
+        /// When whe hover the close button, it changes its color.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void close_MouseEnter(object sender, MouseEventArgs e)
+        {
+            close.Foreground = (Brush)new BrushConverter().ConvertFrom("#aa4f0a");
+            close.Cursor = (Cursor)new CursorConverter().ConvertFromString(CursorType.Hand.ToString());
+        }
+
+        /// <summary>
+        /// When the mouse leaves the close button, it restores its original color.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void close_MouseLeave(object sender, MouseEventArgs e)
+        {
+            close.Foreground = Brushes.Black;
+        }
     }
 }
