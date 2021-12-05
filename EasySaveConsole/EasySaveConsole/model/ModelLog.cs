@@ -10,7 +10,7 @@
         /// </summary>
         private uint fileSize;
         /// <summary>
-        /// Getter and Setter of fileSize
+        /// Getter and Setter of fileSize.
         /// </summary>
         public uint FileSize
         {
@@ -48,5 +48,10 @@
             this.fileSize = tool.getFileSize(sourceFile);
             this.transfertTime = transfertTime;
         }
+
+        /// <summary>
+        /// Empty constructor.
+        /// </summary>
+        public ModelLog() : base() { }
     }
 }

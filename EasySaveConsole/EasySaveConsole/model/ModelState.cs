@@ -25,7 +25,7 @@ namespace EasySaveConsole.model
         /// </summary>
         private uint totalFilesToCopy;
         /// <summary>
-        /// Getter & Setter of totalFilesToCopy
+        /// Getter & Setter of totalFilesToCopy.
         /// </summary>
         public uint TotalFilesToCopy
         {
@@ -78,6 +78,9 @@ namespace EasySaveConsole.model
             this.progression = 0.0;
         }
 
+        /// <summary>
+        /// Empty constructor.
+        /// </summary>
         public ModelState():base() { }
 
         /// <summary>
@@ -89,6 +92,14 @@ namespace EasySaveConsole.model
             return this.progression =
                 ((this.totalFilesToCopy - this.nbFilesLeftToDo)
                 / (double)this.totalFilesToCopy) * 100.0;
+        }
+
+        public void initStart()
+        {
+            this.state = EnumState.OnGoing;
+            this.totalFilesToCopy = Tool.getInstance().getNbFiles(this.sourceFile);
+            this.nbFilesLeftToDo = totalFilesToCopy;
+            this.totalFileSize = Tool.getInstance().getFileSize(this.sourceFile);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace EasySaveTest.model
         {
             ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
-            modelSave.saveFolder(SourcePath, TargetPath, ref modelState);
+            modelSave.SaveFolder(SourcePath, TargetPath, ref modelState);
             Assert.IsTrue(Directory.Exists(String.Concat(TargetPath)));
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));
             Assert.IsTrue(Directory.Exists(String.Concat(TargetPath, subdir)));

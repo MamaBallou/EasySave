@@ -73,6 +73,9 @@ namespace EasySaveConsole.model
             this.timeStamp = DateTime.Now;
         }
 
+        /// <summary>
+        /// Empty constructor.
+        /// </summary>
         public ModelLogger() { }
     }
 }

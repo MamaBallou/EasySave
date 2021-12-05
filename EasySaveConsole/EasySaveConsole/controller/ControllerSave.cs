@@ -104,7 +104,7 @@ namespace EasySaveConsole.controller
                         runSave();
                         break;
                 }
-            } while (choiceIndex != 0 && choiceIndex < 5);
+            } while (choiceIndex != 5);
             // If entry 5 exit while loop and exit program
             Console.Clear();
             this.view.output(this.res_man.GetString("bye", this.cul));

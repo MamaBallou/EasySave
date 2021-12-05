@@ -10,11 +10,6 @@ namespace EasySaveConsole.model
     public class ModelSaveDifferential : ModelSave
     {
         /// <summary>
-        /// Logger object.
-        /// </summary>
-        private Logger logger = Logger.getInstance();
-
-        /// <summary>
         /// Contructor.
         /// </summary>
         /// <param name="name">Save name.</param>
@@ -27,8 +22,8 @@ namespace EasySaveConsole.model
         /// <summary>
         /// Check if the file is to be saved depending on its save type.
         /// </summary>
-        /// <param name="sourceFile">Source file path</param>
-        /// <param name="targetPath">Target directory path</param>
+        /// <param name="sourceFile">Source file path.</param>
+        /// <param name="targetPath">Target directory path.</param>
         /// <returns>True if to be save, false if not.</returns>
         protected override bool checkIfToSave(string sourceFile,
             string targetPath)

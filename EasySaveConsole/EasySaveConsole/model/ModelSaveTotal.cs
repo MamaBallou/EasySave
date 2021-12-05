@@ -12,11 +12,6 @@ namespace EasySaveConsole.model
     public class ModelSaveTotal : ModelSave
     {
         /// <summary>
-        /// Logger object.
-        /// </summary>
-        private Logger logger = Logger.getInstance();
-
-        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="name">Save name.</param>
