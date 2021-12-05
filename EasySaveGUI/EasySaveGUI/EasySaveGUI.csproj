@@ -8,8 +8,7 @@
 
   <ItemGroup>
     <None Remove="logo_large.png" />
-    <None Remove="logo_small.png" />
-    <None Remove="logo_title_only-removebg-preview.png" />
+    <None Remove="logo_small_icon_only.png" />
     <None Remove="logo_title_only.png" />
     <None Remove="prosoft_logo_2-removebg-preview.png" />
     <None Remove="prosoft_logo_2.png" />
@@ -18,7 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="logo_prosoft_small.png" />
     <Resource Include="logo_small.png" />
+    <Resource Include="logo_small_icon_only.png" />
+    <Resource Include="logo_small_icon_only_inverted.png" />
     <Resource Include="logo_title_only-removebg-preview.png" />
   </ItemGroup>
 

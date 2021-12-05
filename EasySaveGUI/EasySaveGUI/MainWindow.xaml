@@ -16,23 +16,30 @@
             x:Name="header_bar"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Height="40" Margin="0,0,0,0"
+            Height="50" Margin="0,0,0,0"
             Width="1280"
             Background="#e8d66b">
 
             <Image
-                Source="/logo_title_only-removebg-preview.png"
+                x:Name="menu_logo"
+                Source="/logo_small_icon_only.png"
                 HorizontalAlignment="Left"
-                Margin="10,4,0,0"
-                Width="120"/>
-            
+                Margin="8,4,0,6"
+                Width="30"
+                Height="30"
+                Cursor="Hand"
+                MouseEnter="menu_logo_MouseEnter"
+                MouseLeave="menu_logo_MouseLeave"
+                MouseLeftButtonDown="menu_logo_MouseLeftButtonDown"
+                MouseLeftButtonUp="menu_logo_MouseLeftButtonUp">
+            </Image>
+
             <TextBlock
                 x:Name="close"
                 FontSize="35"
                 FontWeight="Bold"
-                ToolTip="Fermer"
                 HorizontalAlignment="Left"
-                Margin="1243,-6,0,6"
+                Margin="1243,0,0,6"
                 MouseLeftButtonDown="close_MouseLeftButtonDown"
                 MouseEnter="close_MouseEnter"
                 MouseLeave="close_MouseLeave">
@@ -41,8 +48,118 @@
 
         </Grid>
         <Image
-            x:Name="logo"
+            x:Name="logo_easysave"
+            Stretch="Fill"
+            Height="150"
+            Width="200"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Opacity="0"
             Source="/logo_small.png"
-            Margin="-24,646,1068,10"/>
+            Margin="18,619,1062,11">
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="0"
+                                             To="1"
+                                             Duration="0:0:0.5"
+                                             BeginTime="0:0:0.5"
+                                             Storyboard.TargetProperty="Opacity">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="150"
+                                             To="140"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Height">
+                            </DoubleAnimation>
+                            <DoubleAnimation From="200"
+                                             To="190"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Width">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="140"
+                                             To="150"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Height">
+                            </DoubleAnimation>
+                            <DoubleAnimation From="190"
+                                             To="200"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Width">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+
+        <Image
+            x:Name="logo_prosoft"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Height="70"
+            Width="290"
+            Margin="961,677,0,0"
+            Source="/logo_prosoft_small.png"
+            Opacity="0">
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="0"
+                                             To="1"
+                                             Duration="0:0:0.5"
+                                             BeginTime="0:0:1"
+                                             Storyboard.TargetProperty="Opacity">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="70"
+                                             To="65"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Height">
+                            </DoubleAnimation>
+                            <DoubleAnimation From="290"
+                                             To="285"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Width">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="65"
+                                             To="70"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Height">
+                            </DoubleAnimation>
+                            <DoubleAnimation From="285"
+                                             To="290"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Width">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
     </Grid>
 </Window>
