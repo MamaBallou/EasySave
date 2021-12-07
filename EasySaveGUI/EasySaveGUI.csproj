@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="logo_large.png" />
+    <None Remove="logo_small_icon_only.png" />
+    <None Remove="logo_title_only.png" />
+    <None Remove="prosoft_logo_2-removebg-preview.png" />
+    <None Remove="prosoft_logo_2.png" />
+    <None Remove="prosoft_logo_transparent.png" />
+    <None Remove="save_file_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="logo_prosoft_small.png" />
+    <Resource Include="logo_small.png" />
+    <Resource Include="logo_small_icon_only.png" />
+    <Resource Include="logo_small_icon_only_inverted.png" />
+    <Resource Include="logo_title_only-removebg-preview.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Ressources\fonts\" />
+  </ItemGroup>
+
+</Project>
