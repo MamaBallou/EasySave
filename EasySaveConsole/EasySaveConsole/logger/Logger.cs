@@ -15,7 +15,7 @@ namespace EasySaveConsole.logger
         /// <summary>
         /// Path to the logs.
         /// </summary>
-        private static string PATH = @"..\..\..\logs\";
+        private static string PATH = @".\logs\";
         /// <summary>
         /// Unique instance of the class.
         /// </summary>
@@ -49,12 +49,20 @@ namespace EasySaveConsole.logger
             {
                 Directory.CreateDirectory(PATH);
             }
+            if (!Tool.getInstance().checkExistance(String.Concat(PATH, "json/")))
+            {
+                Directory.CreateDirectory(String.Concat(PATH, "json/"));
+            }
+            if (!Tool.getInstance().checkExistance(String.Concat(PATH, "xml/")))
+            {
+                Directory.CreateDirectory(String.Concat(PATH, "xml/"));
+            }
             File.AppendAllText(
-                String.Concat(PATH, @"\log.json"), jsonString + ",\n");
+                String.Concat(PATH, @"\json\log.json"), jsonString + ",\n");
 
 
             XmlSerializer x = new XmlSerializer(typeof(ModelLog));
-            var stream = File.AppendText(String.Concat(PATH, @"/log.xml"));
+            var stream = File.AppendText(String.Concat(PATH, @"/xml/log.xml"));
             x.Serialize(stream, data);
             stream.Close();
         }
@@ -71,10 +79,18 @@ namespace EasySaveConsole.logger
             {
                 Directory.CreateDirectory(PATH);
             }
-            File.WriteAllText(String.Concat(PATH, @"/state.json"), jsonString);
+            if (!Tool.getInstance().checkExistance(String.Concat(PATH, "json/")))
+            {
+                Directory.CreateDirectory(String.Concat(PATH, "json/"));
+            }
+            if (!Tool.getInstance().checkExistance(String.Concat(PATH, "xml/")))
+            {
+                Directory.CreateDirectory(String.Concat(PATH, "xml/"));
+            }
+            File.WriteAllText(String.Concat(PATH, @"/json/state.json"), jsonString);
 
             XmlSerializer x = new XmlSerializer(typeof(List<ModelState>));
-            var stream = File.CreateText(String.Concat(PATH, @"/state.xml"));
+            var stream = File.CreateText(String.Concat(PATH, @"/xml/state.xml"));
             x.Serialize(stream, data);
             stream.Close();
         }
