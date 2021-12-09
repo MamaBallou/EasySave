@@ -8,24 +8,58 @@
 
   <ItemGroup>
     <None Remove="logo_large.png" />
+    <None Remove="logo_prosoft_small.png" />
+    <None Remove="logo_small.png" />
     <None Remove="logo_small_icon_only.png" />
+    <None Remove="logo_small_icon_only_inverted.png" />
+    <None Remove="logo_title_only-removebg-preview.png" />
     <None Remove="logo_title_only.png" />
     <None Remove="prosoft_logo_2-removebg-preview.png" />
     <None Remove="prosoft_logo_2.png" />
     <None Remove="prosoft_logo_transparent.png" />
+    <None Remove="Ressources\images\logo\logo.svg" />
+    <None Remove="Ressources\images\logo\logo_large.png" />
+    <None Remove="Ressources\images\logo\logo_small.png" />
+    <None Remove="Ressources\images\logo\logo_small_icon_only.png" />
+    <None Remove="Ressources\images\logo\logo_small_icon_only_inverted.png" />
+    <None Remove="Ressources\images\logo\logo_title_only-removebg-preview.png" />
+    <None Remove="Ressources\images\logo\logo_white_large.png" />
+    <None Remove="Ressources\images\logo_prosoft\logo.svg" />
+    <None Remove="Ressources\images\logo_prosoft\logo_prosoft_large.png" />
+    <None Remove="Ressources\images\logo_prosoft\logo_prosoft_small.png" />
+    <None Remove="Ressources\images\logo_prosoft\logo_small_icon_only.png" />
+    <None Remove="Ressources\images\logo_prosoft\logo_small_icon_only_inverted.png" />
+    <None Remove="Ressources\images\logo_prosoft\logo_white_large.png" />
     <None Remove="save_file_icon.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="logo_prosoft_small.png" />
-    <Resource Include="logo_small.png" />
-    <Resource Include="logo_small_icon_only.png" />
-    <Resource Include="logo_small_icon_only_inverted.png" />
-    <Resource Include="logo_title_only-removebg-preview.png" />
+    <Folder Include="Resources\" />
+    <Folder Include="Ressources\fonts\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Ressources\fonts\" />
+    <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EasySaveConsole\EasySaveConsole\EasySaveConsole.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Ressources\images\logo\logo.svg" />
+    <Resource Include="Ressources\images\logo\logo_large.png" />
+    <Resource Include="Ressources\images\logo\logo_small.png" />
+    <Resource Include="Ressources\images\logo\logo_small_icon_only.png" />
+    <Resource Include="Ressources\images\logo\logo_small_icon_only_inverted.png" />
+    <Resource Include="Ressources\images\logo\logo_title_only-removebg-preview.png" />
+    <Resource Include="Ressources\images\logo\logo_white_large.png" />
+    <Resource Include="Ressources\images\logo_prosoft\logo.svg" />
+    <Resource Include="Ressources\images\logo_prosoft\logo_prosoft_large.png" />
+    <Resource Include="Ressources\images\logo_prosoft\logo_prosoft_small.png" />
+    <Resource Include="Ressources\images\logo_prosoft\logo_small_icon_only.png" />
+    <Resource Include="Ressources\images\logo_prosoft\logo_small_icon_only_inverted.png" />
+    <Resource Include="Ressources\images\logo_prosoft\logo_white_large.png" />
   </ItemGroup>
 
 </Project>
