@@ -1,3 +1,4 @@
+<<<<<<< HEAD:EasySaveGUI/EasySaveGUI/MainWindow.xaml
 ﻿<Window x:Class="EasySaveGUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -225,3 +226,170 @@
 
     </Grid>
 </Window>
+=======
+﻿<Window x:Class="EasySaveGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySaveGUI"
+        mc:Ignorable="d"
+        Title="ProSoft" Height="780" Width="1280"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#f6f4dc" Height="780" VerticalAlignment="Bottom">
+        <Grid
+            x:Name="header_bar"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Height="50" Margin="0,0,0,0"
+            Width="1280"
+            Background="#e8d66b">
+
+            <Image
+                x:Name="menu_logo"
+                Source="/logo_small_icon_only.png"
+                HorizontalAlignment="Left"
+                Margin="8,4,0,6"
+                Width="30"
+                Height="30"
+                Cursor="Hand"
+                MouseEnter="menu_logo_MouseEnter"
+                MouseLeave="menu_logo_MouseLeave"
+                MouseLeftButtonDown="menu_logo_MouseLeftButtonDown"
+                MouseLeftButtonUp="menu_logo_MouseLeftButtonUp">
+            </Image>
+
+            <TextBlock
+                x:Name="close"
+                FontSize="35"
+                FontWeight="Bold"
+                HorizontalAlignment="Left"
+                Margin="1243,0,0,6"
+                MouseLeftButtonDown="close_MouseLeftButtonDown"
+                MouseEnter="close_MouseEnter"
+                MouseLeave="close_MouseLeave">
+                X
+            </TextBlock>
+
+        </Grid>
+        <Image
+            x:Name="logo_easysave"
+            Stretch="Fill"
+            Height="150"
+            Width="200"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Opacity="0"
+            Source="/logo_small.png"
+            Margin="18,619,1062,11">
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="0"
+                                             To="1"
+                                             Duration="0:0:0.5"
+                                             BeginTime="0:0:0.5"
+                                             Storyboard.TargetProperty="Opacity">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="150"
+                                             To="140"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Height">
+                            </DoubleAnimation>
+                            <DoubleAnimation From="200"
+                                             To="190"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Width">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="140"
+                                             To="150"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Height">
+                            </DoubleAnimation>
+                            <DoubleAnimation From="190"
+                                             To="200"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Width">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+
+        <Image
+            x:Name="logo_prosoft"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Height="70"
+            Width="290"
+            Margin="961,677,0,0"
+            Source="/logo_prosoft_small.png"
+            Opacity="0">
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="0"
+                                             To="1"
+                                             Duration="0:0:0.5"
+                                             BeginTime="0:0:1"
+                                             Storyboard.TargetProperty="Opacity">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="70"
+                                             To="65"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Height">
+                            </DoubleAnimation>
+                            <DoubleAnimation From="290"
+                                             To="285"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Width">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="65"
+                                             To="70"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Height">
+                            </DoubleAnimation>
+                            <DoubleAnimation From="285"
+                                             To="290"
+                                             Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Width">
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+    </Grid>
+</Window>
+>>>>>>> f76bf3aa5e56e63a20ed17dc8b74a1b09c036a86:EasySaveGUI/MainWindow.xaml

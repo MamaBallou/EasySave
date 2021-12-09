@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySaveConsole", "EasySaveConsole\EasySaveConsole.csproj", "{3418EAD5-40C5-4050-80E8-7788CCFDCE85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySaveTest", "..\EasySaveTest\EasySaveTest.csproj", "{0457016F-190B-46B7-AB10-AAAE168CEE23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySaveTest", "..\EasySaveTest\EasySaveTest.csproj", "{0457016F-190B-46B7-AB10-AAAE168CEE23}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySaveGUI", "..\EasySaveGUI\EasySaveGUI.csproj", "{AECE4C26-CF95-4E3B-B037-01085B01EC2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0457016F-190B-46B7-AB10-AAAE168CEE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0457016F-190B-46B7-AB10-AAAE168CEE23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0457016F-190B-46B7-AB10-AAAE168CEE23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AECE4C26-CF95-4E3B-B037-01085B01EC2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AECE4C26-CF95-4E3B-B037-01085B01EC2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AECE4C26-CF95-4E3B-B037-01085B01EC2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AECE4C26-CF95-4E3B-B037-01085B01EC2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
