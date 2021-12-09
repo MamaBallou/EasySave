@@ -1,47 +1,3 @@
-<<<<<<< HEAD:EasySaveGUI/EasySaveGUI/EasySaveGUI.csproj
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-	
-
-    <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
-        <UseWPF>true</UseWPF>
-		<UseWindowsForms>true</UseWindowsForms>
-    </PropertyGroup>
-	
-
-    <ItemGroup>
-      <None Remove="icon-add.png" />
-      <None Remove="icon-browse-folder.png" />
-      <None Remove="icon-delete.png" />
-      <None Remove="icon-home-page.png" />
-      <None Remove="icon-save-all.png" />
-      <None Remove="icon-save.png" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Resource Include="icon-add.png" />
-        <Resource Include="icon-browse-folder.png" />
-        <Resource Include="icon-delete.png" />
-        <Resource Include="icon-home-page.png" />
-        <Resource Include="icon-save-all.png" />
-        <Resource Include="icon-save.png" />
-        <Resource Include="logo_prosoft_small.png" />
-        <Resource Include="logo_small.png" />
-        <Resource Include="logo_small_icon_only.png" />
-        <Resource Include="logo_small_icon_only_inverted.png" />
-        <Resource Include="logo_title_only-removebg-preview.png" />
-    </ItemGroup>
-
-	<ItemGroup>
-		<Resource Include="Fonts\FuzzyBubbles-Regular.ttf" />
-	</ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Fonts\" />
-    </ItemGroup>
-
-=======
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
@@ -71,6 +27,4 @@
   <ItemGroup>
     <Folder Include="Ressources\fonts\" />
   </ItemGroup>
-
->>>>>>> f76bf3aa5e56e63a20ed17dc8b74a1b09c036a86:EasySaveGUI/EasySaveGUI.csproj
 </Project>
