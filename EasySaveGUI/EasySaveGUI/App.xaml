@@ -7,7 +7,7 @@
         <Style x:Key="CustomFont">
             <Setter
                 Property="TextElement.FontFamily"
-                Value="/Ressources/fonts/#Fuzzy Bubbles"></Setter>
+                Value=".\Ressources\fonts\#Fuzzy Bubbles"></Setter>
         </Style>
     </Application.Resources>
 </Application>
