@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using EasySaveConsole.controller;
 using EasySaveConsole.exception;
 using EasySaveConsole.logger;
@@ -99,7 +101,7 @@ namespace EasySaveConsole.model
             }
             else
             {
-                saveAFile(this.sourcePath, targetFolderPath, ref modelState);
+                saveAFile(this.sourcePath, targetFolderPath, ref modelState, true);
             }
             modelState._State = EnumState.Finish;
             this.logger.write(ControllerSave.modelStates);
@@ -180,7 +182,7 @@ namespace EasySaveConsole.model
                 if (checkIfToSave(currentFile, String.Concat(this.targetPath,
                     this.name, "/initial/", subdir)))
                 {
-                    saveAFile(currentFile, folderTargetPath, ref modelState);
+                    saveAFile(currentFile, folderTargetPath, ref modelState, true);
                 }
             }
             // For each directory in source directory, call the function itself
@@ -213,12 +215,19 @@ namespace EasySaveConsole.model
         /// </param>
         /// <param name="modelState">Reference to model state.</param>
         protected void saveAFile(string currentFile, string folderTargetPath,
-            ref ModelState modelState)
+            ref ModelState modelState, bool toEncrypt)
         {
             string destFilePath = String.Concat(folderTargetPath,
                             Path.GetFileName(currentFile));
             DateTime start = DateTime.Now;
-            File.Copy(currentFile, destFilePath);
+            if (toEncrypt)
+            {
+                crypAndCopy(currentFile, folderTargetPath);
+            }
+            else
+            {
+                File.Copy(currentFile, destFilePath);
+            }
             TimeSpan span = DateTime.Now - start;
             this.logger.write(new ModelLog(
                 this.name,
@@ -228,6 +237,23 @@ namespace EasySaveConsole.model
             modelState.NbFilesLeftToDo--;
             modelState.calcProg();
             this.logger.write(ControllerSave.modelStates);
+        }
+
+        public void CrypeAndCopy(string currentFile, string folderTargetPath) => crypAndCopy(currentFile, folderTargetPath);
+        private void crypAndCopy(string currentFile, string folderTargetPath)
+        {
+            FileInfo fileInfo = new FileInfo(currentFile);
+            Process process = new Process();
+            string dir = Directory.GetCurrentDirectory();
+            process.StartInfo.FileName = "Cryptosoft/CryptoSoft.exe";
+            string s = Path.GetFullPath(currentFile);
+            s.Replace("\\\\", "\\");
+            string ss = Path.GetFullPath(folderTargetPath);
+            ss.Replace("\\\\", "\\");
+            process.StartInfo.Arguments = $"/e \"{s}\" \"{ss}{Path.GetFileName(s)}\" 1234567891234567";
+            process.Start();
+            process.WaitForExit();
+            File.SetLastWriteTime($"{ss}{Path.GetFileName(s)}", File.GetLastWriteTime(currentFile));
         }
     }
 }
