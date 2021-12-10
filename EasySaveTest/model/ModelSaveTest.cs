@@ -29,6 +29,7 @@ namespace EasySaveTest.model
                 Directory.Delete(TargetPath, true);
             }
             catch { }
+            Directory.CreateDirectory(@TargetPath);
         }
 
         [Test]
@@ -41,6 +42,15 @@ namespace EasySaveTest.model
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));
             Assert.IsTrue(Directory.Exists(String.Concat(TargetPath, subdir)));
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, subdir, FileName)));
+        }
+
+        [Test]
+        public void testCrypting()
+        {
+            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
+            ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            modelSave.CrypeAndCopy(String.Concat(SourcePath, FileName), TargetPath);
+            Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));
         }
 
         [TearDown]
