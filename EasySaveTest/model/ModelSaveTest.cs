@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using EasySaveConsole.model;
 using NUnit.Framework;
 
@@ -45,12 +46,39 @@ namespace EasySaveTest.model
         }
 
         [Test]
-        public void testCrypting()
+        public void testCrypting1()
         {
             ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             modelSave.CrypeAndCopy(String.Concat(SourcePath, FileName), TargetPath);
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));
+            Assert.AreEqual(File.ReadAllText($"{TargetPath}{FileName}"), "{\u0010�#n\u000e\0\bTs7�]\u0001+");
+        }
+
+        [Test]
+        public void testCrypting2()
+        {
+            File.WriteAllText($"{SourcePath}image.img", "Hello");
+
+            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
+            ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            modelSave.SaveAFile($"{SourcePath}image.img", TargetPath, ref modelState);
+
+            Assert.IsTrue(File.Exists(String.Concat(TargetPath, "image.img")));
+            Assert.AreEqual(File.ReadAllText($"{TargetPath}image.img"), "{\u0010�#n\u000e\0\bTs7�]\u0001+");
+        }
+
+        [Test]
+        public void testCrypting3()
+        {
+            File.WriteAllText($"{SourcePath}image.img", "Hello");
+
+            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
+            ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            modelSave.SaveAFile($"{SourcePath}{FileName}", TargetPath, ref modelState);
+
+            Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));
+            Assert.AreEqual(File.ReadAllText($"{TargetPath}{FileName}"), "Hello");
         }
 
         [TearDown]

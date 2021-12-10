@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using EasySaveConsole.controller;
 using EasySaveConsole.exception;
 using EasySaveConsole.logger;
@@ -101,7 +100,7 @@ namespace EasySaveConsole.model
             }
             else
             {
-                saveAFile(this.sourcePath, targetFolderPath, ref modelState, true);
+                saveAFile(this.sourcePath, targetFolderPath, ref modelState);
             }
             modelState._State = EnumState.Finish;
             this.logger.write(ControllerSave.modelStates);
@@ -127,8 +126,11 @@ namespace EasySaveConsole.model
         /// <returns>Boolean value, true if to be save, false 
         /// otherwise.</returns>
         public bool CheckIfToSave(
-            string sourceFile, 
-            string targetPath) => checkIfToSave(sourceFile, targetPath);
+            string sourceFile,
+            string targetPath)
+        {
+            return checkIfToSave(sourceFile, targetPath);
+        }
 
         /// <summary>
         /// To delete the target folder.
@@ -182,7 +184,7 @@ namespace EasySaveConsole.model
                 if (checkIfToSave(currentFile, String.Concat(this.targetPath,
                     this.name, "/initial/", subdir)))
                 {
-                    saveAFile(currentFile, folderTargetPath, ref modelState, true);
+                    saveAFile(currentFile, folderTargetPath, ref modelState);
                 }
             }
             // For each directory in source directory, call the function itself
@@ -204,7 +206,24 @@ namespace EasySaveConsole.model
         /// <param name="folderTargetPath">Target folder path.</param>
         /// <param name="modelState">Reference to model state.</param>
         public void SaveFolder(string folderSourcePath,
-            string folderTargetPath, ref ModelState modelState) => saveFolder(folderSourcePath, folderTargetPath, ref modelState);
+            string folderTargetPath, ref ModelState modelState)
+        {
+            saveFolder(folderSourcePath, folderTargetPath, ref modelState);
+        }
+
+        /// <summary>
+        /// Callable method used in tests only.
+        /// </summary>
+        /// <param name="currentFile">Path of file to copy.</param>
+        /// <param name="folderTargetPath">
+        /// Path of directory where to copy.
+        /// </param>
+        /// <param name="modelState">Reference to model state.</param>
+        public void SaveAFile(string currentFile, string folderTargetPath,
+            ref ModelState modelState)
+        {
+            saveAFile(currentFile, folderTargetPath, ref modelState);
+        }
 
         /// <summary>
         /// Copy file to directory.
@@ -215,12 +234,12 @@ namespace EasySaveConsole.model
         /// </param>
         /// <param name="modelState">Reference to model state.</param>
         protected void saveAFile(string currentFile, string folderTargetPath,
-            ref ModelState modelState, bool toEncrypt)
+            ref ModelState modelState)
         {
             string destFilePath = String.Concat(folderTargetPath,
                             Path.GetFileName(currentFile));
             DateTime start = DateTime.Now;
-            if (toEncrypt)
+            if (Path.GetExtension(currentFile) == ".img")
             {
                 crypAndCopy(currentFile, folderTargetPath);
             }
@@ -239,17 +258,27 @@ namespace EasySaveConsole.model
             this.logger.write(ControllerSave.modelStates);
         }
 
-        public void CrypeAndCopy(string currentFile, string folderTargetPath) => crypAndCopy(currentFile, folderTargetPath);
+        /// <summary>
+        /// Callable method used in tests only.
+        /// </summary>
+        /// <param name="currentFile">Source file.</param>
+        /// <param name="folderTargetPath">Target folder.</param>
+        public void CrypeAndCopy(string currentFile, string folderTargetPath)
+        {
+            crypAndCopy(currentFile, folderTargetPath);
+        }
+
+        /// <summary>
+        /// Crypt and copy a file in a folder.
+        /// </summary>
+        /// <param name="currentFile">Source file.</param>
+        /// <param name="folderTargetPath">Target folder.</param>
         private void crypAndCopy(string currentFile, string folderTargetPath)
         {
-            FileInfo fileInfo = new FileInfo(currentFile);
             Process process = new Process();
-            string dir = Directory.GetCurrentDirectory();
             process.StartInfo.FileName = "Cryptosoft/CryptoSoft.exe";
             string s = Path.GetFullPath(currentFile);
-            s.Replace("\\\\", "\\");
             string ss = Path.GetFullPath(folderTargetPath);
-            ss.Replace("\\\\", "\\");
             process.StartInfo.Arguments = $"/e \"{s}\" \"{ss}{Path.GetFileName(s)}\" 1234567891234567";
             process.Start();
             process.WaitForExit();
