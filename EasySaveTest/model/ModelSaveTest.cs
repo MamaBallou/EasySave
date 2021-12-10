@@ -71,8 +71,6 @@ namespace EasySaveTest.model
         [Test]
         public void testCrypting3()
         {
-            File.WriteAllText($"{SourcePath}image.img", "Hello");
-
             ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             modelSave.SaveAFile($"{SourcePath}{FileName}", TargetPath, ref modelState);
