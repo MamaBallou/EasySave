@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Cryptage.exe" />
+    <None Remove="Cryptosoft\CryptoSoft.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Cryptosoft\CryptoSoft.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
