@@ -6,11 +6,32 @@
         mc:Ignorable="d"
         Title="HomeWindow" 
         Height="450" 
-        Width="800" 
-        Icon="\Ressources\images\logo\logo_large.png">
+        Width="800">
+    <Window.Resources>
+        <Style x:Key="NavigationContentStyle" TargetType="ContentControl">
+            <Setter Property="ContentTemplate" Value="{StaticResource HomeViewTemplate}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=NavigationMenuListBox, Path=SelectedItem}"
+                             Value="Email">
+                    <Setter Property="ContentTemplate" Value="{StaticResource NewSave}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Frame x:Name="frame" Source="HomePage.xaml" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="50, 0, 50, 10"/>
-        <ComboBox Name="cbb_languages" ItemsSource="{Binding Languages}" Margin="0,0,10,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox x:Name="NavigationMenuListBox" 
+                 Style="{StaticResource NavigationListBoxStyle}"
+                 ItemContainerStyle="{DynamicResource NavigationListBoxItemStyle}"
+                 ItemTemplate="{DynamicResource NavigationDataTemplate}"
+                 ItemsSource="{StaticResource NavigationMenuItems}"/>
+
+        <ContentControl Grid.Column="1" Style="{StaticResource NavigationContentStyle}"/>
     </Grid>
 
 </Window>

@@ -14,17 +14,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EasySaveGUI.viewmodel;
 
-namespace EasySaveGUI
+namespace EasySaveGUI.Views
 {
     /// <summary>
     /// Logique d'interaction pour HomePage.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class HomePage : UserControl
     {
         public HomePage()
         {
-            ViewModelHomePage viewModel = new ViewModelHomePage();
-            DataContext = viewModel;
             InitializeComponent();
         }
     }
