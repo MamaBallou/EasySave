@@ -12,7 +12,11 @@
             <Setter Property="ContentTemplate" Value="{StaticResource HomeViewTemplate}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding ElementName=NavigationMenuListBox, Path=SelectedItem}"
-                             Value="Email">
+                             Value="NewSave">
+                    <Setter Property="ContentTemplate" Value="{StaticResource NewSave}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=NavigationMenuListBox, Path=SelectedItem}"
+                             Value="Settings">
                     <Setter Property="ContentTemplate" Value="{StaticResource NewSave}"/>
                 </DataTrigger>
             </Style.Triggers>

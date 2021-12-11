@@ -12,8 +12,8 @@
                 Value="/Ressources/fonts/#Fuzzy Bubbles"></Setter>
         </Style>
 
-        <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#FF0D2738"/>
-        <SolidColorBrush x:Key="PrimaryLightBrush" Color="#FF1F90FF"/>
+        <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#e8d66b"/>
+        <SolidColorBrush x:Key="PrimaryLightBrush" Color="#9e8228"/>
 
         <Style x:Key="NavigationListBoxStyle" TargetType="{x:Type ListBox}">
             <Setter Property="Background" Value="{StaticResource PrimaryDarkBrush}"/>
@@ -84,26 +84,28 @@
             </Setter>
         </Style>
 
+        <iconPacks:PackIconFontAwesome x:Key="Plus" Kind="PlusSquareSolid" />
+
         <DataTemplate x:Key="NavigationDataTemplate">
-            <iconPacks:PackIconMaterialDesign x:Name="MenuItemIcon" VerticalAlignment="Center" 
+            <iconPacks:PackIconEvaIcons x:Name="MenuItemIcon" VerticalAlignment="Center" 
                                               HorizontalAlignment="Center" Margin="12"/>
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding}" Value="Home">
                     <Setter TargetName="MenuItemIcon" Property="Kind" Value="Home"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding}" Value="Email">
-                    <Setter TargetName="MenuItemIcon" Property="Kind" Value="Email"/>
+                <DataTrigger Binding="{Binding}" Value="NewSave">
+                    <Setter TargetName="MenuItemIcon" Property="Kind" Value="PlusCircle"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding}" Value="Cloud">
-                    <Setter TargetName="MenuItemIcon" Property="Kind" Value="Cloud"/>
+                <DataTrigger Binding="{Binding}" Value="Settings">
+                    <Setter TargetName="MenuItemIcon" Property="Kind" Value="Settings"/>
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
 
         <x:Array x:Key="NavigationMenuItems" Type="system:String">
             <system:String>Home</system:String>
-            <system:String>Email</system:String>
-            <system:String>Cloud</system:String>
+            <system:String>NewSave</system:String>
+            <system:String>Settings</system:String>
         </x:Array>
 
         <DataTemplate x:Key="HomeViewTemplate">
