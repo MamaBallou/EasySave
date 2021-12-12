@@ -1,6 +1,7 @@
 ﻿using EasySaveConsole.model;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace EasySaveTest.model
@@ -32,7 +33,8 @@ namespace EasySaveTest.model
         {
             ModelSaveTotal modelSave = new ModelSaveTotal(SaveName, SourcePath, TargetPath);
             ModelState modelState = modelSave.toModelState();
-            modelSave.save(ref modelState);
+            List<ModelState> modelStates = new List<ModelState> { modelState };
+            modelSave.save(ref modelState, modelStates);
             // Check if archive/save1 has been created
             Assert.IsTrue(Directory.Exists(@String.Concat(TargetPath, SaveName)));
             // Check if testSave.txt has been created
@@ -44,7 +46,8 @@ namespace EasySaveTest.model
         {
             ModelSaveTotal modelSave = new ModelSaveTotal(SaveName, SourcePath, TargetPath);
             ModelState modelState = modelSave.toModelState();
-            modelSave.save(ref modelState);
+            List<ModelState> modelStates = new List<ModelState> { modelState };
+            modelSave.save(ref modelState, modelStates);
             string toFind = @String.Concat(TargetPath, SaveName, "/initial/", FileName);
             //Check if testSave.txt is created is in save1 
             Assert.IsTrue(File.Exists(toFind));
@@ -55,11 +58,12 @@ namespace EasySaveTest.model
         {
             ModelSaveTotal modelSave = new ModelSaveTotal(SaveName, SourcePath, TargetPath);
             ModelState modelState = modelSave.toModelState();
-            modelSave.save(ref modelState);
+            List<ModelState> modelStates = new List<ModelState> { modelState };
+            modelSave.save(ref modelState, modelStates);
             //Check if testSave.txt is created is in save1 
             var stream = File.Create(String.Concat(SourcePath, "testSave2.txt"));
             stream.Close();
-            modelSave.save(ref modelState);
+            modelSave.save(ref modelState, modelStates);
             string filePath = string.Concat(TargetPath, SaveName, "/initial/");
             Assert.IsFalse(File.Exists(filePath));
             Assert.IsTrue(File.Exists(String.Concat(filePath, FileName)));

@@ -73,7 +73,8 @@ namespace EasySaveGUI.Views
                 ModelSaveTotal save = new ModelSaveTotal(txt_name.Text, txt_source.Text, txt_target.Text);
                 ModelState saveState = save.toModelState();
                 this.viewModelHomePage.Saves.Add(save);
-
+                this.viewModelHomePage.States.Add(saveState);
+                save.save(ref saveState, viewModelHomePage.States);
                 return;
             }
         }

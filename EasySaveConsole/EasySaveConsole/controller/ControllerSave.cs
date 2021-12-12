@@ -278,7 +278,7 @@ namespace EasySaveConsole.controller
                     this.view.output(String.Format(
                         this.res_man.GetString("save_run", this.cul),
                         name_tmp));
-                    modelSave.save(ref modelState);
+                    modelSave.save(ref modelState, modelStates);
                     this.view.output(String.Format(
                         this.res_man.GetString("save_end", this.cul),
                         name_tmp));
@@ -362,7 +362,7 @@ namespace EasySaveConsole.controller
                     case "Y":
                         this.modelSaves.Remove(model);
                         modelStates.RemoveAt(choice - 1);
-                        model.delete();
+                        model.delete(ref modelStates);
                         this.view.output(String.Format(
                             this.res_man.GetString("delete_end", this.cul),
                             model.Name));
@@ -401,7 +401,7 @@ namespace EasySaveConsole.controller
                     this.view.output(String.Format(
                         this.res_man.GetString("save_run", this.cul),
                         this.modelSaves[compt].Name));
-                    this.modelSaves[compt].save(ref modelState);
+                    this.modelSaves[compt].save(ref modelState, modelStates);
                     this.view.output(String.Format(
                         this.res_man.GetString("save_end", this.cul),
                         this.modelSaves[compt].Name));
@@ -456,7 +456,7 @@ namespace EasySaveConsole.controller
                     String.Format(
                         this.res_man.GetString("save_run", this.cul),
                         model.Name));
-                model.save(ref modelState);
+                model.save(ref modelState, modelStates);
                 this.view.output(String.Format(
                         this.res_man.GetString("save_end", this.cul),
                         model.Name));

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using EasySaveConsole.controller;
@@ -54,7 +55,7 @@ namespace EasySaveConsole.model
         /// <param name="modelState">Model state attached to the save.</param>
         /// <exception cref="PathNotFoundException">Thrown when source path not
         /// found.</exception>
-        public void save(ref ModelState modelState)
+        public void save(ref ModelState modelState, List<ModelState> states)
         {
             string targetFolderPath =
                 @String.Concat(this.targetPath, this.name, "/");
@@ -94,18 +95,18 @@ namespace EasySaveConsole.model
             FileAttributes attr = File.GetAttributes(this.sourcePath);
 
             modelState.initStart();
-            this.logger.write(ControllerSave.modelStates);
+            this.logger.write(states);
             //detect whether its a directory or file
             if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
             {
-                saveFolder(this.sourcePath, targetFolderPath, ref modelState);
+                saveFolder(this.sourcePath, targetFolderPath, ref modelState, ref states);
             }
             else
             {
-                saveAFile(this.sourcePath, targetFolderPath, ref modelState);
+                saveAFile(this.sourcePath, targetFolderPath, ref modelState, ref states);
             }
             modelState._State = EnumState.Finish;
-            this.logger.write(ControllerSave.modelStates);
+            this.logger.write(states);
         }
 
         /// <summary>
@@ -137,10 +138,10 @@ namespace EasySaveConsole.model
         /// <summary>
         /// To delete the target folder.
         /// </summary>
-        public void delete()
+        public void delete(ref List<ModelState> states)
         {
             Directory.Delete(String.Concat(this.targetPath, this.name), true);
-            this.logger.write(ControllerSave.modelStates);
+            this.logger.write(states);
         }
 
         /// <summary>
@@ -150,7 +151,7 @@ namespace EasySaveConsole.model
         /// <param name="folderTargetPath">Target folder path.</param>
         /// <param name="modelState">Reference to model state.</param>
         protected void saveFolder(string folderSourcePath,
-            string folderTargetPath, ref ModelState modelState)
+            string folderTargetPath, ref ModelState modelState, ref List<ModelState> states)
         {
             // Check if source directory exists.
             // If not throw Exception.
@@ -186,7 +187,7 @@ namespace EasySaveConsole.model
                 if (checkIfToSave(currentFile, String.Concat(this.targetPath,
                     this.name, "/initial/", subdir)))
                 {
-                    saveAFile(currentFile, folderTargetPath, ref modelState);
+                    saveAFile(currentFile, folderTargetPath, ref modelState, ref states);
                 }
             }
             // For each directory in source directory, call the function itself
@@ -197,7 +198,7 @@ namespace EasySaveConsole.model
                 saveFolder(currentDirectory, String.Concat(
                     folderTargetPath,
                     new DirectoryInfo(currentDirectory).Name,
-                    "/"), ref modelState);
+                    "/"), ref modelState, ref states);
             }
         }
 
@@ -208,9 +209,9 @@ namespace EasySaveConsole.model
         /// <param name="folderTargetPath">Target folder path.</param>
         /// <param name="modelState">Reference to model state.</param>
         public void SaveFolder(string folderSourcePath,
-            string folderTargetPath, ref ModelState modelState)
+            string folderTargetPath, ref ModelState modelState, ref List<ModelState> states)
         {
-            saveFolder(folderSourcePath, folderTargetPath, ref modelState);
+            saveFolder(folderSourcePath, folderTargetPath, ref modelState, ref states);
         }
 
         /// <summary>
@@ -222,9 +223,9 @@ namespace EasySaveConsole.model
         /// </param>
         /// <param name="modelState">Reference to model state.</param>
         public void SaveAFile(string currentFile, string folderTargetPath,
-            ref ModelState modelState)
+            ref ModelState modelState, ref List<ModelState> states)
         {
-            saveAFile(currentFile, folderTargetPath, ref modelState);
+            saveAFile(currentFile, folderTargetPath, ref modelState, ref states);
         }
 
         /// <summary>
@@ -236,7 +237,7 @@ namespace EasySaveConsole.model
         /// </param>
         /// <param name="modelState">Reference to model state.</param>
         protected void saveAFile(string currentFile, string folderTargetPath,
-            ref ModelState modelState)
+            ref ModelState modelState, ref List<ModelState> states)
         {
             string destFilePath = String.Concat(folderTargetPath,
                             Path.GetFileName(currentFile));
@@ -257,7 +258,7 @@ namespace EasySaveConsole.model
                 span.TotalMilliseconds));
             modelState.NbFilesLeftToDo--;
             modelState.calcProg();
-            this.logger.write(ControllerSave.modelStates);
+            this.logger.write(states);
         }
 
         /// <summary>

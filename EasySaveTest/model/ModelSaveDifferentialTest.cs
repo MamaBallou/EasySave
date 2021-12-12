@@ -1,6 +1,7 @@
 ﻿using EasySaveConsole.model;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace EasySaveTest.model
@@ -32,9 +33,10 @@ namespace EasySaveTest.model
         [Test]
         public void TestSaveFolder()
         {
-            ModelSaveDifferential modelSaveDifferential1 = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
-            ModelState modelState = modelSaveDifferential1.toModelState();
-            modelSaveDifferential1.save(ref modelState);
+            ModelSaveDifferential modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSave.toModelState();
+            List<ModelState> modelStates = new List<ModelState> { modelState };
+            modelSave.save(ref modelState, modelStates);
             // Check if archive/save1 has been created
             Assert.IsTrue(Directory.Exists(@String.Concat(TargetPath, SaveName, "/initial/")));
             // Check if testSave.txt has been created
@@ -44,9 +46,10 @@ namespace EasySaveTest.model
         [Test]
         public void TestSaveFile()
         {
-            ModelSaveDifferential modelSaveDifferential2 = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
-            ModelState modelState = modelSaveDifferential2.toModelState();
-            modelSaveDifferential2.save(ref modelState);
+            ModelSaveDifferential modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSave.toModelState();
+            List<ModelState> modelStates = new List<ModelState> { modelState };
+            modelSave.save(ref modelState, modelStates);
             string toFind = @String.Concat(TargetPath, SaveName, "/initial/", FileName);
             //Check if testSave.txt is created is in save1 
             Assert.IsTrue(File.Exists(toFind));
@@ -55,13 +58,14 @@ namespace EasySaveTest.model
         [Test]
         public void TestSaveAgain()
         {
-            ModelSaveDifferential modelSaveDifferential2 = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
-            ModelState modelState = modelSaveDifferential2.toModelState();
-            modelSaveDifferential2.save(ref modelState);
+            ModelSaveDifferential modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSave.toModelState();
+            List<ModelState> modelStates = new List<ModelState> { modelState };
+            modelSave.save(ref modelState, modelStates);
             //Check if testSave.txt is created is in save1 
             var stream = File.Create(@String.Concat(SourcePath, FileName2));
             stream.Close();
-            modelSaveDifferential2.save(ref modelState);
+            modelSave.save(ref modelState, modelStates);
             string filePath = @String.Concat(TargetPath, SaveName, "/initial/");
             Assert.IsFalse(File.Exists(String.Concat(filePath, FileName2)));
             Assert.IsTrue(File.Exists(String.Concat(filePath, FileName)));
@@ -81,11 +85,12 @@ namespace EasySaveTest.model
         {
             Directory.CreateDirectory(String.Concat(SourcePath, subdir));
             File.WriteAllText(String.Concat(SourcePath, subdir, FileName2), "World");
-            ModelSaveDifferential modelSaveDifferential2 = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
-            ModelState modelState = modelSaveDifferential2.toModelState();
-            modelSaveDifferential2.save(ref modelState);
+            ModelSaveDifferential modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSave.toModelState();
+            List<ModelState> modelStates = new List<ModelState> { modelState };
+            modelSave.save(ref modelState, modelStates);
             File.WriteAllText(String.Concat(SourcePath, FileName), "Zoulou");
-            modelSaveDifferential2.save(ref modelState);
+            modelSave.save(ref modelState, modelStates);
 
             foreach (var dir in Directory.GetDirectories(String.Concat(TargetPath, SaveName)))
             {

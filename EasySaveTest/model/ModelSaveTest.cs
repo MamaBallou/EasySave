@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using EasySaveConsole.model;
@@ -38,7 +39,8 @@ namespace EasySaveTest.model
         {
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             ModelState modelState = modelSave.toModelState();
-            modelSave.SaveFolder(SourcePath, TargetPath, ref modelState);
+            List<ModelState> modelStates = new List<ModelState> { modelState };
+            modelSave.SaveFolder(SourcePath, TargetPath, ref modelState, ref modelStates);
             Assert.IsTrue(Directory.Exists(String.Concat(TargetPath)));
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));
             Assert.IsTrue(Directory.Exists(String.Concat(TargetPath, subdir)));
@@ -62,7 +64,8 @@ namespace EasySaveTest.model
 
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             ModelState modelState = modelSave.toModelState();
-            modelSave.SaveAFile($"{SourcePath}image.img", TargetPath, ref modelState);
+            List<ModelState> modelStates = new List<ModelState> { modelState };
+            modelSave.SaveAFile($"{SourcePath}image.img", TargetPath, ref modelState, ref modelStates);
 
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, "image.img")));
             Assert.AreEqual(File.ReadAllText($"{TargetPath}image.img"), "{\u0010�#n\u000e\0\bTs7�]\u0001+");
@@ -73,7 +76,8 @@ namespace EasySaveTest.model
         {
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             ModelState modelState = modelSave.toModelState();
-            modelSave.SaveAFile($"{SourcePath}{FileName}", TargetPath, ref modelState);
+            List<ModelState> modelStates = new List<ModelState> { modelState };
+            modelSave.SaveAFile($"{SourcePath}{FileName}", TargetPath, ref modelState, ref modelStates);
 
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));
             Assert.AreEqual(File.ReadAllText($"{TargetPath}{FileName}"), "Hello");
