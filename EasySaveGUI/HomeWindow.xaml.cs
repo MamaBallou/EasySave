@@ -1,8 +1,4 @@
-﻿using System.Globalization;
-using System.Resources;
-using System.Threading;
-using System.Windows;
-using EasySaveConsole.controller;
+﻿using System.Windows;
 using EasySaveGUI.viewmodel;
 
 namespace EasySaveGUI
@@ -18,6 +14,22 @@ namespace EasySaveGUI
             ViewModelHomeWindow vm = new ViewModelHomeWindow();
             DataContext = vm;
             InitializeComponent();
+        }
+
+        private void ChangeLanguage(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            switch (this.languages.SelectedIndex)
+            {
+                case 1:
+                    EasySaveGUI.Properties.languages.Resources.Culture = new System.Globalization.CultureInfo("en-GB");
+                    EasySaveGUI.Properties.Settings.Default.language = "en-GB";
+                    break;
+                case 0:
+                    EasySaveGUI.Properties.languages.Resources.Culture = new System.Globalization.CultureInfo("fr-FR");
+                    EasySaveGUI.Properties.Settings.Default.language = "fr-FR";
+                    break;
+            }
+            EasySaveGUI.Properties.Settings.Default.Save();
         }
     }
 }

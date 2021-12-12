@@ -4,31 +4,42 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EasySaveGUI.Views"
+      xmlns:lan="clr-namespace:EasySaveGUI.Properties.languages"
       xmlns:vm="clr-namespace:EasySaveGUI.viewmodel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:ViewModelHomePage/>
     </UserControl.DataContext>
+    
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="what_to_do" Content="{Binding Choose_action}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        
+        <Label x:Name="what_to_do" Content="{x:Static lan:Resources.backup}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <Button x:Name="btn_create_save" Content="{Binding Create_save}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding GetChooseActionCommand}"/>
-        <Button x:Name="btn_delete_save" Content="{Binding Delete_save}" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <Button x:Name="btn_run_a_save" Content="{Binding Run_all_save}" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <Button x:Name="btn_run_all_saves" Content="{Binding Run_one_save}" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btn_run_a_save" Content="{x:Static lan:Resources.run_all_backups}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+        <DataGrid x:Name="saves" AutoGenerateColumns="False" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" ItemsSource="{Binding Saves}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static lan:Resources.backup}" Binding="{Binding Name}" CanUserSort="True"/>
+                <DataGridTextColumn Header="{x:Static lan:Resources.source_path}" Binding="{Binding SourcePath}" CanUserSort="True"/>
+                <DataGridTextColumn Header="{x:Static lan:Resources.target_path}" Binding="{Binding TargetPath}" CanUserSort="True"/>
+                <DataGridTextColumn/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

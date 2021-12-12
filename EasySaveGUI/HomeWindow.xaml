@@ -6,7 +6,8 @@
         mc:Ignorable="d"
         Title="HomeWindow" 
         Height="450" 
-        Width="800">
+        Width="800"
+        Background="#f6f4dc">
     <Window.Resources>
         <Style x:Key="NavigationContentStyle" TargetType="ContentControl">
             <Setter Property="ContentTemplate" Value="{StaticResource HomeViewTemplate}"/>
@@ -35,7 +36,11 @@
                  ItemTemplate="{DynamicResource NavigationDataTemplate}"
                  ItemsSource="{StaticResource NavigationMenuItems}"/>
 
-        <ContentControl Grid.Column="1" Style="{StaticResource NavigationContentStyle}"/>
+        <ContentControl Grid.Column="1" Style="{StaticResource NavigationContentStyle}" Name="view"/>
+        <ComboBox Name="languages" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" SelectionChanged="ChangeLanguage">
+            <ComboBoxItem Name="fr" Content="Français" IsSelected="True"/>
+            <ComboBoxItem Name="en" Content="English"/>
+        </ComboBox>
     </Grid>
 
 </Window>

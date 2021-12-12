@@ -9,7 +9,7 @@
         <Style x:Key="CustomFont">
             <Setter
                 Property="TextElement.FontFamily"
-                Value="/Ressources/fonts/#Fuzzy Bubbles"></Setter>
+                Value="/Properties/fonts/#Fuzzy Bubbles"></Setter>
         </Style>
 
         <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#e8d66b"/>
@@ -97,7 +97,7 @@
                     <Setter TargetName="MenuItemIcon" Property="Kind" Value="PlusCircle"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding}" Value="Settings">
-                    <Setter TargetName="MenuItemIcon" Property="Kind" Value="Settings"/>
+                    <Setter TargetName="MenuItemIcon" Property="Kind" Value="Settings2"/>
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>

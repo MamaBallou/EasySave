@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
+using EasySaveConsole.model;
 using EasySaveGUI.model;
 
 namespace EasySaveGUI.viewmodel
@@ -8,72 +9,24 @@ namespace EasySaveGUI.viewmodel
     public class ViewModelHomePage : INotifyPropertyChanged
     {
         private ICommand command;
-        private string choose_action;
-        private string create_save;
-        private string delete_save;
-        private string run_all_save;
-        private string run_one_save;
-        private RessoucesModel model = new RessoucesModel();
+        private List<ModelSave> saves = new List<ModelSave>();
 
-        public string Choose_action
+        public List<ModelSave> Saves
         {
-            get => this.choose_action;
+            get => this.saves;
             set
             {
-                this.choose_action = value;
-                OnPropertyChanged("Choose_action");
-            }
-        }
-
-        public string Create_save
-        {
-            get => this.create_save;
-            set
-            {
-                this.create_save = value;
-                OnPropertyChanged("Create_save");
-            }
-        }
-
-        public string Delete_save
-        {
-            get => this.delete_save;
-            set
-            {
-                this.delete_save = value;
-                OnPropertyChanged("Delete_save");
-            }
-        }
-
-        public string Run_all_save
-        {
-            get => this.run_all_save;
-            set
-            {
-                this.run_all_save = value;
-                OnPropertyChanged("Run_all_save");
-            }
-        }
-
-        public string Run_one_save
-        {
-            get => this.run_one_save;
-            set
-            {
-                this.run_one_save = value;
-                OnPropertyChanged("Run_one_save");
+                this.saves = value;
+                OnPropertyChanged("Saves");
             }
         }
 
         public ViewModelHomePage()
         {
-            Choose_action = this.model.getRessource("choose_action");
-            Create_save = this.model.getRessource("create_save");
-            Delete_save = this.model.getRessource("delete_save");
-            Run_all_save = this.model.getRessource("run_all_save");
-            Run_one_save = this.model.getRessource("run_one_save");
+            
         }
 
+        private RessoucesModel model = new RessoucesModel();
         public ICommand GetChooseActionCommand
         {
             get
