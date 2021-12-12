@@ -29,12 +29,12 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="btn_run_a_save" Content="{x:Static lan:Resources.run_all_backups}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
-        <DataGrid x:Name="saves" AutoGenerateColumns="False" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" ItemsSource="{Binding Saves}">
+        <DataGrid x:Name="saves" AutoGenerateColumns="False" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" ItemsSource="{Binding Saves}" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static lan:Resources.backup}" Binding="{Binding Name}" CanUserSort="True"/>
                 <DataGridTextColumn Header="{x:Static lan:Resources.source_path}" Binding="{Binding SourcePath}" CanUserSort="True"/>
                 <DataGridTextColumn Header="{x:Static lan:Resources.target_path}" Binding="{Binding TargetPath}" CanUserSort="True"/>
-                <DataGridTextColumn/>
+                <DataGridTextColumn Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

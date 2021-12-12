@@ -39,51 +39,51 @@ namespace EasySaveGUI.Views
 
         private void CreateClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            btn_create.IsEnabled = false;
+            this.btn_create.IsEnabled = false;
             if (checkEmptiness())
             {
                 MessageBox.Show(EasySaveGUI.Properties.languages.Resources.warning_fill_all_fields);
-                btn_create.IsEnabled = true;
+                this.btn_create.IsEnabled = true;
                 return;
             }
-            string source_tmp = Tool.completePath(txt_source.Text);
-            if(!Tool.getInstance().checkExistance(source_tmp))
+            string source_tmp = Tool.completePath(this.txt_source.Text);
+            if (!Tool.getInstance().checkExistance(source_tmp))
             {
                 MessageBox.Show(EasySaveGUI.Properties.languages.Resources.warning_invalid_source);
-                btn_create.IsEnabled = true;
+                this.btn_create.IsEnabled = true;
                 return;
             }
-            string target_tmp = Tool.completePath(txt_target.Text);
+            string target_tmp = Tool.completePath(this.txt_target.Text);
             FileInfo fi = null;
             try
             {
                 fi = new FileInfo(target_tmp);
             }
-            catch (ArgumentException) {  }
-            catch (PathTooLongException) {  }
-            catch (NotSupportedException) {  }
+            catch (ArgumentException) { }
+            catch (PathTooLongException) { }
+            catch (NotSupportedException) { }
             if (fi == null)
             {
                 MessageBox.Show(EasySaveGUI.Properties.languages.Resources.warning_invalid_target);
-                btn_create.IsEnabled = true;
+                this.btn_create.IsEnabled = true;
                 return;
             }
-            if (rdb_total.IsChecked == true)
+            if (this.rdb_total.IsChecked == true)
             {
-                ModelSaveTotal save = new ModelSaveTotal(txt_name.Text, txt_source.Text, txt_target.Text);
+                ModelSaveTotal save = new ModelSaveTotal(this.txt_name.Text, this.txt_source.Text, this.txt_target.Text);
                 ModelState saveState = save.toModelState();
                 this.viewModelHomePage.Saves.Add(save);
                 this.viewModelHomePage.States.Add(saveState);
-                save.save(ref saveState, viewModelHomePage.States);
+                save.save(ref saveState, this.viewModelHomePage.States);
                 return;
             }
-            if (rdb_differential.IsChecked == true)
+            if (this.rdb_differential.IsChecked == true)
             {
-                ModelSaveDifferential save = new ModelSaveDifferential(txt_name.Text, txt_source.Text, txt_target.Text);
+                ModelSaveDifferential save = new ModelSaveDifferential(this.txt_name.Text, this.txt_source.Text, this.txt_target.Text);
                 ModelState saveState = save.toModelState();
                 this.viewModelHomePage.Saves.Add(save);
                 this.viewModelHomePage.States.Add(saveState);
-                save.save(ref saveState, viewModelHomePage.States);
+                save.save(ref saveState, this.viewModelHomePage.States);
                 return;
             }
         }
