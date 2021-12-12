@@ -23,6 +23,8 @@ namespace EasySaveGUI.Views
     {
         public HomePage()
         {
+            ViewModelHomeWindow viewModel = ViewModelHomeWindow.getInstance();
+            DataContext = viewModel;
             InitializeComponent();
         }
     }

@@ -13,7 +13,7 @@ namespace EasySaveGUI.Views
     /// </summary>
     public partial class NewSaveView : UserControl
     {
-        private ViewModelHomePage viewModelHomePage = new ViewModelHomePage();
+        private ViewModelHomePage viewModelHomePage = ViewModelHomePage.getInstance();
         public NewSaveView()
         {
             InitializeComponent();

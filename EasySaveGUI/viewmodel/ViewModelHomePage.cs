@@ -12,6 +12,16 @@ namespace EasySaveGUI.viewmodel
         private ICommand command;
         private List<ModelSave> saves = new List<ModelSave>();
         private List<ModelState> states = new List<ModelState>();
+        private static ViewModelHomePage instance;
+
+        public static ViewModelHomePage getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new ViewModelHomePage();
+            }
+            return instance;
+        }
 
         public List<ModelSave> Saves
         {
@@ -28,7 +38,7 @@ namespace EasySaveGUI.viewmodel
             set => this.states = value;
         }
 
-        public ViewModelHomePage()
+        private ViewModelHomePage()
         {
             States = DataRetriever.getModelLog();
             States.ForEach(state =>

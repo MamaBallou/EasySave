@@ -19,10 +19,7 @@ namespace EasySaveConsole.model
         /// <summary>
         /// String Getter of state.
         /// </summary>
-        public string State
-        {
-            get => this.state.ToString();
-        }
+        public string State => this.state.ToString();
         private EnumSaveTypes saveType;
         [JsonIgnore]
         public EnumSaveTypes _SaveType
@@ -38,10 +35,10 @@ namespace EasySaveConsole.model
                 switch (value)
                 {
                     case "Differential":
-                        saveType = EnumSaveTypes.Differential;
+                        this.saveType = EnumSaveTypes.Differential;
                         break;
                     case "Total":
-                        saveType = EnumSaveTypes.Total;
+                        this.saveType = EnumSaveTypes.Total;
                         break;
                 }
             }
@@ -127,6 +124,21 @@ namespace EasySaveConsole.model
             this.totalFilesToCopy = Tool.getInstance().getNbFiles(this.sourceFile);
             this.nbFilesLeftToDo = this.totalFilesToCopy;
             this.totalFileSize = Tool.getInstance().getFileSize(this.sourceFile);
+        }
+
+        public ModelSave toModelSave()
+        {
+            ModelSave modelSave = null;
+            switch (this.saveType)
+            {
+                case EnumSaveTypes.Differential:
+                    modelSave = new ModelSaveDifferential(this.saveName, this.sourceFile, this.targetFile);
+                    break;
+                case EnumSaveTypes.Total:
+                    modelSave = new ModelSaveTotal(this.saveName, this.sourceFile, this.targetFile);
+                    break;
+            }
+            return modelSave;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace EasySaveGUI
 
         public HomeWindow()
         {
-            ViewModelHomeWindow vm = new ViewModelHomeWindow();
+            ViewModelHomeWindow vm = ViewModelHomeWindow.getInstance();
             DataContext = vm;
             InitializeComponent();
         }

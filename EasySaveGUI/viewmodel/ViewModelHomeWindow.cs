@@ -10,6 +10,7 @@ namespace EasySaveGUI.viewmodel
         private ICommand command;
         private RessoucesModel model = new RessoucesModel();
         private List<string> languages;
+        private static ViewModelHomeWindow instance;
 
         public List<string> Languages
         {
@@ -21,7 +22,16 @@ namespace EasySaveGUI.viewmodel
             }
         }
 
-        public ViewModelHomeWindow()
+        public static ViewModelHomeWindow getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new ViewModelHomeWindow();
+            }
+            return instance;
+        }
+
+        private ViewModelHomeWindow()
         {
             Languages = this.model.getLanguages();
         }
