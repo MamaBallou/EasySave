@@ -55,6 +55,15 @@ namespace EasySaveGUI.viewmodel
             modelSave.save(ref state_tmp, states);
         }
 
+        public void RunAll()
+        {
+            saves.ForEach(save =>
+            {
+                ModelState state_tmp = states.FindAll(state => state.SaveName == save.Name).FindAll(state => state.SourceFile == save.SourcePath).Find(state => state.TargetFile == save.TargetPath);
+                save.save(ref state_tmp, states);
+            });
+        }
+
         private RessoucesModel model = new RessoucesModel();
         public ICommand GetChooseActionCommand
         {

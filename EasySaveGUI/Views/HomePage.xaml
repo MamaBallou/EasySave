@@ -27,7 +27,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="btn_run_a_save" Content="{x:Static lan:Resources.run_all_backups}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button x:Name="btn_run_a_save" Content="{x:Static lan:Resources.run_all_backups}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="RunAllClick"/>
         </Grid>
         <DataGrid x:Name="saves" AutoGenerateColumns="False" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" ItemsSource="{Binding Saves}" ColumnWidth="*">
             <DataGrid.Columns>
@@ -37,7 +37,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="RunAllBackups" Content="{x:Static lan:Resources.run_backup}" Width="Auto"/>
+                            <Button Click="RunOneClick" Content="{x:Static lan:Resources.run_backup}" Width="Auto"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

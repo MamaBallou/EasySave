@@ -17,9 +17,14 @@ namespace EasySaveGUI.Views
             InitializeComponent();
         }
 
-        private void RunAllBackups(object sender, System.Windows.RoutedEventArgs e)
+        private void RunOneClick(object sender, System.Windows.RoutedEventArgs e)
         {
             viewModel.RunSave(sender);
+        }
+
+        private void RunAllClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+
         }
     }
 }
