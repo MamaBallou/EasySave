@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Controls;
 using System.Windows.Input;
 using EasySaveConsole.model;
 using EasySaveGUI.model;
@@ -45,6 +46,13 @@ namespace EasySaveGUI.viewmodel
             {
                 Saves.Add(state.toModelSave());
             });
+        }
+
+        public void RunSave(object sender)
+        {
+            ModelSave modelSave = ((Button)sender).DataContext as ModelSave;
+            ModelState state_tmp = states.FindAll(state => state.SaveName == modelSave.Name).FindAll(state => state.SourceFile == modelSave.SourcePath).Find(state => state.TargetFile == modelSave.TargetPath);
+            modelSave.save(ref state_tmp, states);
         }
 
         private RessoucesModel model = new RessoucesModel();

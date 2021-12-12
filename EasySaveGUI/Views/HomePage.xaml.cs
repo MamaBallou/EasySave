@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using EasySaveConsole.model;
 using EasySaveGUI.viewmodel;
 
 namespace EasySaveGUI.Views
@@ -8,11 +9,17 @@ namespace EasySaveGUI.Views
     /// </summary>
     public partial class HomePage : UserControl
     {
+        ViewModelHomePage viewModel;
         public HomePage()
         {
-            ViewModelHomePage viewModel = ViewModelHomePage.getInstance();
+            viewModel = ViewModelHomePage.getInstance();
             DataContext = viewModel;
             InitializeComponent();
+        }
+
+        private void RunAllBackups(object sender, System.Windows.RoutedEventArgs e)
+        {
+            viewModel.RunSave(sender);
         }
     }
 }

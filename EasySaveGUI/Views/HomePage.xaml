@@ -34,7 +34,14 @@
                 <DataGridTextColumn Header="{x:Static lan:Resources.backup}" Binding="{Binding Name}" CanUserSort="True"/>
                 <DataGridTextColumn Header="{x:Static lan:Resources.source_path}" Binding="{Binding SourcePath}" CanUserSort="True"/>
                 <DataGridTextColumn Header="{x:Static lan:Resources.target_path}" Binding="{Binding TargetPath}" CanUserSort="True"/>
-                <DataGridTextColumn Width="Auto"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="RunAllBackups" Content="{x:Static lan:Resources.run_backup}" Width="Auto"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
