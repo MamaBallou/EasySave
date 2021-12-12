@@ -273,9 +273,7 @@ namespace EasySaveConsole.controller
                 if (modelSave != null)
                 {
                     Console.Clear();
-                    ModelState modelState = new ModelState(name_tmp,
-                        source_tmp,
-                        target_tmp);
+                    ModelState modelState = modelSave.toModelState();
                     modelStates.Add(modelState);
                     this.view.output(String.Format(
                         this.res_man.GetString("save_run", this.cul),

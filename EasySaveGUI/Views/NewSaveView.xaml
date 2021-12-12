@@ -8,7 +8,7 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Margin="35,0,35,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -30,13 +30,13 @@
         
         <Label Content="{x:Static lan:Resources.source_path}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox x:Name="txt_source" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
-        <Button  Grid.Column="2" Grid.Row="2" VerticalAlignment="Center">
+        <Button  Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Click="sourceExplorer">
             <iconPacks:PackIconFeatherIcons Kind="FolderPlus"/>
         </Button>
         
         <Label Content="{x:Static lan:Resources.target_path}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox x:Name="txt_target" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
-        <Button  Grid.Column="2" Grid.Row="3" VerticalAlignment="Center">
+        <Button  Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Click="targetExplorer">
             <iconPacks:PackIconFeatherIcons Kind="FolderPlus"/>
         </Button>
 
@@ -45,9 +45,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <RadioButton Content="{x:Static lan:Resources.total_backup}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True"/>
-            <RadioButton Content="{x:Static lan:Resources.differential_backup}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <RadioButton x:Name="rdb_total" Content="{x:Static lan:Resources.total_backup}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <RadioButton x:Name="rdb_differential" Content="{x:Static lan:Resources.differential_backup}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True"/>
         </Grid>
-        <Button Content="{x:Static lan:Resources.create}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"/>
+        <Button x:Name="btn_create" Content="{x:Static lan:Resources.create}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Click="CreateClick"/>
     </Grid>
 </UserControl>

@@ -147,4 +147,13 @@
   <data name="total_backup" xml:space="preserve">
     <value>Total Backup</value>
   </data>
+  <data name="warning_fill_all_fields" xml:space="preserve">
+    <value>Please fill all fiels !</value>
+  </data>
+  <data name="warning_invalid_source" xml:space="preserve">
+    <value>Invalid Source !</value>
+  </data>
+  <data name="warning_invalid_target" xml:space="preserve">
+    <value>Invalid Target !</value>
+  </data>
 </root>

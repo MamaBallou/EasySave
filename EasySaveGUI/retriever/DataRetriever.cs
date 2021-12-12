@@ -5,20 +5,20 @@ using System.Text;
 using System.Text.Json;
 using EasySaveConsole.model;
 
-namespace EasySaveGUI
+namespace EasySaveGUI.retriever
 {
     public class DataRetriever
     {
-        private static string PATH = @".\logs\json\log.json";
-        public static List<ModelLog> getModelLog()
+        private static string PATH = @".\logs\json\state.json";
+        public static List<ModelState> getModelLog()
         {
             try
             {
                 string json = File.ReadAllText(PATH);
-                return JsonSerializer.Deserialize<List<ModelLog>>(json);
+                return JsonSerializer.Deserialize<List<ModelState>>(json);
             } catch
             {
-                return new List<ModelLog>();
+                return new List<ModelState>();
             }
         }
     }

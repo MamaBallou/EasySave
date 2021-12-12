@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using EasySaveConsole.model;
 using EasySaveGUI.model;
+using EasySaveGUI.retriever;
 
 namespace EasySaveGUI.viewmodel
 {
@@ -10,6 +11,7 @@ namespace EasySaveGUI.viewmodel
     {
         private ICommand command;
         private List<ModelSave> saves = new List<ModelSave>();
+        private List<ModelState> states = new List<ModelState>();
 
         public List<ModelSave> Saves
         {
@@ -20,10 +22,19 @@ namespace EasySaveGUI.viewmodel
                 OnPropertyChanged("Saves");
             }
         }
+        public List<ModelState> States
+        {
+            get => this.states;
+            set => this.states = value;
+        }
 
         public ViewModelHomePage()
         {
-            
+            States = DataRetriever.getModelLog();
+            States.ForEach(state =>
+            {
+
+            });
         }
 
         private RessoucesModel model = new RessoucesModel();

@@ -30,9 +30,9 @@ namespace EasySaveTest.model
         [Test]
         public void TestSaveFolder()
         {
-            ModelSaveTotal ModelSaveTotal1 = new ModelSaveTotal(SaveName, SourcePath, TargetPath);
-            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
-            ModelSaveTotal1.save(ref modelState);
+            ModelSaveTotal modelSave = new ModelSaveTotal(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSave.toModelState();
+            modelSave.save(ref modelState);
             // Check if archive/save1 has been created
             Assert.IsTrue(Directory.Exists(@String.Concat(TargetPath, SaveName)));
             // Check if testSave.txt has been created
@@ -42,9 +42,9 @@ namespace EasySaveTest.model
         [Test]
         public void TestSaveFile()
         {
-            ModelSaveTotal ModelSaveTotal2 = new ModelSaveTotal(SaveName, SourcePath, TargetPath);
-            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
-            ModelSaveTotal2.save(ref modelState);
+            ModelSaveTotal modelSave = new ModelSaveTotal(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSave.toModelState();
+            modelSave.save(ref modelState);
             string toFind = @String.Concat(TargetPath, SaveName, "/initial/", FileName);
             //Check if testSave.txt is created is in save1 
             Assert.IsTrue(File.Exists(toFind));
@@ -53,13 +53,13 @@ namespace EasySaveTest.model
         [Test]
         public void TestSaveAgain()
         {
-            ModelSaveTotal ModelSaveTotal2 = new ModelSaveTotal(SaveName, SourcePath, TargetPath);
-            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
-            ModelSaveTotal2.save(ref modelState);
+            ModelSaveTotal modelSave = new ModelSaveTotal(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSave.toModelState();
+            modelSave.save(ref modelState);
             //Check if testSave.txt is created is in save1 
             var stream = File.Create(String.Concat(SourcePath, "testSave2.txt"));
             stream.Close();
-            ModelSaveTotal2.save(ref modelState);
+            modelSave.save(ref modelState);
             string filePath = string.Concat(TargetPath, SaveName, "/initial/");
             Assert.IsFalse(File.Exists(filePath));
             Assert.IsTrue(File.Exists(String.Concat(filePath, FileName)));

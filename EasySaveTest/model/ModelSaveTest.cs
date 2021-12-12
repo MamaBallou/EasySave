@@ -36,8 +36,8 @@ namespace EasySaveTest.model
         [Test]
         public void testSaveDirectory()
         {
-            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSave.toModelState();
             modelSave.SaveFolder(SourcePath, TargetPath, ref modelState);
             Assert.IsTrue(Directory.Exists(String.Concat(TargetPath)));
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));
@@ -48,8 +48,8 @@ namespace EasySaveTest.model
         [Test]
         public void testCrypting1()
         {
-            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSave.toModelState();
             modelSave.CrypeAndCopy(String.Concat(SourcePath, FileName), TargetPath);
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));
             Assert.AreEqual(File.ReadAllText($"{TargetPath}{FileName}"), "{\u0010�#n\u000e\0\bTs7�]\u0001+");
@@ -60,8 +60,8 @@ namespace EasySaveTest.model
         {
             File.WriteAllText($"{SourcePath}image.img", "Hello");
 
-            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSave.toModelState();
             modelSave.SaveAFile($"{SourcePath}image.img", TargetPath, ref modelState);
 
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, "image.img")));
@@ -71,8 +71,8 @@ namespace EasySaveTest.model
         [Test]
         public void testCrypting3()
         {
-            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSave.toModelState();
             modelSave.SaveAFile($"{SourcePath}{FileName}", TargetPath, ref modelState);
 
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));

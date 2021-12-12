@@ -48,5 +48,10 @@ namespace EasySaveConsole.model
             // Else true.
             return true;
         }
+
+        public override ModelState toModelState()
+        {
+            return new ModelState(this.name, this.sourcePath, this.targetPath, EnumSaveTypes.Differential);
+        }
     }
 }

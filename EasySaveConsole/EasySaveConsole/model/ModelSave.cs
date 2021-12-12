@@ -28,10 +28,12 @@ namespace EasySaveConsole.model
         /// Source path.
         /// </summary>
         protected string sourcePath;
+        public string SourcePath => this.sourcePath;
         /// <summary>
         /// Target path.
         /// </summary>
         protected string targetPath;
+        public string TargetPath => this.targetPath;
 
         /// <summary>
         /// Constructor.
@@ -284,5 +286,7 @@ namespace EasySaveConsole.model
             process.WaitForExit();
             File.SetLastWriteTime($"{ss}{Path.GetFileName(s)}", File.GetLastWriteTime(currentFile));
         }
+
+        public abstract ModelState toModelState();
     }
 }

@@ -149,5 +149,32 @@ namespace EasySaveGUI.Properties.languages {
                 return ResourceManager.GetString("total_backup", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please fill all fiels !.
+        /// </summary>
+        public static string warning_fill_all_fields {
+            get {
+                return ResourceManager.GetString("warning_fill_all_fields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Invalid Source !.
+        /// </summary>
+        public static string warning_invalid_source {
+            get {
+                return ResourceManager.GetString("warning_invalid_source", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Invalid Target !.
+        /// </summary>
+        public static string warning_invalid_target {
+            get {
+                return ResourceManager.GetString("warning_invalid_target", resourceCulture);
+            }
+        }
     }
 }

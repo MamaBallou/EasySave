@@ -19,7 +19,33 @@ namespace EasySaveConsole.model
         /// <summary>
         /// String Getter of state.
         /// </summary>
-        public string State => this.state.ToString();
+        public string State
+        {
+            get => this.state.ToString();
+        }
+        private EnumSaveTypes saveType;
+        [JsonIgnore]
+        public EnumSaveTypes _SaveType
+        {
+            get => this.saveType;
+            set => this.saveType = value;
+        }
+        public string SaveType
+        {
+            get => this.saveType.ToString();
+            set
+            {
+                switch (value)
+                {
+                    case "Differential":
+                        saveType = EnumSaveTypes.Differential;
+                        break;
+                    case "Total":
+                        saveType = EnumSaveTypes.Total;
+                        break;
+                }
+            }
+        }
         /// <summary>
         /// Number of files to copy from source.
         /// </summary>
@@ -67,7 +93,7 @@ namespace EasySaveConsole.model
         /// <param name="saveName">Save name.</param>
         /// <param name="sourceFile">Source path.</param>
         /// <param name="targetFile">Target path.</param>
-        public ModelState(string saveName, string sourceFile, string targetFile)
+        public ModelState(string saveName, string sourceFile, string targetFile, EnumSaveTypes saveType)
             : base(saveName, sourceFile, targetFile)
         {
             this.state = EnumState.NotStarted;
@@ -76,12 +102,13 @@ namespace EasySaveConsole.model
             this.totalFilesToCopy = tool.getNbFiles(sourceFile);
             this.nbFilesLeftToDo = this.totalFilesToCopy;
             this.progression = 0.0;
+            this.saveType = saveType;
         }
 
         /// <summary>
         /// Empty constructor.
         /// </summary>
-        public ModelState():base() { }
+        public ModelState() : base() { }
 
         /// <summary>
         /// Calculate progression rate.
@@ -98,7 +125,7 @@ namespace EasySaveConsole.model
         {
             this.state = EnumState.OnGoing;
             this.totalFilesToCopy = Tool.getInstance().getNbFiles(this.sourceFile);
-            this.nbFilesLeftToDo = totalFilesToCopy;
+            this.nbFilesLeftToDo = this.totalFilesToCopy;
             this.totalFileSize = Tool.getInstance().getFileSize(this.sourceFile);
         }
     }

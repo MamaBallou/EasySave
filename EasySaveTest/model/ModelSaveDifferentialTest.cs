@@ -33,7 +33,7 @@ namespace EasySaveTest.model
         public void TestSaveFolder()
         {
             ModelSaveDifferential modelSaveDifferential1 = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
-            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSaveDifferential1.toModelState();
             modelSaveDifferential1.save(ref modelState);
             // Check if archive/save1 has been created
             Assert.IsTrue(Directory.Exists(@String.Concat(TargetPath, SaveName, "/initial/")));
@@ -45,7 +45,7 @@ namespace EasySaveTest.model
         public void TestSaveFile()
         {
             ModelSaveDifferential modelSaveDifferential2 = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
-            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSaveDifferential2.toModelState();
             modelSaveDifferential2.save(ref modelState);
             string toFind = @String.Concat(TargetPath, SaveName, "/initial/", FileName);
             //Check if testSave.txt is created is in save1 
@@ -56,7 +56,7 @@ namespace EasySaveTest.model
         public void TestSaveAgain()
         {
             ModelSaveDifferential modelSaveDifferential2 = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
-            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSaveDifferential2.toModelState();
             modelSaveDifferential2.save(ref modelState);
             //Check if testSave.txt is created is in save1 
             var stream = File.Create(@String.Concat(SourcePath, FileName2));
@@ -82,7 +82,7 @@ namespace EasySaveTest.model
             Directory.CreateDirectory(String.Concat(SourcePath, subdir));
             File.WriteAllText(String.Concat(SourcePath, subdir, FileName2), "World");
             ModelSaveDifferential modelSaveDifferential2 = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
-            ModelState modelState = new ModelState(SaveName, SourcePath, TargetPath);
+            ModelState modelState = modelSaveDifferential2.toModelState();
             modelSaveDifferential2.save(ref modelState);
             File.WriteAllText(String.Concat(SourcePath, FileName), "Zoulou");
             modelSaveDifferential2.save(ref modelState);
