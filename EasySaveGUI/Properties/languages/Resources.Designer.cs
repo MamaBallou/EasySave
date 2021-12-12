@@ -70,6 +70,42 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Create.
+        /// </summary>
+        public static string create {
+            get {
+                return ResourceManager.GetString("create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Create Backup.
+        /// </summary>
+        public static string create_backup {
+            get {
+                return ResourceManager.GetString("create_backup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Differential Backup.
+        /// </summary>
+        public static string differential_backup {
+            get {
+                return ResourceManager.GetString("differential_backup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Name.
+        /// </summary>
+        public static string name {
+            get {
+                return ResourceManager.GetString("name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Run all Backups.
         /// </summary>
         public static string run_all_backups {
@@ -102,6 +138,15 @@ namespace EasySaveGUI.Properties.languages {
         public static string target_path {
             get {
                 return ResourceManager.GetString("target_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total Backup.
+        /// </summary>
+        public static string total_backup {
+            get {
+                return ResourceManager.GetString("total_backup", resourceCulture);
             }
         }
     }

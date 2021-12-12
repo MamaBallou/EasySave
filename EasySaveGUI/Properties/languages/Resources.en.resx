@@ -120,6 +120,18 @@
   <data name="backup" xml:space="preserve">
     <value>Backup</value>
   </data>
+  <data name="create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="create_backup" xml:space="preserve">
+    <value>Create a Backup</value>
+  </data>
+  <data name="differential_backup" xml:space="preserve">
+    <value>Differential Backup</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="run_all_backups" xml:space="preserve">
     <value>Run all Backups</value>
   </data>
@@ -131,5 +143,8 @@
   </data>
   <data name="target_path" xml:space="preserve">
     <value>Target Path</value>
+  </data>
+  <data name="total_backup" xml:space="preserve">
+    <value>Total Backup</value>
   </data>
 </root>
