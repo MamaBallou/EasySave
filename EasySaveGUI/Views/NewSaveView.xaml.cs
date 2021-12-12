@@ -68,9 +68,18 @@ namespace EasySaveGUI.Views
                 btn_create.IsEnabled = true;
                 return;
             }
-            if(rdb_total.IsChecked == true)
+            if (rdb_total.IsChecked == true)
             {
                 ModelSaveTotal save = new ModelSaveTotal(txt_name.Text, txt_source.Text, txt_target.Text);
+                ModelState saveState = save.toModelState();
+                this.viewModelHomePage.Saves.Add(save);
+                this.viewModelHomePage.States.Add(saveState);
+                save.save(ref saveState, viewModelHomePage.States);
+                return;
+            }
+            if (rdb_differential.IsChecked == true)
+            {
+                ModelSaveDifferential save = new ModelSaveDifferential(txt_name.Text, txt_source.Text, txt_target.Text);
                 ModelState saveState = save.toModelState();
                 this.viewModelHomePage.Saves.Add(save);
                 this.viewModelHomePage.States.Add(saveState);

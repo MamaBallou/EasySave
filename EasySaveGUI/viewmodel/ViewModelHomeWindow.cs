@@ -10,6 +10,7 @@ namespace EasySaveGUI.viewmodel
         private ICommand command;
         private RessoucesModel model = new RessoucesModel();
         private List<string> languages;
+        private ViewModelHomePage viewModelHomePage;
         private static ViewModelHomeWindow instance;
 
         public List<string> Languages
@@ -22,9 +23,19 @@ namespace EasySaveGUI.viewmodel
             }
         }
 
+        public ViewModelHomePage ViewModelHomePage
+        {
+            get => this.viewModelHomePage;
+            set
+            {
+                this.viewModelHomePage = value;
+                OnPropertyChanged("ViewModelHomePage");
+            }
+        }
+
         public static ViewModelHomeWindow getInstance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new ViewModelHomeWindow();
             }
@@ -34,6 +45,7 @@ namespace EasySaveGUI.viewmodel
         private ViewModelHomeWindow()
         {
             Languages = this.model.getLanguages();
+            ViewModelHomePage = ViewModelHomePage.getInstance();
         }
 
         public ICommand GetChooseActionCommand

@@ -43,7 +43,7 @@ namespace EasySaveGUI.viewmodel
             States = DataRetriever.getModelLog();
             States.ForEach(state =>
             {
-
+                Saves.Add(state.toModelSave());
             });
         }
 
