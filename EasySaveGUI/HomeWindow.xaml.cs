@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using EasySaveGUI.viewmodel;
 
 namespace EasySaveGUI
@@ -16,20 +15,20 @@ namespace EasySaveGUI
             DataContext = vm;
             InitializeComponent();
             InitComboxBoxLanguage();
-            languages.SelectionChanged += ChangeLanguage;
+            this.languages.SelectionChanged += ChangeLanguage;
         }
 
         private void InitComboxBoxLanguage()
         {
-            switch(Properties.Settings.Default.language)
+            switch (Properties.Settings.Default.language)
             {
                 case "fr-FR":
                 case "fr":
-                    languages.SelectedIndex = 0;
+                    this.languages.SelectedIndex = 0;
                     break;
                 case "en-GB":
                 case "en":
-                    languages.SelectedIndex = 1;
+                    this.languages.SelectedIndex = 1;
                     break;
             }
         }

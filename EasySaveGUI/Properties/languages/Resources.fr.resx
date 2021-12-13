@@ -129,6 +129,9 @@
   <data name="differential_backup" xml:space="preserve">
     <value>Sauvegarde Différentiel</value>
   </data>
+  <data name="extension" xml:space="preserve">
+    <value>Extension</value>
+  </data>
   <data name="name" xml:space="preserve">
     <value>Nom</value>
   </data>
@@ -137,6 +140,12 @@
   </data>
   <data name="run_backup" xml:space="preserve">
     <value>Exécuter Sauvegarde</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Paramètres</value>
   </data>
   <data name="source_path" xml:space="preserve">
     <value>Chemin Source</value>

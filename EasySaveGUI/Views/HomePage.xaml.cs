@@ -6,10 +6,10 @@ namespace EasySaveGUI.Views
     /// <summary>
     /// Logique d'interaction pour HomePage.xaml
     /// </summary>
-    public partial class HomePage : UserControl
+    public partial class HomeView : UserControl
     {
         ViewModelHomePage viewModel;
-        public HomePage()
+        public HomeView()
         {
             this.viewModel = ViewModelHomePage.getInstance();
             DataContext = this.viewModel;

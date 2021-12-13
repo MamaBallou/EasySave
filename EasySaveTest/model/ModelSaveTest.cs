@@ -54,21 +54,21 @@ namespace EasySaveTest.model
             ModelState modelState = modelSave.toModelState();
             modelSave.CrypeAndCopy(String.Concat(SourcePath, FileName), TargetPath);
             Assert.IsTrue(File.Exists(String.Concat(TargetPath, FileName)));
-            Assert.AreEqual(File.ReadAllText($"{TargetPath}{FileName}"), "{\u0010�#n\u000e\0\bTs7�]\u0001+");
+            Assert.AreNotEqual(File.ReadAllText($"{TargetPath}{FileName}"), "Hello");
         }
 
         [Test]
         public void testCrypting2()
         {
-            File.WriteAllText($"{SourcePath}image.img", "Hello");
+            File.WriteAllText($"{SourcePath}image.pdf", "Hello");
 
             ModelSave modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             ModelState modelState = modelSave.toModelState();
             List<ModelState> modelStates = new List<ModelState> { modelState };
-            modelSave.SaveAFile($"{SourcePath}image.img", TargetPath, ref modelState, ref modelStates);
+            modelSave.SaveAFile($"{SourcePath}image.pdf", TargetPath, ref modelState, ref modelStates);
 
-            Assert.IsTrue(File.Exists(String.Concat(TargetPath, "image.img")));
-            Assert.AreEqual(File.ReadAllText($"{TargetPath}image.img"), "{\u0010�#n\u000e\0\bTs7�]\u0001+");
+            Assert.IsTrue(File.Exists(String.Concat(TargetPath, "image.pdf")));
+            Assert.AreEqual(File.ReadAllText($"{TargetPath}image.pdf"), "Hello");
         }
 
         [Test]
