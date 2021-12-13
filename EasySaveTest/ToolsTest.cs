@@ -1,4 +1,5 @@
 ﻿using System;
+using EasySaveConsole.tools;
 using NUnit.Framework;
 
 namespace EasySaveTest
