@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using EasySaveConsole.model;
+using EasySaveConsole.model.log;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace EasySaveConsole.logger

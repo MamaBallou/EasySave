@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using EasySaveConsole.controller;
-using EasySaveConsole.model;
+using EasySaveConsole.model.save;
 using EasySaveConsole.view;
 
 namespace EasySaveConsole

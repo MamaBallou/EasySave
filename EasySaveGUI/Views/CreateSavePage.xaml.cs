@@ -29,7 +29,7 @@ namespace EasySaveGUI.Views
         {
             System.Windows.Forms.FolderBrowserDialog openFileDialog = new System.Windows.Forms.FolderBrowserDialog();
             openFileDialog.ShowDialog();
-            SourceFilePath.Text = openFileDialog.SelectedPath;
+            this.SourceFilePath.Text = openFileDialog.SelectedPath;
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace EasySaveGUI.Views
         {
             System.Windows.Forms.FolderBrowserDialog openFileDialog = new System.Windows.Forms.FolderBrowserDialog();
             openFileDialog.ShowDialog();
-            TargetFilePath.Text = openFileDialog.SelectedPath;
+            this.TargetFilePath.Text = openFileDialog.SelectedPath;
         }
 
         /// <summary>
@@ -52,19 +52,19 @@ namespace EasySaveGUI.Views
         /// <param name="e"></param>
         private void TotalSaveButton_MouseLeftButtonDown(object sender, MouseEventArgs e)
         {
-            saveType = "total";
-            TotalSaveButton.Background = Brushes.LightYellow;
-            TotalButtonText.Foreground = Brushes.Black;
+            this.saveType = "total";
+            this.TotalSaveButton.Background = Brushes.LightYellow;
+            this.TotalButtonText.Foreground = Brushes.Black;
 
-            if ((SaveNameInput.Text.Length != 0) && (SourceFilePath.Text.Length != 0) && (TargetFilePath.Text.Length != 0))
+            if ((this.SaveNameInput.Text.Length != 0) && (this.SourceFilePath.Text.Length != 0) && (this.TargetFilePath.Text.Length != 0))
             {
-                ErrorSaveCreationInput.Opacity = 0;
-                SaveCreationInputs.Visibility = System.Windows.Visibility.Hidden;
-                SaveCreationProcess.Visibility = System.Windows.Visibility.Visible;
+                this.ErrorSaveCreationInput.Opacity = 0;
+                this.SaveCreationInputs.Visibility = System.Windows.Visibility.Hidden;
+                this.SaveCreationProcess.Visibility = System.Windows.Visibility.Visible;
             }
             else
             {
-                ErrorSaveCreationInput.Opacity = 1;
+                this.ErrorSaveCreationInput.Opacity = 1;
             }
         }
 
@@ -75,8 +75,8 @@ namespace EasySaveGUI.Views
         /// <param name="e"></param>
         private void TotalSaveButton_MouseLeftButtonUp(object sender, MouseEventArgs e)
         {
-            TotalSaveButton.Background = Brushes.Orange;
-            TotalButtonText.Foreground = Brushes.White;
+            this.TotalSaveButton.Background = Brushes.Orange;
+            this.TotalButtonText.Foreground = Brushes.White;
         }
 
         /// <summary>
@@ -86,8 +86,8 @@ namespace EasySaveGUI.Views
         /// <param name="e"></param>
         private void TotalSaveButton_MouseEnter(object sender, MouseEventArgs e)
         {
-            TotalSaveButton.Background = Brushes.Orange;
-            TotalButtonText.Foreground = Brushes.White;
+            this.TotalSaveButton.Background = Brushes.Orange;
+            this.TotalButtonText.Foreground = Brushes.White;
         }
 
         /// <summary>
@@ -97,8 +97,8 @@ namespace EasySaveGUI.Views
         /// <param name="e"></param>
         private void TotalSaveButton_MouseLeave(object sender, MouseEventArgs e)
         {
-            TotalSaveButton.Background = Brushes.LightYellow;
-            TotalButtonText.Foreground = Brushes.Black;
+            this.TotalSaveButton.Background = Brushes.LightYellow;
+            this.TotalButtonText.Foreground = Brushes.Black;
         }
 
         /// <summary>
@@ -108,19 +108,19 @@ namespace EasySaveGUI.Views
         /// <param name="e"></param>
         private void DifferentialSaveButton_MouseLeftButtonDown(object sender, MouseEventArgs e)
         {
-            saveType = "differential";
-            DifferentialSaveButton.Background = Brushes.LightYellow;
-            DifferentialButtonText.Foreground = Brushes.Black;
+            this.saveType = "differential";
+            this.DifferentialSaveButton.Background = Brushes.LightYellow;
+            this.DifferentialButtonText.Foreground = Brushes.Black;
 
-            if ((SaveNameInput.Text.Length != 0) && (SourceFilePath.Text.Length != 0) && (TargetFilePath.Text.Length != 0))
+            if ((this.SaveNameInput.Text.Length != 0) && (this.SourceFilePath.Text.Length != 0) && (this.TargetFilePath.Text.Length != 0))
             {
-                ErrorSaveCreationInput.Opacity = 0;
-                SaveCreationInputs.Visibility = System.Windows.Visibility.Hidden;
-                SaveCreationProcess.Visibility = System.Windows.Visibility.Visible;
+                this.ErrorSaveCreationInput.Opacity = 0;
+                this.SaveCreationInputs.Visibility = System.Windows.Visibility.Hidden;
+                this.SaveCreationProcess.Visibility = System.Windows.Visibility.Visible;
             }
             else
             {
-                ErrorSaveCreationInput.Opacity = 1;
+                this.ErrorSaveCreationInput.Opacity = 1;
             }
         }
 
@@ -131,8 +131,8 @@ namespace EasySaveGUI.Views
         /// <param name="e"></param>
         private void DifferentialSaveButton_MouseLeftButtonUp(object sender, MouseEventArgs e)
         {
-            DifferentialSaveButton.Background = Brushes.Orange;
-            DifferentialButtonText.Foreground = Brushes.White;
+            this.DifferentialSaveButton.Background = Brushes.Orange;
+            this.DifferentialButtonText.Foreground = Brushes.White;
         }
 
         /// <summary>
@@ -142,8 +142,8 @@ namespace EasySaveGUI.Views
         /// <param name="e"></param>
         private void DifferentialSaveButton_MouseEnter(object sender, MouseEventArgs e)
         {
-            DifferentialSaveButton.Background = Brushes.Orange;
-            DifferentialButtonText.Foreground = Brushes.White;
+            this.DifferentialSaveButton.Background = Brushes.Orange;
+            this.DifferentialButtonText.Foreground = Brushes.White;
         }
 
         /// <summary>
@@ -153,8 +153,8 @@ namespace EasySaveGUI.Views
         /// <param name="e"></param>
         private void DifferentialSaveButton_MouseLeave(object sender, MouseEventArgs e)
         {
-            DifferentialSaveButton.Background = Brushes.LightYellow;
-            DifferentialButtonText.Foreground = Brushes.Black;
+            this.DifferentialSaveButton.Background = Brushes.LightYellow;
+            this.DifferentialButtonText.Foreground = Brushes.Black;
         }
     }
 }

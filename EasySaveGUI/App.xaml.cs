@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace EasySaveGUI
 {
@@ -24,7 +17,7 @@ namespace EasySaveGUI
         private void SetLanguageDictionary()
         {
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(EasySaveGUI.Properties.Settings.Default.language);
-            switch(Thread.CurrentThread.CurrentCulture.ToString())
+            switch (Thread.CurrentThread.CurrentCulture.ToString())
             {
                 case "en-GB":
                 case "en":

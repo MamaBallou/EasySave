@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Resources;
 using EasySaveConsole.controller;
@@ -18,13 +17,13 @@ namespace EasySaveGUI.model
         private CultureInfo cul = CultureInfo.CreateSpecificCulture("en");
         public RessoucesModel()
         {
-            this.res_man = 
+            this.res_man =
                 new ResourceManager("EasySaveConsole.Properties.Res",
                 typeof(ControllerSave).Assembly);
         }
         public string getRessource(string res)
         {
-            return this.res_man.GetString(res, cul);
+            return this.res_man.GetString(res, this.cul);
         }
 
         public List<string> getLanguages()

@@ -1,10 +1,7 @@
-﻿
-using System;
-using System.IO;
-using EasySaveConsole.controller;
-using EasySaveConsole.logger;
+﻿using EasySaveConsole.model.enums;
+using EasySaveConsole.model.log;
 
-namespace EasySaveConsole.model
+namespace EasySaveConsole.model.save
 {
     /// <summary>
     /// Total save class, extends from ModelSave.

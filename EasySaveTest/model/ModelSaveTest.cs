@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using EasySaveConsole.model;
+using EasySaveConsole.model.log;
+using EasySaveConsole.model.save;
 using NUnit.Framework;
 
 namespace EasySaveTest.model
@@ -89,11 +89,13 @@ namespace EasySaveTest.model
             try
             {
                 Directory.Delete(SourcePath, true);
-            } catch { }
+            }
+            catch { }
             try
             {
                 Directory.Delete(TargetPath, true);
-            }catch { }
+            }
+            catch { }
         }
     }
 }

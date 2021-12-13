@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using EasySaveConsole.controller;
 using EasySaveConsole.exception;
 using EasySaveConsole.logger;
+using EasySaveConsole.model.enums;
+using EasySaveConsole.model.log;
 
-namespace EasySaveConsole.model
+namespace EasySaveConsole.model.save
 {
     /// <summary>
     /// Abstract Class for Save methods.
