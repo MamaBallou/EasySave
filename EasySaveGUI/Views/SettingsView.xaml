@@ -29,12 +29,12 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <CheckBox Content=".pdf" Grid.Row="0" Grid.Column="0" Margin="5"/>
-            <CheckBox Content=".jpg" Grid.Row="0" Grid.Column="1" Margin="5"/>
-            <CheckBox Content=".docx" Grid.Row="1" Grid.Column="0" Margin="5"/>
-            <CheckBox Content=".txt" Grid.Row="1" Grid.Column="1" Margin="5"/>
-            <CheckBox Content=".exe" Grid.Row="2" Grid.Column="0" Margin="5"/>
+            <CheckBox x:Name="cbx_pdf" Content=".pdf" Grid.Row="0" Grid.Column="0" Margin="5" IsChecked="{Binding Pdf}"/>
+            <CheckBox x:Name="cbx_jpg" Content=".jpg" Grid.Row="0" Grid.Column="1" Margin="5" IsChecked="{Binding Jpg}"/>
+            <CheckBox x:Name="cbx_docx" Content=".docx" Grid.Row="1" Grid.Column="0" Margin="5" IsChecked="{Binding Docx}"/>
+            <CheckBox x:Name="cbx_txt" Content=".txt" Grid.Row="1" Grid.Column="1" Margin="5" IsChecked="{Binding Txt}"/>
+            <CheckBox x:Name="cbx_exe" Content=".exe" Grid.Row="2" Grid.Column="0" Margin="5" IsChecked="{Binding Exe}"/>
         </Grid>
-        <Button x:Name="btn_save" Content="{x:Static lan:Resources.save}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/>
+        <Button x:Name="btn_save" Content="{x:Static lan:Resources.save}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" Click="SaveClick"/>
     </Grid>
 </UserControl>
