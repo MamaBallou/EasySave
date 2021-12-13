@@ -114,5 +114,8 @@
         <DataTemplate x:Key="NewSave">
             <views:NewSaveView/>
         </DataTemplate>
+        <DataTemplate x:Key="CreateSave">
+            <views:CreateSavePage/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

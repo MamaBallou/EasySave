@@ -18,7 +18,7 @@
                 </DataTrigger>
                 <DataTrigger Binding="{Binding ElementName=NavigationMenuListBox, Path=SelectedItem}"
                              Value="Settings">
-                    <Setter Property="ContentTemplate" Value="{StaticResource NewSave}"/>
+                    <Setter Property="ContentTemplate" Value="{StaticResource CreateSave}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>

@@ -7,7 +7,7 @@ namespace EasySaveGUI.Views
     /// <summary>
     /// Logique d'interaction pour CreateSavePage.xaml
     /// </summary>
-    public partial class CreateSavePage : Page
+    public partial class CreateSavePage : UserControl
     {
         private string saveType;
 
