@@ -24,7 +24,7 @@ namespace EasySaveGUI.Views
 
         private void RunAllClick(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            viewModel.RunAll();
         }
     }
 }
