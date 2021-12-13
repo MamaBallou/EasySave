@@ -37,9 +37,9 @@
                  ItemsSource="{StaticResource NavigationMenuItems}"/>
 
         <ContentControl Grid.Column="1" Style="{StaticResource NavigationContentStyle}" Name="view"/>
-        <ComboBox Name="languages" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" SelectionChanged="ChangeLanguage">
-            <ComboBoxItem Name="fr" Content="Français" IsSelected="True"/>
-            <ComboBoxItem Name="en" Content="English"/>
+        <ComboBox Name="languages" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <ComboBoxItem Name="fr" Content="Français"/>
+            <ComboBoxItem Name="en" Content="English" IsSelected="True"/>
         </ComboBox>
     </Grid>
 

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using EasySaveGUI.viewmodel;
 
 namespace EasySaveGUI
@@ -14,6 +15,23 @@ namespace EasySaveGUI
             ViewModelHomeWindow vm = ViewModelHomeWindow.getInstance();
             DataContext = vm;
             InitializeComponent();
+            InitComboxBoxLanguage();
+            languages.SelectionChanged += ChangeLanguage;
+        }
+
+        private void InitComboxBoxLanguage()
+        {
+            switch(Properties.Settings.Default.language)
+            {
+                case "fr-FR":
+                case "fr":
+                    languages.SelectedIndex = 0;
+                    break;
+                case "en-GB":
+                case "en":
+                    languages.SelectedIndex = 1;
+                    break;
+            }
         }
 
         private void ChangeLanguage(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -22,6 +40,7 @@ namespace EasySaveGUI
             {
                 case 1:
                     EasySaveGUI.Properties.languages.Resources.Culture = new System.Globalization.CultureInfo("en-GB");
+
                     EasySaveGUI.Properties.Settings.Default.language = "en-GB";
                     break;
                 case 0:
