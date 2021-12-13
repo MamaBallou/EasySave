@@ -39,7 +39,6 @@ namespace EasySaveGUI
             {
                 case 1:
                     EasySaveGUI.Properties.languages.Resources.Culture = new System.Globalization.CultureInfo("en-GB");
-
                     EasySaveGUI.Properties.Settings.Default.language = "en-GB";
                     break;
                 case 0:
