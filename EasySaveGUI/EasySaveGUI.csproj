@@ -23,11 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EasySaveConsole\EasySaveConsole\EasySaveConsole.csproj" />
+    <Folder Include="Properties\images\navigation\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\images\navigation\" />
+    <ProjectReference Include="..\EasySaveConsole\EasySaveConsole.csproj" />
   </ItemGroup>
 
   <ItemGroup>

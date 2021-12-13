@@ -16,12 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EasySaveConsole\EasySaveConsole\EasySaveConsole.csproj" />
+    <Folder Include="logs\" />
+    <Folder Include="target\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="logs\" />
-    <Folder Include="target\" />
+    <ProjectReference Include="..\EasySaveConsole\EasySaveConsole.csproj" />
   </ItemGroup>
 
 </Project>
