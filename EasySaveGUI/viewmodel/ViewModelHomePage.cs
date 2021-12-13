@@ -2,7 +2,8 @@
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
-using EasySaveConsole.model;
+using EasySaveConsole.model.log;
+using EasySaveConsole.model.save;
 using EasySaveGUI.model;
 using EasySaveGUI.retriever;
 
@@ -17,7 +18,7 @@ namespace EasySaveGUI.viewmodel
 
         public static ViewModelHomePage getInstance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new ViewModelHomePage();
             }
@@ -51,16 +52,16 @@ namespace EasySaveGUI.viewmodel
         public void RunSave(object sender)
         {
             ModelSave modelSave = ((Button)sender).DataContext as ModelSave;
-            ModelState state_tmp = states.FindAll(state => state.SaveName == modelSave.Name).FindAll(state => state.SourceFile == modelSave.SourcePath).Find(state => state.TargetFile == modelSave.TargetPath);
-            modelSave.save(ref state_tmp, states);
+            ModelState state_tmp = this.states.FindAll(state => state.SaveName == modelSave.Name).FindAll(state => state.SourceFile == modelSave.SourcePath).Find(state => state.TargetFile == modelSave.TargetPath);
+            modelSave.save(ref state_tmp, this.states);
         }
 
         public void RunAll()
         {
-            saves.ForEach(save =>
+            this.saves.ForEach(save =>
             {
-                ModelState state_tmp = states.FindAll(state => state.SaveName == save.Name).FindAll(state => state.SourceFile == save.SourcePath).Find(state => state.TargetFile == save.TargetPath);
-                save.save(ref state_tmp, states);
+                ModelState state_tmp = this.states.FindAll(state => state.SaveName == save.Name).FindAll(state => state.SourceFile == save.SourcePath).Find(state => state.TargetFile == save.TargetPath);
+                save.save(ref state_tmp, this.states);
             });
         }
 

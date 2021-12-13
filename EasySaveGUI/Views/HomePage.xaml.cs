@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using EasySaveConsole.model;
 using EasySaveGUI.viewmodel;
 
 namespace EasySaveGUI.Views
@@ -12,19 +11,19 @@ namespace EasySaveGUI.Views
         ViewModelHomePage viewModel;
         public HomePage()
         {
-            viewModel = ViewModelHomePage.getInstance();
-            DataContext = viewModel;
+            this.viewModel = ViewModelHomePage.getInstance();
+            DataContext = this.viewModel;
             InitializeComponent();
         }
 
         private void RunOneClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            viewModel.RunSave(sender);
+            this.viewModel.RunSave(sender);
         }
 
         private void RunAllClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            viewModel.RunAll();
+            this.viewModel.RunAll();
         }
     }
 }

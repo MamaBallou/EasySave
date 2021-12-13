@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Resources;
-using EasySaveConsole.model;
+using EasySaveConsole.model.enums;
+using EasySaveConsole.model.log;
+using EasySaveConsole.model.save;
+using EasySaveConsole.tools;
 using EasySaveConsole.view;
 
 namespace EasySaveConsole.controller
@@ -204,8 +207,8 @@ namespace EasySaveConsole.controller
                         fi = new FileInfo(target_tmp);
                     }
                     catch (ArgumentException) { this.view.output("non"); }
-                    catch (PathTooLongException) { this.view.output("non");  }
-                    catch (NotSupportedException) { this.view.output("non");  }
+                    catch (PathTooLongException) { this.view.output("non"); }
+                    catch (NotSupportedException) { this.view.output("non"); }
                     again = ReferenceEquals(fi, null);
                     if (again)
                     {
@@ -392,7 +395,7 @@ namespace EasySaveConsole.controller
                 this.res_man.GetString("choice_runallsaves",
                 this.cul));
             // We need at least 1 save to be able to run all saves
-            if(this.modelSaves.Count != 0)
+            if (this.modelSaves.Count != 0)
             {
                 // Browse the saved backups and run them all
                 for (byte compt = 0; compt < this.modelSaves.Count; compt++)

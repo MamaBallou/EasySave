@@ -2,8 +2,9 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using EasySaveConsole;
-using EasySaveConsole.model;
+using EasySaveConsole.model.log;
+using EasySaveConsole.model.save;
+using EasySaveConsole.tools;
 using EasySaveGUI.viewmodel;
 
 namespace EasySaveGUI.Views

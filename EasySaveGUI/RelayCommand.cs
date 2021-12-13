@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Windows.Input;
 
 namespace EasySaveGUI
@@ -31,15 +29,15 @@ namespace EasySaveGUI
         {
             if (execute == null)
                 throw new ArgumentNullException("execute");
-            m_execute = execute;
-            m_canExecute = canExecute;
+            this.m_execute = execute;
+            this.m_canExecute = canExecute;
         }
         #endregion // Constructors 
         #region ICommand Members 
         [DebuggerStepThrough]
         public bool CanExecute(object parameter)
         {
-            return m_canExecute == null ? true : m_canExecute(parameter);
+            return this.m_canExecute == null ? true : this.m_canExecute(parameter);
         }
         public event EventHandler CanExecuteChanged
         {
@@ -48,7 +46,7 @@ namespace EasySaveGUI
         }
         public void Execute(object parameter)
         {
-            m_execute(parameter);
+            this.m_execute(parameter);
         }
         #endregion // ICommand Members 
     }

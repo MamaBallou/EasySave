@@ -1,8 +1,9 @@
-﻿using EasySaveConsole.model;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using EasySaveConsole.model.log;
+using EasySaveConsole.model.save;
+using NUnit.Framework;
 
 namespace EasySaveTest.model
 {

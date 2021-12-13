@@ -1,6 +1,5 @@
-﻿using EasySaveConsole;
+﻿using System;
 using NUnit.Framework;
-using System;
 
 namespace EasySaveTest
 {
@@ -12,7 +11,7 @@ namespace EasySaveTest
         public void testGetFileSize()
         {
             string path = "../../../test_files/TestTools.txt";
-            uint actual = tool.getFileSize(path);
+            uint actual = this.tool.getFileSize(path);
             uint expected = 10;
             Assert.AreEqual(expected, actual);
         }
@@ -21,7 +20,7 @@ namespace EasySaveTest
         public void testcheckExistance1()
         {
             string path = "../../../testtest/testTools.txt";
-            Boolean actual = tool.checkExistance(path);
+            Boolean actual = this.tool.checkExistance(path);
             Boolean expected = false;
             Assert.AreEqual(expected, actual);
         }
@@ -31,17 +30,17 @@ namespace EasySaveTest
         {
 
             string path = "../../../test_files/TestTools.txt";
-            Boolean actual = tool.checkExistance(path);
+            Boolean actual = this.tool.checkExistance(path);
             Boolean expected = true;
             Assert.AreEqual(expected, actual);
         }
 
-         [Test]
-         public void testFolderSize()
+        [Test]
+        public void testFolderSize()
         {
             string folder = "../../../test_files";
             uint expected = 10;
-            uint actual = tool.getFileSize(folder);
+            uint actual = this.tool.getFileSize(folder);
             Assert.AreEqual(expected, actual);
         }
     }

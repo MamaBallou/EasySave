@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace EasySaveConsole
+namespace EasySaveConsole.tools
 {
     /// <summary>
     /// It is a tool that allows us to have informations on a file.

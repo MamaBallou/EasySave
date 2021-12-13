@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySaveConsole.model
+namespace EasySaveConsole.model.log
 {
     /// <summary>
     /// Abstract  model class for log & state.

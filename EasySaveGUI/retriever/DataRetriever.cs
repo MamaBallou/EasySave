@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Text.Json;
-using EasySaveConsole.model;
+using EasySaveConsole.model.log;
 
 namespace EasySaveGUI.retriever
 {
@@ -16,7 +14,8 @@ namespace EasySaveGUI.retriever
             {
                 string json = File.ReadAllText(PATH);
                 return JsonSerializer.Deserialize<List<ModelState>>(json);
-            } catch
+            }
+            catch
             {
                 return new List<ModelState>();
             }
