@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EasySaveGUI"
         mc:Ignorable="d"
         Title="ProSoft" Height="780" Width="1280"
         WindowStyle="None"
@@ -11,155 +10,218 @@
         AllowsTransparency="True"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
-    <Grid Background="#f6f4dc" Height="780" VerticalAlignment="Bottom">
+    <Grid
+        Background="#f6f4dc"
+        Height="780"
+        VerticalAlignment="Bottom">
+        <Frame
+            x:Name="MainFrame"
+            Margin="0,0,0,0"
+            Panel.ZIndex="1"
+            NavigationUIVisibility="Hidden"/>
+
         <Grid
-            x:Name="header_bar"
+            x:Name="dropdown_menu_container"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Height="50" Margin="0,0,0,0"
-            Width="1280"
-            Background="#e8d66b">
+            Margin="0,0,0,0">
 
             <Image
                 x:Name="menu_logo"
                 Source="/logo_small_icon_only.png"
+                Width="70"
+                Height="70"
                 HorizontalAlignment="Left"
-                Margin="8,4,0,6"
-                Width="30"
-                Height="30"
+                VerticalAlignment="Top"
+                Margin="20,20,0,0"
+                Panel.ZIndex="99"
                 Cursor="Hand"
                 MouseEnter="menu_logo_MouseEnter"
                 MouseLeave="menu_logo_MouseLeave"
                 MouseLeftButtonDown="menu_logo_MouseLeftButtonDown"
                 MouseLeftButtonUp="menu_logo_MouseLeftButtonUp">
+                <Image.Effect>
+                    <DropShadowEffect
+                        BlurRadius="10"
+                        Direction="160"
+                        Color="#bbb"/>
+                </Image.Effect>
             </Image>
 
-            <TextBlock
-                x:Name="close"
-                FontSize="35"
-                FontWeight="Bold"
+            <Border
+                x:Name="dropdown_menu"
                 HorizontalAlignment="Left"
-                Margin="1243,0,0,6"
-                MouseLeftButtonDown="close_MouseLeftButtonDown"
-                MouseEnter="close_MouseEnter"
-                MouseLeave="close_MouseLeave">
-                X
-            </TextBlock>
+                VerticalAlignment="Top"
+                Margin="10,100,0,0"
+                Width="300"
+                Height="400"
+                Background="#fff"
+                Opacity="0"
+                CornerRadius="10,10,10,10"
+                BorderBrush="black"
+                BorderThickness="2">
 
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="50"
+                        Direction="25"
+                        Color="#bbb"/>
+                </Border.Effect>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="56*"/>
+                        <RowDefinition Height="81*"/>
+                        <RowDefinition Height="81*"/>
+                        <RowDefinition Height="81*"/>
+                        <RowDefinition Height="81*"/>
+                        <RowDefinition Height="20*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Text="OPTIONS"
+                        Foreground="Black"
+                        Grid.Row="0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontSize="20"
+                        FontFamily="Candara Light"/>
+                    <Grid
+                        x:Name="OptionSave"
+                        Grid.Row="1"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,0"
+                        Width="300"
+                        Height="81"
+                        Cursor="Hand"
+                        MouseEnter="optionSave_MouseEnter"
+                        MouseLeave="optionSave_MouseLeave"
+                        MouseLeftButtonDown="optionSave_MouseLeftButtonDown"
+                        MouseLeftButtonUp="optionSave_MouseLeftButtonUp">
+                        <Image
+                            Source="/icon-add.png"
+                            Height="20"
+                            Width="20"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="10,0,0,0"/>
+                        <TextBlock
+                            x:Name="OptionSaveText"
+                            Foreground="Black"
+                            Text="Créer une sauvegarde"
+                            FontSize="20"
+                            FontFamily="Candara Light"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="40,0,0,0"/>
+                    </Grid>
+                    <Grid
+                        Grid.Row="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,0"
+                        Width="300"
+                        Height="81"
+                        MouseEnter="option_MouseEnter"
+                        MouseLeave="option_MouseLeave">
+                        <Image
+                            Source="/icon-save.png"
+                            Height="20"
+                            Width="20"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="10,0,0,0"/>
+                        <TextBlock
+                            Foreground="Black"
+                            Text="Exécuter une sauvegarde"
+                            FontSize="20"
+                            FontFamily="Candara Light"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="40,0,0,0"/>
+                    </Grid>
+                    <Grid
+                        Grid.Row="3"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,0"
+                        Width="300"
+                        Height="81"
+                        MouseEnter="option_MouseEnter"
+                        MouseLeave="option_MouseLeave">
+                        <Image
+                            Source="/icon-save-all.png"
+                            Height="20"
+                            Width="20"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="10,0,0,0"/>
+                        <TextBlock
+                            Foreground="Black"
+                            Text="Tout exécuter"
+                            FontSize="20"
+                            FontFamily="Candara Light"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="40,0,0,0"/>
+                    </Grid>
+                    <Grid
+                        Grid.Row="4"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,0"
+                        Width="300"
+                        Height="81"
+                        MouseEnter="option_MouseEnter"
+                        MouseLeave="option_MouseLeave">
+                        <Image
+                            Source="/icon-delete.png"
+                            Height="20"
+                            Width="20"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="10,0,0,0"/>
+                        <TextBlock
+                            Foreground="Black"
+                            Text="Supprimer une sauvegarde"
+                            FontSize="20"
+                            FontFamily="Candara Light"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="40,0,0,0"/>
+                    </Grid>
+                </Grid>
+            </Border>
         </Grid>
-        <Image
-            x:Name="logo_easysave"
-            Stretch="Fill"
-            Height="150"
-            Width="200"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Opacity="0"
-            Source="/logo_small.png"
-            Margin="18,619,1062,11">
-            <Image.Triggers>
-                <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation From="0"
-                                             To="1"
-                                             Duration="0:0:0.5"
-                                             BeginTime="0:0:0.5"
-                                             Storyboard.TargetProperty="Opacity">
-                            </DoubleAnimation>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation From="150"
-                                             To="140"
-                                             Duration="0:0:0.1"
-                                             Storyboard.TargetProperty="Height">
-                            </DoubleAnimation>
-                            <DoubleAnimation From="200"
-                                             To="190"
-                                             Duration="0:0:0.1"
-                                             Storyboard.TargetProperty="Width">
-                            </DoubleAnimation>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation From="140"
-                                             To="150"
-                                             Duration="0:0:0.1"
-                                             Storyboard.TargetProperty="Height">
-                            </DoubleAnimation>
-                            <DoubleAnimation From="190"
-                                             To="200"
-                                             Duration="0:0:0.1"
-                                             Storyboard.TargetProperty="Width">
-                            </DoubleAnimation>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Image.Triggers>
-        </Image>
+
+        <TextBlock
+            x:Name="close"
+            FontSize="35"
+            FontWeight="Bold"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="25"
+            Height="45"
+            Margin="1243,0,0,6"
+            MouseLeftButtonDown="close_MouseLeftButtonDown"
+            MouseEnter="close_MouseEnter"
+            MouseLeave="close_MouseLeave">
+            X
+        </TextBlock>
 
         <Image
-            x:Name="logo_prosoft"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Height="70"
-            Width="290"
-            Margin="961,677,0,0"
-            Source="/logo_prosoft_small.png"
-            Opacity="0">
-            <Image.Triggers>
-                <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation From="0"
-                                             To="1"
-                                             Duration="0:0:0.5"
-                                             BeginTime="0:0:1"
-                                             Storyboard.TargetProperty="Opacity">
-                            </DoubleAnimation>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation From="70"
-                                             To="65"
-                                             Duration="0:0:0.1"
-                                             Storyboard.TargetProperty="Height">
-                            </DoubleAnimation>
-                            <DoubleAnimation From="290"
-                                             To="285"
-                                             Duration="0:0:0.1"
-                                             Storyboard.TargetProperty="Width">
-                            </DoubleAnimation>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation From="65"
-                                             To="70"
-                                             Duration="0:0:0.1"
-                                             Storyboard.TargetProperty="Height">
-                            </DoubleAnimation>
-                            <DoubleAnimation From="285"
-                                             To="290"
-                                             Duration="0:0:0.1"
-                                             Storyboard.TargetProperty="Width">
-                            </DoubleAnimation>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Image.Triggers>
-        </Image>
+            x:Name="HomeButton"
+            Source="/icon-home-page.png"
+            Height="30"
+            Width="30"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Margin="20,0,0,15"
+            Cursor="Hand" MouseLeftButtonDown="HomeButton_MouseLeftButtonDown"/>
+
     </Grid>
 </Window>

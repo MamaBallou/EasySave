@@ -6,6 +6,12 @@
     <StartupObject>EasySaveGUI.App</StartupObject>
 	<UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Properties\images\navigation\**" />
+    <EmbeddedResource Remove="Properties\images\navigation\**" />
+    <None Remove="Properties\images\navigation\**" />
+    <Page Remove="Properties\images\navigation\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="Properties\languages\Resources.resx" />
@@ -20,10 +26,6 @@
 
   <ItemGroup>
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\images\navigation\" />
   </ItemGroup>
 
   <ItemGroup>

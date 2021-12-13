@@ -1,0 +1,215 @@
+﻿<Page x:Class="EasySaveGUI.Views.CreateSavePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EasySaveGUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="780" d:DesignWidth="1280"
+      Title="CreateSavePage">
+
+    <Grid>
+        <TextBlock
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Text="Créez une sauvegarde !"
+            FontSize="90"
+            FontFamily="Candara Light"/>
+
+        <Canvas
+            x:Name="SaveCreationInputs"
+            Visibility="Visible">
+
+            <Grid>
+
+                <TextBlock
+                    Text="Nom de la sauvegarde :"
+                    FontSize="50"
+                    FontFamily="Candara Light"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="10,165,0,0"/>
+
+                <TextBox
+                    x:Name="SaveNameInput"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="50"
+                    Width="500"
+                    FontSize="40"
+                    FontFamily="Candara Light"
+                    Margin="545,170,0,0"/>
+            </Grid>
+
+            <Grid>
+
+                <TextBlock
+                    Text="Dossier source :"
+                    FontSize="50"
+                    FontFamily="Candara Light"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="10,260,0,0"/>
+
+                <Image
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Source="/icon-browse-folder.png"
+                    Height="60"
+                    Width="60"
+                    Margin="450,260,0,0"
+                    Cursor="Hand"
+                    MouseLeftButtonDown="SourceBrowseButton_MouseLeftButtonDown"/>
+
+                <TextBox
+                    x:Name="SourceFilePath"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="50"
+                    Width="500"
+                    FontSize="40"
+                    FontFamily="Candara Light"
+                    Margin="545,270,0,0"
+                    IsEnabled="False"/>
+            </Grid>
+
+            <Grid>
+
+                <TextBlock
+                    Text="Dossier d'arrivée :"
+                    FontSize="50"
+                    FontFamily="Candara Light"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="10,360,0,0"/>
+
+                <Image
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Source="/icon-browse-folder.png"
+                    Height="60"
+                    Width="60"
+                    Margin="450,360,0,0"
+                    Cursor="Hand"
+                    MouseLeftButtonDown="TargetBrowseButton_MouseLeftButtonDown"/>
+
+                <TextBox
+                    x:Name="TargetFilePath"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="50"
+                    Width="500"
+                    FontSize="40"
+                    FontFamily="Candara Light"
+                    Margin="545,370,0,0"
+                    IsEnabled="False"/>
+            </Grid>
+
+            <Grid>
+
+                <TextBlock
+                    Text="Type de sauvegarde :"
+                    FontSize="50"
+                    FontFamily="Candara Light"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="10,460,0,0"/>
+
+                <Border
+                    x:Name="TotalSaveButton"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="60"
+                    Width="150"
+                    Margin="500,460,0,0"
+                    Cursor="Hand"
+                    CornerRadius="10,10,10,10"
+                    Background="LightYellow"
+                    MouseLeftButtonDown="TotalSaveButton_MouseLeftButtonDown"
+                    MouseLeftButtonUp="TotalSaveButton_MouseLeftButtonUp"
+                    MouseEnter="TotalSaveButton_MouseEnter"
+                    MouseLeave="TotalSaveButton_MouseLeave">
+
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="20"/>
+                    </Border.Effect>
+
+                    <TextBlock
+                        x:Name="TotalButtonText"
+                        Text="Totale"
+                        FontSize="50"
+                        FontFamily="Candara Light"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                </Border>
+
+                <Border
+                    x:Name="DifferentialSaveButton"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="60"
+                    Width="350"
+                    Margin="700,460,0,0"
+                    Cursor="Hand"
+                    CornerRadius="10,10,10,10"
+                    Background="LightYellow"
+                    MouseLeftButtonDown="DifferentialSaveButton_MouseLeftButtonDown"
+                    MouseLeftButtonUp="DifferentialSaveButton_MouseLeftButtonUp"
+                    MouseEnter="DifferentialSaveButton_MouseEnter"
+                    MouseLeave="DifferentialSaveButton_MouseLeave">
+
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="20"/>
+                    </Border.Effect>
+
+                    <TextBlock
+                        x:Name="DifferentialButtonText"
+                        Text="Différentielle"
+                        FontSize="50"
+                        FontFamily="Candara Light"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <TextBlock
+                x:Name="ErrorSaveCreationInput"
+                Text="Attention : veuillez compléter tous les champs !"
+                FontSize="50"
+                FontFamily="Candara Light"
+                Foreground="DarkRed"
+                Opacity="0"
+                Canvas.Left="150"
+                Canvas.Bottom="50"/>
+        </Canvas>
+
+        <Canvas
+            x:Name="SaveCreationProcess"
+            Visibility="Hidden">
+            <TextBlock
+                Text="Sauvegarde [SaveName] en cours de création..."
+                FontSize="50"
+                FontFamily="Candara Light"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10,165,0,0"/>
+            <TextBlock
+                Text="Sauvegarde [SaveName] créée !"
+                FontSize="50"
+                FontFamily="Candara Light"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10,265,0,0"/>
+            <TextBlock
+                Text="Retournez à l'accueil !"
+                FontSize="50"
+                FontFamily="Candara Light"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10,365,0,0"/>
+        </Canvas>
+
+    </Grid>
+</Page>
