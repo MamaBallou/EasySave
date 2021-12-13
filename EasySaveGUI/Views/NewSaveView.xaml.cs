@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using EasySaveConsole;
 using EasySaveConsole.model;
 using EasySaveGUI.viewmodel;
+using System.Windows.Media;
 
 namespace EasySaveGUI.Views
 {
@@ -17,14 +18,13 @@ namespace EasySaveGUI.Views
         public NewSaveView()
         {
             InitializeComponent();
-            this.txt_name.Focus();
         }
 
         private void OpenFileExplorer(TextBox textBox)
         {
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
             dialog.ShowDialog();
-            textBox.Text = dialog.SelectedPath;
+            textBox.Text = dialog.SelectedPath + "\\";
         }
 
         private void sourceExplorer(object sender, System.Windows.RoutedEventArgs e)
