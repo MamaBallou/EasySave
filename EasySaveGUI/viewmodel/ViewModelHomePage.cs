@@ -47,6 +47,7 @@ namespace EasySaveGUI.viewmodel
             {
                 Saves.Add(state.toModelSave());
             });
+
         }
 
         public void RunSave(object sender)

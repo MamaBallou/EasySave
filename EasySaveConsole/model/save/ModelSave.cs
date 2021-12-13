@@ -243,9 +243,9 @@ namespace EasySaveConsole.model.save
             string destFilePath = String.Concat(folderTargetPath,
                             Path.GetFileName(currentFile));
             DateTime start = DateTime.Now;
-            if (Path.GetExtension(currentFile) == ".img")
+            if (Crypter.IsToEncrypt(Path.GetExtension(currentFile)))
             {
-                crypAndCopy(currentFile, folderTargetPath);
+                Crypter.crypAndCopy(currentFile, folderTargetPath);
             }
             else
             {
@@ -269,24 +269,7 @@ namespace EasySaveConsole.model.save
         /// <param name="folderTargetPath">Target folder.</param>
         public void CrypeAndCopy(string currentFile, string folderTargetPath)
         {
-            crypAndCopy(currentFile, folderTargetPath);
-        }
-
-        /// <summary>
-        /// Crypt and copy a file in a folder.
-        /// </summary>
-        /// <param name="currentFile">Source file.</param>
-        /// <param name="folderTargetPath">Target folder.</param>
-        private void crypAndCopy(string currentFile, string folderTargetPath)
-        {
-            Process process = new Process();
-            process.StartInfo.FileName = "Cryptosoft/CryptoSoft.exe";
-            string s = Path.GetFullPath(currentFile);
-            string ss = Path.GetFullPath(folderTargetPath);
-            process.StartInfo.Arguments = $"/e \"{s}\" \"{ss}{Path.GetFileName(s)}\" 1234567891234567";
-            process.Start();
-            process.WaitForExit();
-            File.SetLastWriteTime($"{ss}{Path.GetFileName(s)}", File.GetLastWriteTime(currentFile));
+            Crypter.crypAndCopy(currentFile, folderTargetPath);
         }
 
         public abstract ModelState toModelState();
