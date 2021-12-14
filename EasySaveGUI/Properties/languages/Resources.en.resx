@@ -129,6 +129,11 @@
   <data name="differential_backup" xml:space="preserve">
     <value>Differential Backup</value>
   </data>
+  <data name="exception_concurent_process" xml:space="preserve">
+    <value>Exception :
+Concurent process {0} running.
+Close it and retry !</value>
+  </data>
   <data name="extension" xml:space="preserve">
     <value>Extension</value>
   </data>

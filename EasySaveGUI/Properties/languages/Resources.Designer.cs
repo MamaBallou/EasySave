@@ -97,6 +97,17 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Exception :
+        ///Concurent process {0} running.
+        ///Close it and retry !.
+        /// </summary>
+        public static string exception_concurent_process {
+            get {
+                return ResourceManager.GetString("exception_concurent_process", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Extension.
         /// </summary>
         public static string extension {

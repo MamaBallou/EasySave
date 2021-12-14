@@ -129,6 +129,11 @@
   <data name="differential_backup" xml:space="preserve">
     <value>Sauvegarde Différentiel</value>
   </data>
+  <data name="exception_concurent_process" xml:space="preserve">
+    <value>Exception :
+Processus concurent {0} en cours d'exécution.
+Fermez le, puis réessayez !</value>
+  </data>
   <data name="extension" xml:space="preserve">
     <value>Extension</value>
   </data>

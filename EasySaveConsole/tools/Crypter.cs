@@ -26,6 +26,7 @@ namespace EasySaveConsole.tools
             string s = Path.GetFullPath(currentFile);
             string ss = Path.GetFullPath(folderTargetPath);
             process.StartInfo.Arguments = $"/e \"{s}\" \"{ss}{Path.GetFileName(s)}\" 1234567891234567";
+            process.StartInfo.CreateNoWindow = true;
             process.Start();
             process.WaitForExit();
             File.SetLastWriteTime($"{ss}{Path.GetFileName(s)}", File.GetLastWriteTime(currentFile));
