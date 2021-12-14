@@ -64,14 +64,35 @@
                         </Border>
                         <ControlTemplate.Triggers>
 
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="Bd"
+                                        Property="Background"
+                                        Value="#4e7e92"/>
+                                <Setter Property="Foreground"
+                                        Value="#22202f"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected"
+                                               Value="true"/>
+                                    <Condition Property="Selector.IsSelectionActive"
+                                               Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background"
+                                        TargetName="Bd"
+                                        Value="#4e7e92"/>
+                                <Setter Property="Foreground"
+                                        Value="White"/>
+                            </MultiTrigger>
+
                             <EventTrigger RoutedEvent="MouseEnter" SourceName="Bd">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation To="White"
-                                                            Duration="0:0:0.25"
+                                        <ColorAnimation To="#4e7e92"
+                                                            Duration="0:0:0.2"
                                                             Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"/>
                                         <ColorAnimation To="#22202f"
-                                                            Duration="0:0:0.25"
+                                                            Duration="0:0:0.2"
                                                             Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"/>
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -81,10 +102,10 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation To="#22202f"
-                                                            Duration="0:0:0.25"
+                                                            Duration="0:0:0.2"
                                                             Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"/>
                                         <ColorAnimation To="White"
-                                                            Duration="0:0:0.25"
+                                                            Duration="0:0:0.2"
                                                             Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"/>
                                     </Storyboard>
                                 </BeginStoryboard>
