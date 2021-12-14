@@ -29,12 +29,10 @@ namespace EasySaveGUI
                 HomeWindowElement.WindowState = WindowState.Normal;
                 HomeWindowElement.Width = 800;
                 HomeWindowElement.Height = 450;
-                ExpandButton.Kind = MahApps.Metro.IconPacks.PackIconFontAwesomeKind.ExpandAltSolid;
             }
             else
             {
                 HomeWindowElement.WindowState = WindowState.Maximized;
-                ExpandButton.Kind = MahApps.Metro.IconPacks.PackIconFontAwesomeKind.CompressAltSolid;
             }
         }
 

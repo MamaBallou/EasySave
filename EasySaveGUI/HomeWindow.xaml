@@ -89,7 +89,7 @@
                       Background="Transparent"
                       Cursor="Hand"
                       MouseLeftButtonDown="ExpandIcon_Click">
-                    <iconPacks:PackIconFontAwesome Kind="ExpandAltSolid"
+                    <iconPacks:PackIconFontAwesome Kind="WindowMaximizeRegular"
                                                 Foreground="White"
                                                 Height="20"
                                                 Width="20"
