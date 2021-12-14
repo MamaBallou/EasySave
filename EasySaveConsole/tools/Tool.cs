@@ -100,6 +100,10 @@ namespace EasySaveConsole.tools
         /// <returns>The modified path.</returns>
         public static String completePath(String path)
         {
+            if(path.Length == 0)
+            {
+                return "";
+            }
             String completedPath = path;
             if (path.Substring(path.Length - 1) != "\\")
             {

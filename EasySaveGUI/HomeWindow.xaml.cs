@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using EasySaveGUI.viewmodel;
-using EasySaveGUI.Views;
+using EasySaveGUI.views;
 
 namespace EasySaveGUI
 {

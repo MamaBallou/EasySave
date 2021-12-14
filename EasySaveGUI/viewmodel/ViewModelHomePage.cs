@@ -7,13 +7,13 @@ using EasySaveConsole.model.log;
 using EasySaveConsole.model.save;
 using EasySaveGUI.model;
 using EasySaveGUI.retriever;
+using EasySaveGUI.views;
 
 namespace EasySaveGUI.viewmodel
 {
     public class ViewModelHomePage : INotifyPropertyChanged
     {
         private ICommand command;
-        private List<ModelSave> saves = new List<ModelSave>();
         private List<ModelState> states = new List<ModelState>();
         private static ViewModelHomePage instance;
 
@@ -25,29 +25,19 @@ namespace EasySaveGUI.viewmodel
             }
             return instance;
         }
-
-        public List<ModelSave> Saves
-        {
-            get => this.saves;
-            set
-            {
-                this.saves = value;
-                OnPropertyChanged("Saves");
-            }
-        }
         public List<ModelState> States
         {
             get => this.states;
-            set => this.states = value;
+            set
+            {
+                this.states = value;
+                OnPropertyChanged("States");
+            }
         }
 
         private ViewModelHomePage()
         {
             States = DataRetriever.getModelLog();
-            States.ForEach(state =>
-            {
-                Saves.Add(state.toModelSave());
-            });
         }
 
         public void RunSave(object sender)
@@ -63,14 +53,13 @@ namespace EasySaveGUI.viewmodel
 
         public void RunAll()
         {
-            this.saves.ForEach(save =>
+            this.states.ForEach(state =>
             {
                 if (Process.GetProcessesByName("Calculator").Length > 0)
                 {
                     throw new ConcurentProcessException();
                 }
-                ModelState state_tmp = this.states.FindAll(state => state.SaveName == save.Name).FindAll(state => state.SourceFile == save.SourcePath).Find(state => state.TargetFile == save.TargetPath);
-                save.save(ref state_tmp, ref this.states);
+                state.toModelSave().save(ref state, ref this.states);
             });
         }
 

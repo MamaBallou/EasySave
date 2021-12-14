@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Input;
 using EasySaveConsole.tools;
+using EasySaveGUI.views;
+using static System.Windows.Forms.AxHost;
 
 namespace EasySaveGUI.viewmodel
 {
@@ -74,7 +77,7 @@ namespace EasySaveGUI.viewmodel
             return instance;
         }
 
-        internal void SetToEncryptExtension(List<string> toEncrypt)
+        public void SetToEncryptExtension(List<string> toEncrypt)
         {
             Properties.Settings.Default.toEncrypt.Clear();
             toEncrypt.ForEach(val =>
@@ -82,6 +85,54 @@ namespace EasySaveGUI.viewmodel
                 Properties.Settings.Default.toEncrypt.Add(val);
             });
             Properties.Settings.Default.Save();
+        }
+        private ICommand command;
+
+        public ICommand GetSaveCommand
+        {
+            get
+            {
+                if (command == null)
+                {
+                    command = new RelayCommand(param => DoSaveCommand(),
+                                               param => CanDoCommand);
+                }
+                return command;
+            }
+            private set { command = value; }
+        }
+
+
+        private void DoSaveCommand()
+        {
+            List<string> toEncrypt = new List<string>();
+            if (pdf)
+            {
+                toEncrypt.Add(".pdf");
+            }
+            if (jpg)
+            {
+                toEncrypt.Add(".jpg");
+            }
+            if (docx)
+            {
+                toEncrypt.Add(".docx");
+            }
+            if (txt)
+            {
+                toEncrypt.Add(".txt");
+            }
+            if (exe)
+            {
+                toEncrypt.Add(".exe");
+            }
+            SetToEncryptExtension(toEncrypt);
+        }
+
+
+        private bool CanDoCommand
+        {
+            get { return command != null; }
         }
 
         #region INotifyPropertyChanged Members 

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace EasySaveGUI.Views
+namespace EasySaveGUI.views
 {
     /// <summary>
     /// Logique d'interaction pour WelcomePage.xaml

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using EasySaveGUI.model;
 using EasySaveGUI.retriever;
+using EasySaveGUI.views;
 
 namespace EasySaveGUI.viewmodel
 {
@@ -47,7 +48,6 @@ namespace EasySaveGUI.viewmodel
         {
             Languages = this.model.getLanguages();
             ViewModelHomePage = ViewModelHomePage.getInstance();
-            DataRetriever.SetListOfExtension();
         }
 
         public ICommand GetChooseActionCommand

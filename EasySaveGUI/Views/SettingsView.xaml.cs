@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using EasySaveGUI.viewmodel;
 
-namespace EasySaveGUI.Views
+namespace EasySaveGUI.views
 {
     /// <summary>
     /// Logique d'interaction pour SettingsPage.xaml
@@ -12,23 +11,9 @@ namespace EasySaveGUI.Views
         private ViewModelSettingsView viewModel;
         public SettingsView()
         {
-            viewModel = ViewModelSettingsView.GetInstance();
-            DataContext = viewModel;
+            this.viewModel = ViewModelSettingsView.GetInstance();
+            DataContext = this.viewModel;
             InitializeComponent();
-        }
-
-        private void SaveClick(object sender, System.Windows.RoutedEventArgs e)
-        {
-            List<CheckBox> checkBoxs = new List<CheckBox> { cbx_pdf, cbx_jpg, cbx_docx, cbx_txt, cbx_exe };
-            List<string> toEncrypt = new List<string>();
-            checkBoxs.ForEach(checkBox =>
-            {
-                if(checkBox.IsChecked == true)
-                {
-                    toEncrypt.Add(checkBox.Content.ToString());
-                }
-            });
-            viewModel.SetToEncryptExtension(toEncrypt);
         }
     }
 }

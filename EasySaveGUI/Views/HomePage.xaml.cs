@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using EasySaveGUI.viewmodel;
 
-namespace EasySaveGUI.Views
+namespace EasySaveGUI.views
 {
     /// <summary>
     /// Logique d'interaction pour HomePage.xaml

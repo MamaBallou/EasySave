@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using EasySaveGUI.retriever;
 
 namespace EasySaveGUI
 {
@@ -11,6 +12,7 @@ namespace EasySaveGUI
         {
             base.OnStartup(e);
             SetLanguageDictionary();
+            DataRetriever.SetListOfExtension();
         }
 
         private void SetLanguageDictionary()

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace EasySaveGUI
+namespace EasySaveGUI.views
 {
     public sealed class RelayCommand : ICommand
     {

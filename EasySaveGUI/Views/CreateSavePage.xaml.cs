@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace EasySaveGUI.Views
+namespace EasySaveGUI.views
 {
     /// <summary>
     /// Logique d'interaction pour CreateSavePage.xaml
