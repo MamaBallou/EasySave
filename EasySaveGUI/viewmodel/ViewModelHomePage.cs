@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Input;
 using EasySaveConsole.model.log;
-using EasySaveConsole.model.save;
 using EasySaveGUI.model;
 using EasySaveGUI.retriever;
 using EasySaveGUI.views;

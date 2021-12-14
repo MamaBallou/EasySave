@@ -24,15 +24,15 @@ namespace EasySaveGUI
 
         private void ExpandIcon_Click(object sender, RoutedEventArgs e)
         {
-            if(HomeWindowElement.WindowState == WindowState.Maximized)
+            if (this.HomeWindowElement.WindowState == WindowState.Maximized)
             {
-                HomeWindowElement.WindowState = WindowState.Normal;
-                HomeWindowElement.Width = 800;
-                HomeWindowElement.Height = 450;
+                this.HomeWindowElement.WindowState = WindowState.Normal;
+                this.HomeWindowElement.Width = 800;
+                this.HomeWindowElement.Height = 450;
             }
             else
             {
-                HomeWindowElement.WindowState = WindowState.Maximized;
+                this.HomeWindowElement.WindowState = WindowState.Maximized;
             }
         }
 
@@ -48,7 +48,7 @@ namespace EasySaveGUI
         private void MainWindow_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+                DragMove();
         }
     }
 }
