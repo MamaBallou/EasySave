@@ -55,7 +55,7 @@ namespace EasySaveConsole.model.save
         /// <param name="modelState">Model state attached to the save.</param>
         /// <exception cref="PathNotFoundException">Thrown when source path not
         /// found.</exception>
-        public void save(ref ModelState modelState, List<ModelState> states)
+        public void save(ref ModelState modelState, ref List<ModelState> states)
         {
             string targetFolderPath =
                 @String.Concat(this.targetPath, this.name, "/");

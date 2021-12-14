@@ -58,7 +58,7 @@ namespace EasySaveGUI.viewmodel
             }
             ModelSave modelSave = ((Button)sender).DataContext as ModelSave;
             ModelState state_tmp = this.states.FindAll(state => state.SaveName == modelSave.Name).FindAll(state => state.SourceFile == modelSave.SourcePath).Find(state => state.TargetFile == modelSave.TargetPath);
-            modelSave.save(ref state_tmp, this.states);
+            modelSave.save(ref state_tmp, ref this.states);
         }
 
         public void RunAll()
@@ -70,7 +70,7 @@ namespace EasySaveGUI.viewmodel
                     throw new ConcurentProcessException();
                 }
                 ModelState state_tmp = this.states.FindAll(state => state.SaveName == save.Name).FindAll(state => state.SourceFile == save.SourcePath).Find(state => state.TargetFile == save.TargetPath);
-                save.save(ref state_tmp, this.states);
+                save.save(ref state_tmp, ref this.states);
             });
         }
 

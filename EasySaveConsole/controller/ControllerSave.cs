@@ -281,7 +281,7 @@ namespace EasySaveConsole.controller
                     this.view.output(String.Format(
                         this.res_man.GetString("save_run", this.cul),
                         name_tmp));
-                    modelSave.save(ref modelState, modelStates);
+                    modelSave.save(ref modelState, ref modelStates);
                     this.view.output(String.Format(
                         this.res_man.GetString("save_end", this.cul),
                         name_tmp));
@@ -404,7 +404,7 @@ namespace EasySaveConsole.controller
                     this.view.output(String.Format(
                         this.res_man.GetString("save_run", this.cul),
                         this.modelSaves[compt].Name));
-                    this.modelSaves[compt].save(ref modelState, modelStates);
+                    this.modelSaves[compt].save(ref modelState, ref modelStates);
                     this.view.output(String.Format(
                         this.res_man.GetString("save_end", this.cul),
                         this.modelSaves[compt].Name));
@@ -459,7 +459,7 @@ namespace EasySaveConsole.controller
                     String.Format(
                         this.res_man.GetString("save_run", this.cul),
                         model.Name));
-                model.save(ref modelState, modelStates);
+                model.save(ref modelState, ref modelStates);
                 this.view.output(String.Format(
                         this.res_man.GetString("save_end", this.cul),
                         model.Name));

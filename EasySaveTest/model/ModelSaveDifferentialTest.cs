@@ -37,7 +37,7 @@ namespace EasySaveTest.model
             ModelSaveDifferential modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             ModelState modelState = modelSave.toModelState();
             List<ModelState> modelStates = new List<ModelState> { modelState };
-            modelSave.save(ref modelState, modelStates);
+            modelSave.save(ref modelState, ref modelStates);
             // Check if archive/save1 has been created
             Assert.IsTrue(Directory.Exists(@String.Concat(TargetPath, SaveName, "/initial/")));
             // Check if testSave.txt has been created
@@ -50,7 +50,7 @@ namespace EasySaveTest.model
             ModelSaveDifferential modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             ModelState modelState = modelSave.toModelState();
             List<ModelState> modelStates = new List<ModelState> { modelState };
-            modelSave.save(ref modelState, modelStates);
+            modelSave.save(ref modelState, ref modelStates);
             string toFind = @String.Concat(TargetPath, SaveName, "/initial/", FileName);
             //Check if testSave.txt is created is in save1 
             Assert.IsTrue(File.Exists(toFind));
@@ -62,11 +62,11 @@ namespace EasySaveTest.model
             ModelSaveDifferential modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             ModelState modelState = modelSave.toModelState();
             List<ModelState> modelStates = new List<ModelState> { modelState };
-            modelSave.save(ref modelState, modelStates);
+            modelSave.save(ref modelState, ref modelStates);
             //Check if testSave.txt is created is in save1 
             var stream = File.Create(@String.Concat(SourcePath, FileName2));
             stream.Close();
-            modelSave.save(ref modelState, modelStates);
+            modelSave.save(ref modelState, ref modelStates);
             string filePath = @String.Concat(TargetPath, SaveName, "/initial/");
             Assert.IsFalse(File.Exists(String.Concat(filePath, FileName2)));
             Assert.IsTrue(File.Exists(String.Concat(filePath, FileName)));
@@ -89,9 +89,9 @@ namespace EasySaveTest.model
             ModelSaveDifferential modelSave = new ModelSaveDifferential(SaveName, SourcePath, TargetPath);
             ModelState modelState = modelSave.toModelState();
             List<ModelState> modelStates = new List<ModelState> { modelState };
-            modelSave.save(ref modelState, modelStates);
+            modelSave.save(ref modelState, ref modelStates);
             File.WriteAllText(String.Concat(SourcePath, FileName), "Zoulou");
-            modelSave.save(ref modelState, modelStates);
+            modelSave.save(ref modelState, ref modelStates);
 
             foreach (var dir in Directory.GetDirectories(String.Concat(TargetPath, SaveName)))
             {
