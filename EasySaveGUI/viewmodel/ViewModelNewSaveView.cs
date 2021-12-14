@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Windows;
 using System.Windows.Input;
 using EasySaveConsole.model.log;
 using EasySaveConsole.model.save;
@@ -107,7 +108,7 @@ namespace EasySaveGUI.viewmodel
             List<ModelState> tmp = viewModelHomePage.States;
             if (Process.GetProcessesByName("Calculator").Length > 0)
             {
-                // Todo : ShowMessage Box
+                MessageBox.Show(String.Format(Properties.languages.Resources.exception_concurent_process, "Calculator"));
                 return;
             }
             modelSave.save(ref saveState, ref tmp);
