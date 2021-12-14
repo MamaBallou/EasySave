@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using EasySaveGUI.viewmodel;
+using EasySaveGUI.Views;
 
 namespace EasySaveGUI
 {
@@ -8,45 +9,25 @@ namespace EasySaveGUI
     /// </summary>
     public partial class HomeWindow : Window
     {
-
         public HomeWindow()
         {
             ViewModelHomeWindow vm = ViewModelHomeWindow.getInstance();
             DataContext = vm;
             InitializeComponent();
-            InitComboxBoxLanguage();
-            this.languages.SelectionChanged += ChangeLanguage;
+        }
+        private void Canvas_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
-        private void InitComboxBoxLanguage()
+        private void GithubLogo_Click(object sender, RoutedEventArgs e)
         {
-            switch (Properties.Settings.Default.language)
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
             {
-                case "fr-FR":
-                case "fr":
-                    this.languages.SelectedIndex = 0;
-                    break;
-                case "en-GB":
-                case "en":
-                    this.languages.SelectedIndex = 1;
-                    break;
+                FileName = "https://github.com/MamaBallou/EasySave",
+                UseShellExecute = true
             }
-        }
-
-        private void ChangeLanguage(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            switch (this.languages.SelectedIndex)
-            {
-                case 1:
-                    EasySaveGUI.Properties.languages.Resources.Culture = new System.Globalization.CultureInfo("en-GB");
-                    EasySaveGUI.Properties.Settings.Default.language = "en-GB";
-                    break;
-                case 0:
-                    EasySaveGUI.Properties.languages.Resources.Culture = new System.Globalization.CultureInfo("fr-FR");
-                    EasySaveGUI.Properties.Settings.Default.language = "fr-FR";
-                    break;
-            }
-            EasySaveGUI.Properties.Settings.Default.Save();
+                );
         }
     }
 }

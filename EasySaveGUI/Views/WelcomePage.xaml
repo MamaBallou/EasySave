@@ -21,7 +21,7 @@
                 VerticalAlignment="Center"
                 Text="BIENVENUE"
                 FontSize="100"
-                Opacity="0">
+                Opacity="1">
                 <TextBlock.Triggers>
                     <EventTrigger RoutedEvent="Loaded">
                         <BeginStoryboard>

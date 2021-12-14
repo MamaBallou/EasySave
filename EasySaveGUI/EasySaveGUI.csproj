@@ -5,6 +5,7 @@
     <UseWPF>true</UseWPF>
     <StartupObject>EasySaveGUI.App</StartupObject>
 	<UseWindowsForms>true</UseWindowsForms>
+	<ApplicationIcon>logo_small_icon_only_inverted.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Properties\images\navigation\**" />
