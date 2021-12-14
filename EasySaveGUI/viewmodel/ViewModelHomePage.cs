@@ -46,9 +46,12 @@ namespace EasySaveGUI.viewmodel
             {
                 throw new ConcurentProcessException();
             }
-            ModelSave modelSave = ((Button)sender).DataContext as ModelSave;
-            ModelState state_tmp = this.states.FindAll(state => state.SaveName == modelSave.Name).FindAll(state => state.SourceFile == modelSave.SourcePath).Find(state => state.TargetFile == modelSave.TargetPath);
-            modelSave.save(ref state_tmp, ref this.states);
+            ModelState state = ((Button)sender).DataContext as ModelState;
+            if (Process.GetProcessesByName("Calculator").Length > 0)
+            {
+                throw new ConcurentProcessException();
+            }
+            state.toModelSave().save(ref state, ref this.states);
         }
 
         public void RunAll()
