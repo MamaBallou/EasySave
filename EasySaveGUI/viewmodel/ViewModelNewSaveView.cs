@@ -1,16 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using EasySaveGUI.views;
-using static System.Net.Mime.MediaTypeNames;
-using System.Windows.Controls;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Input;
 using EasySaveConsole.model.log;
 using EasySaveConsole.model.save;
-using System.Diagnostics;
-using System.Windows;
-using System;
 using EasySaveConsole.tools;
-using System.IO;
+using EasySaveGUI.views;
 
 namespace EasySaveGUI.viewmodel
 {
@@ -82,14 +79,14 @@ namespace EasySaveGUI.viewmodel
         {
             get
             {
-                if (command == null)
+                if (this.command == null)
                 {
-                    command = new RelayCommand(param => DoCreateCommand(),
+                    this.command = new RelayCommand(param => DoCreateCommand(),
                                                param => CanDoCommand);
                 }
-                return command;
+                return this.command;
             }
-            private set { command = value; }
+            private set => this.command = value;
         }
 
 
@@ -97,13 +94,13 @@ namespace EasySaveGUI.viewmodel
         {
             ViewModelHomePage viewModelHomePage = ViewModelHomePage.getInstance();
             ModelSave modelSave;
-            if(total)
+            if (this.total)
             {
-                modelSave = new ModelSaveTotal(saveName, saveSourcePath, saveTargetPath);
+                modelSave = new ModelSaveTotal(this.saveName, this.saveSourcePath, this.saveTargetPath);
             }
             else
             {
-                modelSave = new ModelSaveDifferential(saveName, saveSourcePath, saveTargetPath);
+                modelSave = new ModelSaveDifferential(this.saveName, this.saveSourcePath, this.saveTargetPath);
             }
             ModelState saveState = modelSave.toModelState();
             viewModelHomePage.States.Add(saveState);
@@ -119,13 +116,14 @@ namespace EasySaveGUI.viewmodel
 
         private bool CanDoCommand
         {
-            get {
-                bool notEmpty = !String.IsNullOrEmpty(saveName) && !String.IsNullOrEmpty(saveSourcePath) && !String.IsNullOrEmpty(saveTargetPath);
-                if (!Tool.getInstance().checkExistance(saveSourcePath))
+            get
+            {
+                bool notEmpty = !String.IsNullOrEmpty(this.saveName) && !String.IsNullOrEmpty(this.saveSourcePath) && !String.IsNullOrEmpty(this.saveTargetPath);
+                if (!Tool.getInstance().checkExistance(this.saveSourcePath))
                 {
                     return false;
                 }
-                string target_tmp = Tool.completePath(saveTargetPath);
+                string target_tmp = Tool.completePath(this.saveTargetPath);
                 FileInfo fi = null;
                 try
                 {

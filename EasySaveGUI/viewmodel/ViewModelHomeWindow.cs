@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using EasySaveGUI.model;
-using EasySaveGUI.retriever;
 using EasySaveGUI.views;
 
 namespace EasySaveGUI.viewmodel

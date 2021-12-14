@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Windows.Input;
 using EasySaveConsole.tools;
 using EasySaveGUI.views;
-using static System.Windows.Forms.AxHost;
 
 namespace EasySaveGUI.viewmodel
 {
@@ -36,7 +35,7 @@ namespace EasySaveGUI.viewmodel
         }
         public bool Docx
         {
-            get => this.docx; 
+            get => this.docx;
             set
             {
                 this.docx = value;
@@ -45,7 +44,7 @@ namespace EasySaveGUI.viewmodel
         }
         public bool Txt
         {
-            get => this.txt; 
+            get => this.txt;
             set
             {
                 this.txt = value;
@@ -85,6 +84,7 @@ namespace EasySaveGUI.viewmodel
                 Properties.Settings.Default.toEncrypt.Add(val);
             });
             Properties.Settings.Default.Save();
+            Crypter.ToEncrypt = toEncrypt;
         }
         private ICommand command;
 
@@ -92,37 +92,37 @@ namespace EasySaveGUI.viewmodel
         {
             get
             {
-                if (command == null)
+                if (this.command == null)
                 {
-                    command = new RelayCommand(param => DoSaveCommand(),
+                    this.command = new RelayCommand(param => DoSaveCommand(),
                                                param => CanDoCommand);
                 }
-                return command;
+                return this.command;
             }
-            private set { command = value; }
+            private set => this.command = value;
         }
 
 
         private void DoSaveCommand()
         {
             List<string> toEncrypt = new List<string>();
-            if (pdf)
+            if (this.pdf)
             {
                 toEncrypt.Add(".pdf");
             }
-            if (jpg)
+            if (this.jpg)
             {
                 toEncrypt.Add(".jpg");
             }
-            if (docx)
+            if (this.docx)
             {
                 toEncrypt.Add(".docx");
             }
-            if (txt)
+            if (this.txt)
             {
                 toEncrypt.Add(".txt");
             }
-            if (exe)
+            if (this.exe)
             {
                 toEncrypt.Add(".exe");
             }
@@ -130,10 +130,7 @@ namespace EasySaveGUI.viewmodel
         }
 
 
-        private bool CanDoCommand
-        {
-            get { return command != null; }
-        }
+        private bool CanDoCommand => this.command != null;
 
         #region INotifyPropertyChanged Members 
         public event PropertyChangedEventHandler PropertyChanged;

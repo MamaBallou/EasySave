@@ -42,7 +42,7 @@ namespace EasySaveGUI.viewmodel
 
         public void RunSave(object sender)
         {
-            if(Process.GetProcessesByName("Calculator").Length > 0)
+            if (Process.GetProcessesByName("Calculator").Length > 0)
             {
                 throw new ConcurentProcessException();
             }

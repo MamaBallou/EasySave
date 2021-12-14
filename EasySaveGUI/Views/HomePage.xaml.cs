@@ -23,7 +23,8 @@ namespace EasySaveGUI.views
             try
             {
                 this.viewModel.RunSave(sender);
-            } catch (ConcurentProcessException)
+            }
+            catch (ConcurentProcessException)
             {
                 MessageBox.Show(String.Format(Properties.languages.Resources.exception_concurent_process, "Calculator"));
             }
