@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using EasySaveConsole;
-using EasySaveConsole.model;
+using EasySaveConsole.model.log;
+using EasySaveConsole.model.save;
+using EasySaveConsole.tools;
 using EasySaveGUI.viewmodel;
 using System.Windows.Media;
 
@@ -74,7 +76,8 @@ namespace EasySaveGUI.Views
                 ModelState saveState = save.toModelState();
                 this.viewModelHomePage.Saves.Add(save);
                 this.viewModelHomePage.States.Add(saveState);
-                save.save(ref saveState, this.viewModelHomePage.States);
+                List<ModelState> tmp = this.viewModelHomePage.States;
+                save.save(ref saveState, ref tmp);
                 return;
             }
             if (this.rdb_differential.IsChecked == true)
@@ -83,7 +86,8 @@ namespace EasySaveGUI.Views
                 ModelState saveState = save.toModelState();
                 this.viewModelHomePage.Saves.Add(save);
                 this.viewModelHomePage.States.Add(saveState);
-                save.save(ref saveState, this.viewModelHomePage.States);
+                List<ModelState> tmp = this.viewModelHomePage.States;
+                save.save(ref saveState, ref tmp);
                 return;
             }
         }

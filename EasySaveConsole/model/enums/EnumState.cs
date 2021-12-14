@@ -1,4 +1,4 @@
-﻿namespace EasySaveConsole.model
+﻿namespace EasySaveConsole.model.enums
 {
     /// <summary>
     /// Enumerate possible states of a save.

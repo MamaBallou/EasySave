@@ -20,6 +20,10 @@
                      Value="NewSave">
                     <Setter Property="ContentTemplate" Value="{StaticResource NewSaveView}"/>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=NavigationMenuListBox, Path=SelectedItem}"
+                             Value="Settings">
+                    <Setter Property="ContentTemplate" Value="{StaticResource Settings}"/>
+                </DataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
@@ -48,7 +52,12 @@
                        Foreground="White"
                        FontSize="50"
                        FontFamily="Amatic"
-                       Margin="15,5,0,0"/>
+                       Margin="15,5,0,0"
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
 
             <ListBox x:Name="NavigationMenuListBox"
                      Style="{StaticResource NavigationListBoxStyle}"

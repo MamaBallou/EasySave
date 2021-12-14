@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using EasySaveConsole.model;
+using EasySaveConsole.model.log;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace EasySaveConsole.logger
+namespace EasySaveConsole.tools
 {
     /// <summary>
     /// Singleton class to log logs and states.

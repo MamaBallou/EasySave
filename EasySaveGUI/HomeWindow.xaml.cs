@@ -15,7 +15,6 @@ namespace EasySaveGUI
             DataContext = vm;
             InitializeComponent();
         }
-
         private void Canvas_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();

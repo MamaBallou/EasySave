@@ -1,6 +1,9 @@
 ﻿using System.Text.Json.Serialization;
+using EasySaveConsole.model.enums;
+using EasySaveConsole.model.save;
+using EasySaveConsole.tools;
 
-namespace EasySaveConsole.model
+namespace EasySaveConsole.model.log
 {
     /// <summary>
     /// ModelState representing the state of a save.

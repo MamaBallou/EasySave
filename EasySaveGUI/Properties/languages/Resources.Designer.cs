@@ -97,6 +97,26 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Exception :
+        ///Concurent process {0} running.
+        ///Close it and retry !.
+        /// </summary>
+        public static string exception_concurent_process {
+            get {
+                return ResourceManager.GetString("exception_concurent_process", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Extension.
+        /// </summary>
+        public static string extension {
+            get {
+                return ResourceManager.GetString("extension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Name.
         /// </summary>
         public static string name {
@@ -120,6 +140,24 @@ namespace EasySaveGUI.Properties.languages {
         public static string run_backup {
             get {
                 return ResourceManager.GetString("run_backup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save.
+        /// </summary>
+        public static string save {
+            get {
+                return ResourceManager.GetString("save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Settings.
+        /// </summary>
+        public static string settings {
+            get {
+                return ResourceManager.GetString("settings", resourceCulture);
             }
         }
         

@@ -1,5 +1,6 @@
-﻿using System.Windows.Controls;
-using EasySaveConsole.model;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using EasySaveGUI.viewmodel;
 
 namespace EasySaveGUI.Views
@@ -7,24 +8,37 @@ namespace EasySaveGUI.Views
     /// <summary>
     /// Logique d'interaction pour HomePage.xaml
     /// </summary>
-    public partial class HomePage : UserControl
+    public partial class HomeView : UserControl
     {
         ViewModelHomePage viewModel;
-        public HomePage()
+        public HomeView()
         {
-            viewModel = ViewModelHomePage.getInstance();
-            DataContext = viewModel;
+            this.viewModel = ViewModelHomePage.getInstance();
+            DataContext = this.viewModel;
             InitializeComponent();
         }
 
         private void RunOneClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            viewModel.RunSave(sender);
+            try
+            {
+                this.viewModel.RunSave(sender);
+            } catch (ConcurentProcessException)
+            {
+                MessageBox.Show(String.Format(Properties.languages.Resources.exception_concurent_process, "Calculator"));
+            }
         }
 
         private void RunAllClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            viewModel.RunAll();
+            try
+            {
+                this.viewModel.RunAll();
+            }
+            catch (ConcurentProcessException)
+            {
+                MessageBox.Show(String.Format(Properties.languages.Resources.exception_concurent_process, "Calculator"));
+            }
         }
     }
 }

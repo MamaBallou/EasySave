@@ -1,4 +1,6 @@
-﻿namespace EasySaveConsole.model
+﻿using EasySaveConsole.tools;
+
+namespace EasySaveConsole.model.log
 {
     /// <summary>
     /// Log model class.

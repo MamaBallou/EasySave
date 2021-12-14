@@ -159,11 +159,13 @@
         </x:Array>
 
         <DataTemplate x:Key="HomeView">
-            <views:HomePage/>
+            <views:HomeView/>
         </DataTemplate>
         <DataTemplate x:Key="NewSaveView">
             <views:NewSaveView/>
         </DataTemplate>
-
+        <DataTemplate x:Key="Settings">
+            <views:SettingsView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

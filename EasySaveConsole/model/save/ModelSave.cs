@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using EasySaveConsole.controller;
 using EasySaveConsole.exception;
-using EasySaveConsole.logger;
+using EasySaveConsole.model.enums;
+using EasySaveConsole.model.log;
+using EasySaveConsole.tools;
 
-namespace EasySaveConsole.model
+namespace EasySaveConsole.model.save
 {
     /// <summary>
     /// Abstract Class for Save methods.
@@ -55,7 +55,7 @@ namespace EasySaveConsole.model
         /// <param name="modelState">Model state attached to the save.</param>
         /// <exception cref="PathNotFoundException">Thrown when source path not
         /// found.</exception>
-        public void save(ref ModelState modelState, List<ModelState> states)
+        public void save(ref ModelState modelState, ref List<ModelState> states)
         {
             string targetFolderPath =
                 @String.Concat(this.targetPath, this.name, "/");
@@ -242,9 +242,9 @@ namespace EasySaveConsole.model
             string destFilePath = String.Concat(folderTargetPath,
                             Path.GetFileName(currentFile));
             DateTime start = DateTime.Now;
-            if (Path.GetExtension(currentFile) == ".img")
+            if (Crypter.IsToEncrypt(Path.GetExtension(currentFile)))
             {
-                crypAndCopy(currentFile, folderTargetPath);
+                Crypter.crypAndCopy(currentFile, folderTargetPath);
             }
             else
             {
@@ -268,24 +268,7 @@ namespace EasySaveConsole.model
         /// <param name="folderTargetPath">Target folder.</param>
         public void CrypeAndCopy(string currentFile, string folderTargetPath)
         {
-            crypAndCopy(currentFile, folderTargetPath);
-        }
-
-        /// <summary>
-        /// Crypt and copy a file in a folder.
-        /// </summary>
-        /// <param name="currentFile">Source file.</param>
-        /// <param name="folderTargetPath">Target folder.</param>
-        private void crypAndCopy(string currentFile, string folderTargetPath)
-        {
-            Process process = new Process();
-            process.StartInfo.FileName = "Cryptosoft/CryptoSoft.exe";
-            string s = Path.GetFullPath(currentFile);
-            string ss = Path.GetFullPath(folderTargetPath);
-            process.StartInfo.Arguments = $"/e \"{s}\" \"{ss}{Path.GetFileName(s)}\" 1234567891234567";
-            process.Start();
-            process.WaitForExit();
-            File.SetLastWriteTime($"{ss}{Path.GetFileName(s)}", File.GetLastWriteTime(currentFile));
+            Crypter.crypAndCopy(currentFile, folderTargetPath);
         }
 
         public abstract ModelState toModelState();

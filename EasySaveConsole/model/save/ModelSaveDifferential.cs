@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
-using EasySaveConsole.logger;
+using EasySaveConsole.model.enums;
+using EasySaveConsole.model.log;
 
-namespace EasySaveConsole.model
+namespace EasySaveConsole.model.save
 {
     /// <summary>
     /// Differential save class, extends from ModelSave.
