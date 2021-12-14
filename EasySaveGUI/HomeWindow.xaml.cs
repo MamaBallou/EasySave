@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
+using System.Windows.Input;
 using EasySaveGUI.viewmodel;
-using EasySaveGUI.Views;
 
 namespace EasySaveGUI
 {
@@ -15,19 +16,41 @@ namespace EasySaveGUI
             DataContext = vm;
             InitializeComponent();
         }
-        private void Canvas_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+
+        private void CloseIcon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-        private void GithubLogo_Click(object sender, RoutedEventArgs e)
+        private void ExpandIcon_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            if(HomeWindowElement.WindowState == WindowState.Maximized)
+            {
+                HomeWindowElement.WindowState = WindowState.Normal;
+                HomeWindowElement.Width = 800;
+                HomeWindowElement.Height = 450;
+                ExpandButton.Kind = MahApps.Metro.IconPacks.PackIconFontAwesomeKind.ExpandAltSolid;
+            }
+            else
+            {
+                HomeWindowElement.WindowState = WindowState.Maximized;
+                ExpandButton.Kind = MahApps.Metro.IconPacks.PackIconFontAwesomeKind.CompressAltSolid;
+            }
+        }
+
+        private void GithubIcon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
             {
                 FileName = "https://github.com/MamaBallou/EasySave",
                 UseShellExecute = true
-            }
-                );
+            });
+        }
+
+        private void MainWindow_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }
