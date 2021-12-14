@@ -7,7 +7,7 @@ namespace EasySaveGUI.Views
     /// <summary>
     /// Logique d'interaction pour HomePage.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class HomePage : UserControl
     {
         ViewModelHomePage viewModel;
         public HomePage()

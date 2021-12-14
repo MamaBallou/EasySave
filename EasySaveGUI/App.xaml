@@ -7,39 +7,142 @@
              StartupUri="HomeWindow.xaml">
     <Application.Resources>
 
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
+        <Style x:Key="NavigationListBoxStyle" TargetType="{x:Type ListBox}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="SelectedIndex" Value="0"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderThickness="0"
+                        Padding="0"
+                        SnapsToDevicePixels="true">
+                            <ScrollViewer Padding="{TemplateBinding Padding}"
+                                    Focusable="false">
+                                <ItemsPresenter SnapsToDevicePixels=
+                                    "{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-            <DataTemplate x:Key="HomeViewTemplate">
-                <views:HomePage/>
-            </DataTemplate>
-            <DataTemplate x:Key="NewSave">
-                <views:NewSaveView/>
-            </DataTemplate>
-            <DataTemplate x:Key="CreateSave">
-                <views:CreateSavePage/>
-            </DataTemplate>
+        <Style x:Key="NavigationListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalContentAlignment"
+                        Value="{Binding HorizontalContentAlignment, 
+                                RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment"
+                        Value="{Binding VerticalContentAlignment, 
+                                RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="Bd"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    Background="{TemplateBinding Background}"
+                                    Padding="{TemplateBinding Padding}"
+                                    CornerRadius="10"
+                                    Height="50"
+                                    Margin="0,2,0,2"
+                                    Cursor="Hand"
+                                    SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment=
+                                            "{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment=
+                                            "{TemplateBinding VerticalContentAlignment}"
+                                            SnapsToDevicePixels=
+                                            "{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
 
-            <Style x:Key="NavigationContentStyle" TargetType="ContentControl">
-                <Setter Property="ContentTemplate" Value="{StaticResource HomeViewTemplate}"/>
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding ElementName=NewSaveButton}">
-                        
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding ElementName=NavigationMenuListBox, Path=SelectedItem}"
-                             Value="NewSave">
-                        <Setter Property="ContentTemplate" Value="{StaticResource NewSave}"/>
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding ElementName=NavigationMenuListBox, Path=SelectedItem}"
-                             Value="Settings">
-                        <Setter Property="ContentTemplate" Value="{StaticResource CreateSave}"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
+                            <EventTrigger RoutedEvent="MouseEnter" SourceName="Bd">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="White"
+                                                            Duration="0:0:0.25"
+                                                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"/>
+                                        <ColorAnimation To="#22202f"
+                                                            Duration="0:0:0.25"
+                                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
 
-        </ResourceDictionary>
+                            <EventTrigger RoutedEvent="MouseLeave" SourceName="Bd">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#22202f"
+                                                            Duration="0:0:0.25"
+                                                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"/>
+                                        <ColorAnimation To="White"
+                                                            Duration="0:0:0.25"
+                                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="NavigationDataTemplate">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <iconPacks:PackIconMaterialDesign x:Name="MenuItemIcon"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Right"
+                                                      Margin="0,0,10,0"
+                                                      Grid.Column="0"/>
+                <TextBlock x:Name="MenuItemText"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Grid.Column="1"
+                               Margin="0"/>
+            </Grid>
+
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding}" Value="Home">
+                    <Setter TargetName="MenuItemIcon" Property="Kind" Value="Home"/>
+                    <Setter TargetName="MenuItemText" Property="Text" Value="Home"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding}" Value="NewSave">
+                    <Setter TargetName="MenuItemIcon" Property="Kind" Value="CreateNewFolder"/>
+                    <Setter TargetName="MenuItemText" Property="Text" Value="New save"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding}" Value="Settings">
+                    <Setter TargetName="MenuItemIcon" Property="Kind" Value="Settings"/>
+                    <Setter TargetName="MenuItemText" Property="Text" Value="Settings"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+        <x:Array x:Key="NavigationMenuItems" Type="system:String">
+            <system:String>Home</system:String>
+            <system:String>NewSave</system:String>
+            <system:String>Settings</system:String>
+        </x:Array>
+
+        <DataTemplate x:Key="HomeView">
+            <views:HomePage/>
+        </DataTemplate>
+        <DataTemplate x:Key="NewSaveView">
+            <views:NewSaveView/>
+        </DataTemplate>
 
     </Application.Resources>
 </Application>

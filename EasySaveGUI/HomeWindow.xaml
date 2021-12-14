@@ -12,6 +12,18 @@
         Background="Transparent"
         AllowsTransparency="True">
 
+    <Window.Resources>
+        <Style x:Key="NavigationContentStyle" TargetType="ContentControl">
+            <Setter Property="ContentTemplate" Value="{StaticResource HomeView}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=NavigationMenuListBox, Path=SelectedItem}"
+                     Value="NewSave">
+                    <Setter Property="ContentTemplate" Value="{StaticResource NewSaveView}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Border
         Background="#272537"
         CornerRadius="20">
@@ -38,37 +50,13 @@
                        FontFamily="Amatic"
                        Margin="15,5,0,0"/>
 
-            <StackPanel Grid.Row="1"
-                        Grid.Column="0"
-                        Cursor="Hand"
-                        VerticalAlignment="Top"
-                        Panel.ZIndex="99">
-
-                <Button Content="Home"
-                        Name="HomeButton"
-                        Height="50"
-                        Foreground="White"
-                        Margin="0,2,0,2"
-                        Style="{StaticResource MenuButtonTheme}"
-                        Click="HomeButton_Click"/>
-
-
-                <Button Content="New save"
-                        Name="NewSaveButton"
-                        Height="50"
-                        Margin="0,2,0,2"
-                        Foreground="White"
-                        Style="{StaticResource MenuButtonTheme}"
-                        Click="NewSaveButton_Click"/>
-
-                <Button Content="Settings"
-                        Name="SettingsButton"
-                             Height="50"
-                             Margin="0,2,0,2"
-                             Foreground="White"
-                             Style="{StaticResource MenuButtonTheme}"/>
-
-            </StackPanel>
+            <ListBox x:Name="NavigationMenuListBox"
+                     Style="{StaticResource NavigationListBoxStyle}"
+                     ItemContainerStyle="{DynamicResource NavigationListBoxItemStyle}"
+                     ItemTemplate="{DynamicResource NavigationDataTemplate}"
+                     ItemsSource="{StaticResource NavigationMenuItems}"
+                     Grid.Row="1"
+                     Grid.Column="0"/>
 
             <TextBlock Text="ProSoft®"
                        Grid.Row="1"
@@ -165,10 +153,10 @@
                 </Grid>
             </Grid>
 
-            <Frame x:Name="MainFrame"
+            <ContentControl
                    Grid.Row="1"
                    Grid.Column="1"
-                   NavigationUIVisibility="Hidden"
+                   Style="{StaticResource NavigationContentStyle}"
                    Margin="10,10,10,10"/>
 
         </Grid>

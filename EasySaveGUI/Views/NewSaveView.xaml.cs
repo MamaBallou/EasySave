@@ -12,7 +12,7 @@ namespace EasySaveGUI.Views
     /// <summary>
     /// Logique d'interaction pour NewSaveView.xaml
     /// </summary>
-    public partial class NewSaveView : Page
+    public partial class NewSaveView : UserControl
     {
         private ViewModelHomePage viewModelHomePage = ViewModelHomePage.getInstance();
         public NewSaveView()

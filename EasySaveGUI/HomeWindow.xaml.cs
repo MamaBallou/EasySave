@@ -16,16 +16,6 @@ namespace EasySaveGUI
             InitializeComponent();
         }
 
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.MainFrame.Content = new HomePage();
-        }
-
-        private void NewSaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.MainFrame.Content = new NewSaveView();
-        }
-
         private void Canvas_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();
