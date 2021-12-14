@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="EasySaveGUI.Views.NewSaveView"
+﻿<Page x:Class="EasySaveGUI.Views.NewSaveView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -50,4 +50,4 @@
         </Grid>
         <Button x:Name="btn_create" Content="{x:Static lan:Resources.create}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Click="CreateClick"/>
     </Grid>
-</UserControl>
+</Page>

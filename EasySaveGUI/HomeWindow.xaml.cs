@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using EasySaveGUI.viewmodel;
+using EasySaveGUI.Views;
 
 namespace EasySaveGUI
 {
@@ -8,7 +9,6 @@ namespace EasySaveGUI
     /// </summary>
     public partial class HomeWindow : Window
     {
-
         public HomeWindow()
         {
             ViewModelHomeWindow vm = ViewModelHomeWindow.getInstance();
@@ -16,20 +16,29 @@ namespace EasySaveGUI
             InitializeComponent();
         }
 
-        private void ChangeLanguage(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            switch (this.languages.SelectedIndex)
+            this.MainFrame.Content = new HomePage();
+        }
+
+        private void NewSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.MainFrame.Content = new NewSaveView();
+        }
+
+        private void Canvas_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void GithubLogo_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
             {
-                case 1:
-                    EasySaveGUI.Properties.languages.Resources.Culture = new System.Globalization.CultureInfo("en-GB");
-                    EasySaveGUI.Properties.Settings.Default.language = "en-GB";
-                    break;
-                case 0:
-                    EasySaveGUI.Properties.languages.Resources.Culture = new System.Globalization.CultureInfo("fr-FR");
-                    EasySaveGUI.Properties.Settings.Default.language = "fr-FR";
-                    break;
+                FileName = "https://github.com/MamaBallou/EasySave",
+                UseShellExecute = true
             }
-            EasySaveGUI.Properties.Settings.Default.Save();
+                );
         }
     }
 }
