@@ -12,32 +12,42 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        
-        <Label x:Name="what_to_do" Content="{x:Static lan:Resources.backup}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <Grid Grid.Row="1" Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="btn_run_a_save" Content="{x:Static lan:Resources.run_all_backups}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="RunAllClick"/>
+        <Grid Grid.Row="0">
+            <Button x:Name="btn_run_a_save"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="10,0,0,0"
+                    Click="RunAllClick"
+                    Style="{StaticResource RunAllSavesButtonTheme}"/>
         </Grid>
-        <DataGrid x:Name="saves" AutoGenerateColumns="False" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" ItemsSource="{Binding States}" ColumnWidth="*">
+        
+        <DataGrid x:Name="saves"
+                  AutoGenerateColumns="False"
+                  Grid.Row="2"
+                  ItemsSource="{Binding States}"
+                  ColumnWidth="*"
+                  RowHeight="40"
+                  Background="Transparent">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static lan:Resources.backup}" Binding="{Binding SaveName}" CanUserSort="True"/>
-                <DataGridTextColumn Header="{x:Static lan:Resources.source_path}" Binding="{Binding SourceFile}" CanUserSort="True"/>
-                <DataGridTextColumn Header="{x:Static lan:Resources.target_path}" Binding="{Binding TargetFile}" CanUserSort="True"/>
+                <DataGridTextColumn Header="{x:Static lan:Resources.backup}"
+                                    Binding="{Binding SaveName}"
+                                    CanUserSort="True"/>
+                <DataGridTextColumn Header="{x:Static lan:Resources.source_path}"
+                                    Binding="{Binding SourceFile}"
+                                    CanUserSort="True"/>
+                <DataGridTextColumn Header="{x:Static lan:Resources.target_path}"
+                                    Binding="{Binding TargetFile}"
+                                    CanUserSort="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="RunOneClick" Content="{x:Static lan:Resources.run_backup}" Width="Auto"/>
+                            <Button Click="RunOneClick"
+                                    Content="{x:Static lan:Resources.run_backup}"
+                                    Width="Auto"
+                                    Style="{StaticResource RunOneSaveButtonTheme}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
