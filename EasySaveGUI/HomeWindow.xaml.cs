@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Drawing;
-using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
@@ -16,42 +14,41 @@ namespace EasySaveGUI
     {
         private string chosenLanguage;
         private bool isLanguageSelectionVisible;
+        ViewModelHomeWindow vm;
 
         public HomeWindow()
         {
-            ViewModelHomeWindow vm = ViewModelHomeWindow.getInstance();
-            DataContext = vm;
-            chosenLanguage = "FR";
-            isLanguageSelectionVisible = false;
+            this.vm = ViewModelHomeWindow.getInstance();
+            DataContext = this.vm;
+            this.isLanguageSelectionVisible = false;
             InitializeComponent();
             LanguageSelectionTooltipAnimation();
         }
 
         public void LanguageSelectionTooltipAnimation()
         {
-            if (chosenLanguage == "EN")
+            if (this.vm.Language == "en-GB")
             {
                 DoubleAnimation myDoubleAnimation = new DoubleAnimation { From = -2, To = 58, Duration = new Duration(TimeSpan.FromMilliseconds(200)) };
 
-                Storyboard.SetTarget(myDoubleAnimation, LanguageTooltipChosenOption);
+                Storyboard.SetTarget(myDoubleAnimation, this.LanguageTooltipChosenOption);
                 Storyboard.SetTargetProperty(myDoubleAnimation, new PropertyPath("(Canvas.Left)"));
                 Storyboard myMovementStoryboard = new Storyboard();
                 myMovementStoryboard.Children.Add(myDoubleAnimation);
                 myMovementStoryboard.Begin();
-
-                chosenLanguage = "FR";
+                this.vm.Language = "fr-FR";
             }
-            else if (chosenLanguage == "FR")
+            else if (this.vm.Language == "fr-FR")
             {
                 DoubleAnimation myDoubleAnimation = new DoubleAnimation { From = 58, To = -2, Duration = new Duration(TimeSpan.FromMilliseconds(200)) };
 
-                Storyboard.SetTarget(myDoubleAnimation, LanguageTooltipChosenOption);
+                Storyboard.SetTarget(myDoubleAnimation, this.LanguageTooltipChosenOption);
                 Storyboard.SetTargetProperty(myDoubleAnimation, new PropertyPath("(Canvas.Left)"));
                 Storyboard myMovementStoryboard = new Storyboard();
                 myMovementStoryboard.Children.Add(myDoubleAnimation);
                 myMovementStoryboard.Begin();
 
-                chosenLanguage = "EN";
+                this.vm.Language = "en-GB";
             }
         }
 
@@ -62,15 +59,15 @@ namespace EasySaveGUI
 
         private void ExpandIcon_Click(object sender, RoutedEventArgs e)
         {
-            if(HomeWindowElement.WindowState == WindowState.Maximized)
+            if (this.HomeWindowElement.WindowState == WindowState.Maximized)
             {
-                HomeWindowElement.WindowState = WindowState.Normal;
-                HomeWindowElement.Width = 800;
-                HomeWindowElement.Height = 450;
+                this.HomeWindowElement.WindowState = WindowState.Normal;
+                this.HomeWindowElement.Width = 800;
+                this.HomeWindowElement.Height = 450;
             }
             else
             {
-                HomeWindowElement.WindowState = WindowState.Maximized;
+                this.HomeWindowElement.WindowState = WindowState.Maximized;
             }
         }
 
@@ -86,7 +83,7 @@ namespace EasySaveGUI
         private void MainWindow_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+                DragMove();
         }
 
         private void LanguageSelection_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -96,32 +93,32 @@ namespace EasySaveGUI
 
         private void LanguageIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!isLanguageSelectionVisible)
+            if (!this.isLanguageSelectionVisible)
             {
                 DoubleAnimation myDoubleAnimation = new DoubleAnimation { From = 0, To = 1, Duration = new Duration(TimeSpan.FromMilliseconds(200)) };
 
-                Storyboard.SetTarget(myDoubleAnimation, LanguageTooltip);
+                Storyboard.SetTarget(myDoubleAnimation, this.LanguageTooltip);
                 Storyboard.SetTargetProperty(myDoubleAnimation, new PropertyPath("Opacity"));
                 Storyboard myMovementStoryboard = new Storyboard();
                 myMovementStoryboard.Children.Add(myDoubleAnimation);
                 myMovementStoryboard.Begin();
 
-                LanguageTooltip.IsEnabled = true;
+                this.LanguageTooltip.IsEnabled = true;
             }
-            else if (isLanguageSelectionVisible)
+            else if (this.isLanguageSelectionVisible)
             {
                 DoubleAnimation myDoubleAnimation = new DoubleAnimation { From = 1, To = 0, Duration = new Duration(TimeSpan.FromMilliseconds(200)) };
 
-                Storyboard.SetTarget(myDoubleAnimation, LanguageTooltip);
+                Storyboard.SetTarget(myDoubleAnimation, this.LanguageTooltip);
                 Storyboard.SetTargetProperty(myDoubleAnimation, new PropertyPath("Opacity"));
                 Storyboard myMovementStoryboard = new Storyboard();
                 myMovementStoryboard.Children.Add(myDoubleAnimation);
                 myMovementStoryboard.Begin();
 
-                LanguageTooltip.IsEnabled = false;
+                this.LanguageTooltip.IsEnabled = false;
             }
 
-            isLanguageSelectionVisible = !isLanguageSelectionVisible;
+            this.isLanguageSelectionVisible = !this.isLanguageSelectionVisible;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using EasySaveGUI.model;
 using EasySaveGUI.views;
@@ -10,17 +9,33 @@ namespace EasySaveGUI.viewmodel
     {
         private ICommand command;
         private RessoucesModel model = new RessoucesModel();
-        private List<string> languages;
+        private string language;
         private ViewModelHomePage viewModelHomePage;
         private static ViewModelHomeWindow instance;
 
-        public List<string> Languages
+        public string Language
         {
-            get => this.languages;
+            get => this.language;
             set
             {
-                this.languages = value;
-                OnPropertyChanged("Languages");
+                this.language = value;
+                ChangeLanguage();
+            }
+        }
+
+        private void ChangeLanguage()
+        {
+            if (this.language == "fr-FR")
+            {
+                EasySaveGUI.Properties.Settings.Default.language = "en-GB";
+                EasySaveGUI.Properties.Settings.Default.Save();
+                EasySaveGUI.Properties.languages.Resources.Culture = new System.Globalization.CultureInfo(EasySaveGUI.Properties.Settings.Default.language);
+            }
+            else
+            {
+                EasySaveGUI.Properties.Settings.Default.language = "fr-FR";
+                EasySaveGUI.Properties.Settings.Default.Save();
+                EasySaveGUI.Properties.languages.Resources.Culture = new System.Globalization.CultureInfo(EasySaveGUI.Properties.Settings.Default.language);
             }
         }
 
@@ -45,8 +60,8 @@ namespace EasySaveGUI.viewmodel
 
         private ViewModelHomeWindow()
         {
-            Languages = this.model.getLanguages();
             ViewModelHomePage = ViewModelHomePage.getInstance();
+            this.language = Properties.Settings.Default.language;
         }
 
         public ICommand GetChooseActionCommand
@@ -69,6 +84,7 @@ namespace EasySaveGUI.viewmodel
         }
 
         private bool CanDoCommand => this.model != null;
+
         #region INotifyPropertyChanged Members 
         public event PropertyChangedEventHandler PropertyChanged;
 

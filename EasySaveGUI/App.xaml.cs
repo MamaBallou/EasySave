@@ -18,8 +18,6 @@ namespace EasySaveGUI
         private void SetLanguageDictionary()
         {
             EasySaveGUI.Properties.languages.Resources.Culture = new System.Globalization.CultureInfo(EasySaveGUI.Properties.Settings.Default.language);
-            EasySaveGUI.Properties.Settings.Default.language = EasySaveGUI.Properties.Settings.Default.language;
-            EasySaveGUI.Properties.Settings.Default.Save();
         }
     }
 }
