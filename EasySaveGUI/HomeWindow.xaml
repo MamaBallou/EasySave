@@ -288,12 +288,13 @@
                                 Width="55"
                                 Panel.ZIndex="1">
                             <TextBlock x:Name="LanguageTooltipOptionFRText"
-                                     Text="FR"
-                                     VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"
-                                     Foreground="#fff"
-                                     FontSize="15"
-                                     FontWeight="Bold"/>
+                                       Text="FR"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="#fff"
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       FontFamily="{StaticResource RobotoRegular}"/>
                         </Border>
 
                         <Border x:Name="LanguageTooltipOptionEN"
@@ -307,12 +308,13 @@
                                 Width="55"
                                 Panel.ZIndex="1">
                             <TextBlock x:Name="LanguageTooltipOptionENText"
-                                     Text="EN"
-                                     VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"
-                                     Foreground="#fff"
-                                     FontSize="15"
-                                     FontWeight="Bold"/>
+                                       Text="EN"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="#fff"
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       FontFamily="{StaticResource RobotoRegular}"/>
                         </Border>
 
                         <Canvas.Triggers>

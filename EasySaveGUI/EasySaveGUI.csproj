@@ -8,6 +8,10 @@
 	<ApplicationIcon>Properties\images\icon\logo_small_icon_only_inverted.ico</ApplicationIcon>
   </PropertyGroup>
 
+	<ItemGroup>
+		<Resource Include="Properties\fonts\Roboto-Regular.ttf" />
+	</ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Remove="Properties\languages\Resources.resx" />
   </ItemGroup>

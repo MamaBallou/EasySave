@@ -8,6 +8,8 @@
              StartupUri="HomeWindow.xaml">
     <Application.Resources>
 
+        <FontFamily x:Key="RobotoRegular">pack://application:,,,/Properties/fonts/#Roboto</FontFamily>
+
         <Style x:Key="NavigationListBoxStyle" TargetType="{x:Type ListBox}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
@@ -16,6 +18,8 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="SelectedIndex" Value="0"/>
             <Setter Property="Width" Value="Auto"/>
+            <Setter Property="TextElement.FontFamily"
+                    Value="{StaticResource RobotoRegular}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListBox}">
@@ -70,7 +74,7 @@
                                         Property="Background"
                                         Value="#4e7e92"/>
                                 <Setter Property="Foreground"
-                                        Value="#22202f"/>
+                                        Value="White"/>
                             </Trigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
@@ -89,7 +93,7 @@
                             <EventTrigger RoutedEvent="MouseEnter" SourceName="Bd">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation To="#4e7e92"
+                                        <ColorAnimation To="White"
                                                             Duration="0:0:0.2"
                                                             Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"/>
                                         <ColorAnimation To="#22202f"
@@ -236,6 +240,7 @@
                                     <TextBlock x:Name="RunAllSavesLabel"
                                                Text="{x:Static lan:Resources.run_all_backups}"
                                                FontSize="15"
+                                               FontFamily="{StaticResource RobotoRegular}"
                                                HorizontalAlignment="Left"
                                                VerticalAlignment="Center"
                                                Margin="0,0,0,0"
