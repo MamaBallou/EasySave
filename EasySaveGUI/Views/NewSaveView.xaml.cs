@@ -8,6 +8,7 @@ namespace EasySaveGUI.views
     /// </summary>
     public partial class NewSaveView : UserControl
     {
+
         public NewSaveView()
         {
             DataContext = ViewModelNewSaveView.GetInstance();

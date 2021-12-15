@@ -176,7 +176,6 @@
         <Style
            TargetType="{x:Type Button}"
            x:Key="RunAllSavesButtonTheme">
-
             <Style.Setters>
                 <Setter Property="Template">
                     <Setter.Value>
@@ -185,7 +184,6 @@
                                     HorizontalAlignment="Stretch"
                                     Background="White"
                                     Height="30"
-                                    Width="250"
                                     CornerRadius="10"
                                     Margin="0,0,0,0"
                                     Cursor="Hand">
@@ -229,8 +227,8 @@
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition Width="220"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     
                                     <iconPacks:PackIconCodicons x:Name="RunAllSavesIcon"
@@ -238,7 +236,7 @@
                                                                 Grid.Column="0"
                                                                 VerticalAlignment="Center"
                                                                 HorizontalAlignment="Right"
-                                                                Margin="0,0,5,0"/>
+                                                                Margin="10,0,5,0"/>
 
                                     <TextBlock x:Name="RunAllSavesLabel"
                                                Text="{x:Static lan:Resources.run_all_backups}"
@@ -246,11 +244,12 @@
                                                FontFamily="{StaticResource RobotoRegular}"
                                                HorizontalAlignment="Left"
                                                VerticalAlignment="Center"
-                                               Margin="0,0,0,0"
+                                               Margin="0,0,10,0"
                                                Grid.Column="1"/>
                                 </Grid>
 
                             </Border>
+                            
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -260,7 +259,6 @@
         <Style
            TargetType="{x:Type Button}"
            x:Key="RunOneSaveButtonTheme">
-
             <Style.Setters>
                 <Setter Property="Template">
                     <Setter.Value>
@@ -303,6 +301,144 @@
                                                                   HorizontalAlignment="Center"/>
 
                             </Grid>
+                            
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+
+        <Style
+           TargetType="{x:Type Button}"
+           x:Key="BrowseFolderButtonTheme">
+            <Style.Setters>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid VerticalAlignment="Stretch"
+                                  HorizontalAlignment="Stretch"
+                                  Background="Transparent"
+                                  Height="30"
+                                  Width="30"
+                                  Margin="0,0,0,0"
+                                  Cursor="Hand"
+                                  ToolTip="">
+
+                                <Grid.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation To="#4e7e92"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="BrowseFolderButtonIcon"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="BrowseFolderButtonIcon"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Grid.Triggers>
+
+                                <iconPacks:PackIconFeatherIcons x:Name="BrowseFolderButtonIcon"
+                                                                Kind="FolderPlus"
+                                                                Foreground="White"
+                                                                VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center"/>
+
+                            </Grid>
+
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+
+        <Style
+            TargetType="{x:Type Button}"
+            x:Key="CreateSaveButton">
+            <Style.Setters>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+
+                            <Border VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Center"
+                                    Background="White"
+                                    Height="30"
+                                    CornerRadius="10"
+                                    Margin="0,0,0,0"
+                                    Cursor="Hand">
+
+                                <Border.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation To="#4e7e92"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"/>
+                                                <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="CreateSaveButtonLabel"/>
+                                                <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="CreateSaveButtonIcon"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"/>
+                                                <ColorAnimation To="Black"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="CreateSaveButtonLabel"/>
+                                                <ColorAnimation To="Black"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="CreateSaveButtonIcon"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Border.Triggers>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <iconPacks:PackIconForkAwesome x:Name="CreateSaveButtonIcon"
+                                                                   Kind="PlusSquare"
+                                                                   Grid.Column="0"
+                                                                   HorizontalAlignment="Right"
+                                                                   VerticalAlignment="Center"
+                                                                   Margin="10,0,10,0"/>
+
+                                    <TextBlock x:Name="CreateSaveButtonLabel"
+                                               Text="{x:Static lan:Resources.create}"
+                                               FontSize="15"
+                                               FontFamily="{StaticResource RobotoRegular}"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,10,0"
+                                               Grid.Column="1"/>
+                                </Grid>
+                                
+                            </Border>
+                            
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
