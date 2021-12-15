@@ -298,7 +298,7 @@
                                 </Grid.Triggers>
 
                                 <iconPacks:PackIconBootstrapIcons x:Name="RunOneSaveIcon"
-                                                                  Kind="FileEarmarkPlay"
+                                                                  Kind="Play"
                                                                   VerticalAlignment="Center"
                                                                   HorizontalAlignment="Center"/>
 
