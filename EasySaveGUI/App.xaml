@@ -169,6 +169,9 @@
         <DataTemplate x:Key="NewSaveView">
             <views:NewSaveView/>
         </DataTemplate>
+        <DataTemplate x:Key="Settings">
+            <views:SettingsView/>
+        </DataTemplate>
 
         <Style
            TargetType="{x:Type Button}"
