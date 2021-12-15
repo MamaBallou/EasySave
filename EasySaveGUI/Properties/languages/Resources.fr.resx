@@ -124,7 +124,7 @@
     <value>Créer</value>
   </data>
   <data name="create_backup" xml:space="preserve">
-    <value>Créer une Sauvegarde</value>
+    <value>Créer une sauvegarde</value>
   </data>
   <data name="differential_backup" xml:space="preserve">
     <value>Sauvegarde Différentiel</value>
@@ -137,11 +137,17 @@ Fermez le, puis réessayez !</value>
   <data name="extension" xml:space="preserve">
     <value>Extension</value>
   </data>
+  <data name="menu_item_home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="menu_item_settings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
   <data name="name" xml:space="preserve">
     <value>Nom</value>
   </data>
   <data name="run_all_backups" xml:space="preserve">
-    <value>Exécuter toutes les Sauvarges</value>
+    <value>Exécuter toutes les sauvegardes</value>
   </data>
   <data name="run_backup" xml:space="preserve">
     <value>Exécuter Sauvegarde</value>
