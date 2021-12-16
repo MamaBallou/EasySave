@@ -44,10 +44,19 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="RunOneClick"
+                            <Button Command="{Binding Path=DataContext.GetChooseActionCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                    CommandParameter="{Binding}"
                                     Content="{x:Static lan:Resources.run_backup}"
                                     Width="Auto"
                                     Style="{StaticResource RunOneSaveButtonTheme}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ProgressBar x:Name="pgb_progression" Minimum="0" Maximum="100" Value="{Binding Progression, Mode=OneWay}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

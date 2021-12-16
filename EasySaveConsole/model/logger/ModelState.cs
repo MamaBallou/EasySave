@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 using EasySaveConsole.model.enums;
 using EasySaveConsole.model.save;
 using EasySaveConsole.tools;
@@ -8,7 +9,7 @@ namespace EasySaveConsole.model.log
     /// <summary>
     /// ModelState representing the state of a save.
     /// </summary>
-    public class ModelState : ModelLogger
+    public class ModelState : ModelLogger, INotifyPropertyChanged
     {
         /// <summary>
         /// State of the save.
@@ -85,7 +86,15 @@ namespace EasySaveConsole.model.log
         /// <summary>
         /// Getter of progression.
         /// </summary>
-        public double Progression => this.progression;
+        public double Progression
+        {
+            get => this.progression;
+            set
+            {
+                this.progression = value;
+                OnPropertyChanged("Progression");
+            }
+        }
 
         /// <summary>
         /// Constructor.
@@ -101,7 +110,7 @@ namespace EasySaveConsole.model.log
             this.totalFileSize = tool.getFileSize(sourceFile);
             this.totalFilesToCopy = tool.getNbFiles(sourceFile);
             this.nbFilesLeftToDo = this.totalFilesToCopy;
-            this.progression = 0.0;
+            Progression = 0.0;
             this.saveType = saveType;
         }
 
@@ -116,7 +125,7 @@ namespace EasySaveConsole.model.log
         /// <returns>progression expression in double.</returns>
         public double calcProg()
         {
-            return this.progression =
+            return Progression =
                 ((this.totalFilesToCopy - this.nbFilesLeftToDo)
                 / (double)this.totalFilesToCopy) * 100.0;
         }
@@ -143,5 +152,21 @@ namespace EasySaveConsole.model.log
             }
             return modelSave;
         }
+
+        public void Render()
+        {
+            OnPropertyChanged("State");
+        }
+        #region INotifyPropertyChanged
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
     }
 }

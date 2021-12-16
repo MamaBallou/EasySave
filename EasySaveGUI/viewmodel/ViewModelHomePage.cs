@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using EasySaveConsole.model.log;
 using EasySaveGUI.model;
 using EasySaveGUI.retriever;
-using EasySaveGUI.views;
 
 namespace EasySaveGUI.viewmodel
 {
@@ -15,6 +17,7 @@ namespace EasySaveGUI.viewmodel
         private ICommand command;
         private List<ModelState> states = new List<ModelState>();
         private static ViewModelHomePage instance;
+        private BackgroundWorker worker;
 
         public static ViewModelHomePage getInstance()
         {
@@ -34,7 +37,7 @@ namespace EasySaveGUI.viewmodel
             }
         }
 
-        private ViewModelHomePage()
+        protected ViewModelHomePage()
         {
             States = DataRetriever.getModelLog();
         }
@@ -45,7 +48,7 @@ namespace EasySaveGUI.viewmodel
             {
                 throw new ConcurentProcessException();
             }
-            ModelState state = ((Button)sender).DataContext as ModelState;
+            ModelState state = sender as ModelState;
             if (Process.GetProcessesByName("Calculator").Length > 0)
             {
                 throw new ConcurentProcessException();
@@ -72,8 +75,7 @@ namespace EasySaveGUI.viewmodel
             {
                 if (this.command == null)
                 {
-                    this.command = new RelayCommand(param => DoCommand(),
-                                               param => CanDoCommand);
+                    this.command = new DelegateCommand(CanDoCommand, DoCommand);
                 }
                 return this.command;
             }
@@ -81,11 +83,26 @@ namespace EasySaveGUI.viewmodel
         }
 
 
-        private void DoCommand()
+        public void DoCommand(object sender)
         {
+            Thread t = new Thread(() =>
+            {
+                try
+                {
+                    RunSave(sender);
+                }
+                catch (ConcurentProcessException)
+                {
+                    MessageBox.Show(String.Format(Properties.languages.Resources.exception_concurent_process, "Calculator"));
+                }
+            });
+            t.Start();
         }
 
-        private bool CanDoCommand => this.model != null;
+        private bool CanDoCommand(object sender)
+        {
+            return this.model != null;
+        }
         #region INotifyPropertyChanged Members 
         public event PropertyChangedEventHandler PropertyChanged;
 

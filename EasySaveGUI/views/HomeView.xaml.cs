@@ -20,14 +20,8 @@ namespace EasySaveGUI.views
 
         private void RunOneClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            try
-            {
-                this.viewModel.RunSave(sender);
-            }
-            catch (ConcurentProcessException)
-            {
-                MessageBox.Show(String.Format(Properties.languages.Resources.exception_concurent_process, "Calculator"));
-            }
+            // TODO : Do it right honey please... MVVM will perhaps solve everything?
+            
         }
 
         private void RunAllClick(object sender, System.Windows.RoutedEventArgs e)
