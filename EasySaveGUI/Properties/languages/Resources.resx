@@ -127,7 +127,7 @@
     <value>Create backup</value>
   </data>
   <data name="differential_backup" xml:space="preserve">
-    <value>Differential Backup</value>
+    <value>Differential backup</value>
   </data>
   <data name="exception_concurent_process" xml:space="preserve">
     <value>Exception :
@@ -147,10 +147,10 @@ Close it and retry !</value>
     <value>Name</value>
   </data>
   <data name="run_all_backups" xml:space="preserve">
-    <value>Run all Backups</value>
+    <value>Run all backups</value>
   </data>
   <data name="run_backup" xml:space="preserve">
-    <value>Run Backup</value>
+    <value>Run backup</value>
   </data>
   <data name="save" xml:space="preserve">
     <value>Save</value>
@@ -159,21 +159,21 @@ Close it and retry !</value>
     <value>Settings</value>
   </data>
   <data name="source_path" xml:space="preserve">
-    <value>Source Path</value>
+    <value>Source path</value>
   </data>
   <data name="target_path" xml:space="preserve">
-    <value>Target Path</value>
+    <value>Target path</value>
   </data>
   <data name="total_backup" xml:space="preserve">
-    <value>Total Backup</value>
+    <value>Total backup</value>
   </data>
   <data name="warning_fill_all_fields" xml:space="preserve">
-    <value>Please fill all fiels !</value>
+    <value>Please fill all the fields !</value>
   </data>
   <data name="warning_invalid_source" xml:space="preserve">
-    <value>Invalid Source !</value>
+    <value>Invalid source !</value>
   </data>
   <data name="warning_invalid_target" xml:space="preserve">
-    <value>Invalid Target !</value>
+    <value>Invalid target !</value>
   </data>
 </root>

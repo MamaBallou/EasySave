@@ -127,7 +127,7 @@
     <value>Créer une sauvegarde</value>
   </data>
   <data name="differential_backup" xml:space="preserve">
-    <value>Sauvegarde Différentiel</value>
+    <value>Sauvegarde différentielle</value>
   </data>
   <data name="exception_concurent_process" xml:space="preserve">
     <value>Exception :
@@ -150,7 +150,7 @@ Fermez le, puis réessayez !</value>
     <value>Exécuter toutes les sauvegardes</value>
   </data>
   <data name="run_backup" xml:space="preserve">
-    <value>Exécuter Sauvegarde</value>
+    <value>Exécuter sauvegarde</value>
   </data>
   <data name="save" xml:space="preserve">
     <value>Sauvegarder</value>
@@ -159,21 +159,21 @@ Fermez le, puis réessayez !</value>
     <value>Paramètres</value>
   </data>
   <data name="source_path" xml:space="preserve">
-    <value>Chemin Source</value>
+    <value>Chemin source</value>
   </data>
   <data name="target_path" xml:space="preserve">
-    <value>Chemin Cible</value>
+    <value>Chemin cible</value>
   </data>
   <data name="total_backup" xml:space="preserve">
-    <value>Sauvegarde Total</value>
+    <value>Sauvegarde totale</value>
   </data>
   <data name="warning_fill_all_fields" xml:space="preserve">
-    <value>Compléter tous les champs s'il vous plait !</value>
+    <value>Complétez tous les champs s'il vous plaît !</value>
   </data>
   <data name="warning_invalid_source" xml:space="preserve">
-    <value>Source Invalide !</value>
+    <value>Source invalide !</value>
   </data>
   <data name="warning_invalid_target" xml:space="preserve">
-    <value>Cible Invalide !</value>
+    <value>Cible invalide !</value>
   </data>
 </root>

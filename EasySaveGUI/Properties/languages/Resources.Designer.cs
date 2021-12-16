@@ -88,7 +88,7 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Differential Backup.
+        ///   Recherche une chaîne localisée semblable à Differential backup.
         /// </summary>
         public static string differential_backup {
             get {
@@ -144,7 +144,7 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Run all Backups.
+        ///   Recherche une chaîne localisée semblable à Run all backups.
         /// </summary>
         public static string run_all_backups {
             get {
@@ -153,7 +153,7 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Run Backup.
+        ///   Recherche une chaîne localisée semblable à Run backup.
         /// </summary>
         public static string run_backup {
             get {
@@ -180,7 +180,7 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Source Path.
+        ///   Recherche une chaîne localisée semblable à Source path.
         /// </summary>
         public static string source_path {
             get {
@@ -189,7 +189,7 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Target Path.
+        ///   Recherche une chaîne localisée semblable à Target path.
         /// </summary>
         public static string target_path {
             get {
@@ -198,7 +198,7 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Total Backup.
+        ///   Recherche une chaîne localisée semblable à Total backup.
         /// </summary>
         public static string total_backup {
             get {
@@ -207,7 +207,7 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Please fill all fiels !.
+        ///   Recherche une chaîne localisée semblable à Please fill all the fields !.
         /// </summary>
         public static string warning_fill_all_fields {
             get {
@@ -216,7 +216,7 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Invalid Source !.
+        ///   Recherche une chaîne localisée semblable à Invalid source !.
         /// </summary>
         public static string warning_invalid_source {
             get {
@@ -225,7 +225,7 @@ namespace EasySaveGUI.Properties.languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Invalid Target !.
+        ///   Recherche une chaîne localisée semblable à Invalid target !.
         /// </summary>
         public static string warning_invalid_target {
             get {
