@@ -8,6 +8,7 @@ using System.Windows.Input;
 using EasySaveConsole.model.log;
 using EasySaveGUI.model;
 using EasySaveGUI.retriever;
+using EasySaveGUI.views;
 
 namespace EasySaveGUI.viewmodel
 {
@@ -31,7 +32,8 @@ namespace EasySaveGUI.viewmodel
         #endregion
 
         #region attributes
-        private ICommand command;
+        private ICommand runOne;
+        private ICommand runAll;
         private List<ModelState> states = new List<ModelState>();
         #endregion
         #region Trigger Property change
@@ -62,37 +64,71 @@ namespace EasySaveGUI.viewmodel
 
         public void RunAll()
         {
+            try
+            {
+                this.states.ForEach(state =>
+                {
+                    Thread t = new Thread(() =>
+                        {
+                            DoRunOne(state);
+                        });
+                    t.Start();
+                });
+            }
+            catch (ConcurentProcessException)
+            {
+                MessageBox.Show(String.Format(Properties.languages.Resources.exception_concurent_process, "Calculator"));
+            }
+        }
+        #endregion
+        #region ICommand definition
+        private RessoucesModel model = new RessoucesModel();
+
+        public ICommand GetRunAll
+        {
+            get
+            {
+                if (this.runAll == null)
+                {
+                    this.runAll = new RelayCommand(param => DoRunAll(),
+                                               param => CanDoRunAll());
+                }
+                return this.runAll;
+            }
+            private set => this.runAll = value;
+        }
+        public void DoRunAll()
+        {
             Thread t = new Thread(() =>
             {
                 try
                 {
-                    this.states.ForEach(state =>
-                    {
-                        DoRunOne(state);
-                    });
+                    RunAll();
                 }
                 catch (ConcurentProcessException)
                 {
                     MessageBox.Show(String.Format(Properties.languages.Resources.exception_concurent_process, "Calculator"));
                 }
             });
+            t.Start();
         }
-        #endregion
-        #region ICommand definition
-        private RessoucesModel model = new RessoucesModel();
+
+        private bool CanDoRunAll()
+        {
+            return States.Count > 0;
+        }
         public ICommand GetRunOne
         {
             get
             {
-                if (this.command == null)
+                if (this.runOne == null)
                 {
-                    this.command = new DelegateCommand(CanDoRunOne, DoRunOne);
+                    this.runOne = new RelayCommand(DoRunOne, CanDoRunOne);
                 }
-                return this.command;
+                return this.runOne;
             }
-            private set => this.command = value;
+            private set => this.runOne = value;
         }
-
 
         public void DoRunOne(object sender)
         {
