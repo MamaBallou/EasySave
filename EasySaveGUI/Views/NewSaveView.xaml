@@ -39,6 +39,7 @@
             <TextBox x:Name="txt_name"
                      HorizontalAlignment="Stretch"
                      Height="25"
+                     CaretBrush="White"
                      Foreground="White"
                      FontFamily="Helvetica"
                      FontWeight="Light"
