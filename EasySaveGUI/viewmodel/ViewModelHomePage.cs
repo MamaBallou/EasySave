@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using EasySaveConsole.model.log;
+using EasySaveConsole.model.save;
 using EasySaveGUI.exception;
 using EasySaveGUI.retriever;
 using EasySaveGUI.views;
@@ -34,6 +35,9 @@ namespace EasySaveGUI.viewmodel
         #region attributes
         private ICommand runOne;
         private ICommand runAll;
+        private ICommand play;
+        private ICommand pause;
+        private ICommand stop;
         private List<ModelState> states = new List<ModelState>();
         #endregion
         #region Trigger Property change
@@ -143,6 +147,40 @@ namespace EasySaveGUI.viewmodel
                 }
             });
             t.Start();
+        }
+        public ICommand GetPlay
+        {
+            get
+            {
+                if (this.play == null)
+                {
+                    this.play = new RelayCommand(param => DoPlay());
+                }
+                return this.play;
+            }
+            private set => this.play = value;
+        }
+
+        public void DoPlay()
+        {
+            ModelSave.manualResetEvent.Set();
+        }
+        public ICommand GetPause
+        {
+            get
+            {
+                if (this.pause == null)
+                {
+                    this.pause = new RelayCommand(param => DoPause());
+                }
+                return this.pause;
+            }
+            private set => this.pause = value;
+        }
+
+        public void DoPause()
+        {
+            ModelSave.manualResetEvent.Reset();
         }
         #endregion
         #region INotifyPropertyChanged Members 

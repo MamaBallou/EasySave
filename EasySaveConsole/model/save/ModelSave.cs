@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using EasySaveConsole.exception;
 using EasySaveConsole.model.enums;
 using EasySaveConsole.model.log;
@@ -13,6 +14,7 @@ namespace EasySaveConsole.model.save
     /// </summary>
     public abstract class ModelSave
     {
+        public static ManualResetEvent manualResetEvent = new ManualResetEvent(true);
         /// <summary>
         /// Logger attribute.
         /// </summary>
@@ -244,6 +246,7 @@ namespace EasySaveConsole.model.save
         protected void saveAFile(string currentFile, string folderTargetPath,
             ref ModelState modelState, ref List<ModelState> states)
         {
+            manualResetEvent.WaitOne();
             string destFilePath = String.Concat(folderTargetPath,
                             Path.GetFileName(currentFile));
             DateTime start = DateTime.Now;
