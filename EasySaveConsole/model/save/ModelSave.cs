@@ -46,6 +46,11 @@ namespace EasySaveConsole.model.save
         {
             this.name = name;
             this.sourcePath = sourcePath;
+            if (targetFile[targetFile.Length - 1] != ('/' | '\\'))
+            {
+                targetFile = $"{targetFile}\\";
+            }
+
             this.targetPath = targetFile;
         }
 

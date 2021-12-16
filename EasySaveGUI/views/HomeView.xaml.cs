@@ -18,22 +18,9 @@ namespace EasySaveGUI.views
             InitializeComponent();
         }
 
-        private void RunOneClick(object sender, System.Windows.RoutedEventArgs e)
-        {
-            // TODO : Do it right honey please... MVVM will perhaps solve everything?
-            
-        }
-
         private void RunAllClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            try
-            {
-                this.viewModel.RunAll();
-            }
-            catch (ConcurentProcessException)
-            {
-                MessageBox.Show(String.Format(Properties.languages.Resources.exception_concurent_process, "Calculator"));
-            }
+            
         }
     }
 }

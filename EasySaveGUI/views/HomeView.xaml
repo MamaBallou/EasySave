@@ -44,7 +44,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Command="{Binding Path=DataContext.GetChooseActionCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                            <Button Command="{Binding Path=DataContext.GetRunOne, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                     CommandParameter="{Binding}"
                                     Content="{x:Static lan:Resources.run_backup}"
                                     Width="Auto"

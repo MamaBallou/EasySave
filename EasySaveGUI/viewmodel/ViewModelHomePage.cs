@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using EasySaveConsole.model.log;
 using EasySaveGUI.model;
@@ -14,10 +13,8 @@ namespace EasySaveGUI.viewmodel
 {
     public class ViewModelHomePage : INotifyPropertyChanged
     {
-        private ICommand command;
-        private List<ModelState> states = new List<ModelState>();
+        #region Singleton definition
         private static ViewModelHomePage instance;
-        private BackgroundWorker worker;
 
         public static ViewModelHomePage getInstance()
         {
@@ -27,6 +24,17 @@ namespace EasySaveGUI.viewmodel
             }
             return instance;
         }
+        protected ViewModelHomePage()
+        {
+            States = DataRetriever.getModelLog();
+        }
+        #endregion
+
+        #region attributes
+        private ICommand command;
+        private List<ModelState> states = new List<ModelState>();
+        #endregion
+        #region Trigger Property change
         public List<ModelState> States
         {
             get => this.states;
@@ -36,12 +44,8 @@ namespace EasySaveGUI.viewmodel
                 OnPropertyChanged("States");
             }
         }
-
-        protected ViewModelHomePage()
-        {
-            States = DataRetriever.getModelLog();
-        }
-
+        #endregion
+        #region methods
         public void RunSave(object sender)
         {
             if (Process.GetProcessesByName("Calculator").Length > 0)
@@ -58,24 +62,31 @@ namespace EasySaveGUI.viewmodel
 
         public void RunAll()
         {
-            this.states.ForEach(state =>
+            Thread t = new Thread(() =>
             {
-                if (Process.GetProcessesByName("Calculator").Length > 0)
+                try
                 {
-                    throw new ConcurentProcessException();
+                    this.states.ForEach(state =>
+                    {
+                        DoRunOne(state);
+                    });
                 }
-                state.toModelSave().save(ref state, ref this.states);
+                catch (ConcurentProcessException)
+                {
+                    MessageBox.Show(String.Format(Properties.languages.Resources.exception_concurent_process, "Calculator"));
+                }
             });
         }
-
+        #endregion
+        #region ICommand definition
         private RessoucesModel model = new RessoucesModel();
-        public ICommand GetChooseActionCommand
+        public ICommand GetRunOne
         {
             get
             {
                 if (this.command == null)
                 {
-                    this.command = new DelegateCommand(CanDoCommand, DoCommand);
+                    this.command = new DelegateCommand(CanDoRunOne, DoRunOne);
                 }
                 return this.command;
             }
@@ -83,7 +94,7 @@ namespace EasySaveGUI.viewmodel
         }
 
 
-        public void DoCommand(object sender)
+        public void DoRunOne(object sender)
         {
             Thread t = new Thread(() =>
             {
@@ -99,10 +110,11 @@ namespace EasySaveGUI.viewmodel
             t.Start();
         }
 
-        private bool CanDoCommand(object sender)
+        private bool CanDoRunOne(object sender)
         {
             return this.model != null;
         }
+        #endregion
         #region INotifyPropertyChanged Members 
         public event PropertyChangedEventHandler PropertyChanged;
 

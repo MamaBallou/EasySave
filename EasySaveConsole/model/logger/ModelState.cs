@@ -152,11 +152,6 @@ namespace EasySaveConsole.model.log
             }
             return modelSave;
         }
-
-        public void Render()
-        {
-            OnPropertyChanged("State");
-        }
         #region INotifyPropertyChanged
         private void OnPropertyChanged(string propertyName)
         {
