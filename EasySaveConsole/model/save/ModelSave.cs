@@ -246,12 +246,13 @@ namespace EasySaveConsole.model.save
         {
             string destFilePath = String.Concat(folderTargetPath,
                             Path.GetFileName(currentFile));
+            bool doesDestFileAlreadyExist = File.Exists(destFilePath);
             DateTime start = DateTime.Now;
             if (Crypter.IsToEncrypt(Path.GetExtension(currentFile)))
             {
                 Crypter.crypAndCopy(currentFile, folderTargetPath);
             }
-            else
+            else if (!doesDestFileAlreadyExist)
             {
                 File.Copy(currentFile, destFilePath);
             }
