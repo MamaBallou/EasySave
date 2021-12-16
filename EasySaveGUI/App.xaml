@@ -482,14 +482,14 @@
                                 </BulletDecorator.Bullet>
 
                                 <TextBlock Foreground="White"
-                                                   FontFamily="Helvetica"
-                                                   FontWeight="Light"
-                                                   FontSize="15"
-                                                   VerticalAlignment="Center"
-                                                   HorizontalAlignment="Center"
-                                                   Margin="5,0,0,0"
-                                                   Grid.Column="1"
-                                                   Text="{TemplateBinding Content}"/>
+                                           FontFamily="Helvetica"
+                                           FontWeight="Light"
+                                           FontSize="15"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Margin="5,0,0,0"
+                                           Grid.Column="1"
+                                           Text="{TemplateBinding Content}"/>
                             </BulletDecorator>
 
                             <ControlTemplate.Triggers>
@@ -497,6 +497,181 @@
                                     <Setter TargetName="RadioMark" Property="Visibility" Value="Visible"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
+
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+
+        <Style TargetType="{x:Type CheckBox}"
+               x:Key="CheckboxTheme">
+            <Style.Setters>
+                <Setter Property="SnapsToDevicePixels"
+                        Value="true" />
+                <Setter Property="OverridesDefaultStyle"
+                        Value="true" />
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type CheckBox}">
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet>
+
+                                    <Grid>
+
+                                        <Border Name="Box"
+                                                Height="20"
+                                                Width="20"
+                                                CornerRadius="2"
+                                                BorderBrush="#41697a"
+                                                BorderThickness="2"
+                                                Background="#4e7e92"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+
+                                            <Border.Triggers>
+                                                <EventTrigger RoutedEvent="MouseEnter">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <ColorAnimation To="#41697a"
+                                                                            Duration="0:0:0.2"
+                                                                            Storyboard.TargetName="Box"
+                                                                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+
+                                                <EventTrigger RoutedEvent="MouseLeave">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <ColorAnimation To="#4e7e92"
+                                                                            Duration="0:0:0.2"
+                                                                            Storyboard.TargetName="Box"
+                                                                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </Border.Triggers>
+                                            
+                                        </Border>
+
+                                        <iconPacks:PackIconBootstrapIcons Kind="CheckCircleFill"
+                                                                          Name="CheckMark"
+                                                                          Height="12"
+                                                                          Width="12"
+                                                                          Margin="4"
+                                                                          Foreground="White"
+                                                                          Visibility="Hidden"
+                                                                          HorizontalAlignment="Center"
+                                                                          VerticalAlignment="Center"/>
+
+                                    </Grid>
+
+                                </BulletDecorator.Bullet>
+
+                                <TextBlock Foreground="White"
+                                           FontFamily="Helvetica"
+                                           FontWeight="Light"
+                                           FontSize="15"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Margin="5,0,0,0"
+                                           Grid.Column="1"
+                                           Text="{TemplateBinding Content}"/>
+
+                            </BulletDecorator>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" TargetName="CheckMark"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                            
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+
+        <Style
+            TargetType="{x:Type Button}"
+            x:Key="SaveSettingsButton">
+            <Style.Setters>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+
+                            <Border VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Center"
+                                    Background="White"
+                                    Height="30"
+                                    CornerRadius="10"
+                                    Margin="0,0,0,0"
+                                    Cursor="Hand">
+
+                                <Border.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation To="#4e7e92"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"/>
+                                                <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="CreateSaveButtonLabel"/>
+                                                <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="CreateSaveButtonIcon"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"/>
+                                                <ColorAnimation To="Black"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="CreateSaveButtonLabel"/>
+                                                <ColorAnimation To="Black"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="CreateSaveButtonIcon"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Border.Triggers>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <iconPacks:PackIconMaterial Kind="ContentSaveCog"
+                                                                x:Name="SaveSettingsButtonIcon"
+                                                                Grid.Column="0"
+                                                                HorizontalAlignment="Right"
+                                                                VerticalAlignment="Center"
+                                                                Margin="10,0,10,0"/>
+
+                                    <TextBlock x:Name="SaveSettingsButtonLabel"
+                                               Text="{x:Static lan:Resources.save}"
+                                               FontSize="15"
+                                               FontFamily="{StaticResource RobotoRegular}"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,10,0"
+                                               Grid.Column="1"/>
+                                </Grid>
+
+                            </Border>
 
                         </ControlTemplate>
                     </Setter.Value>

@@ -9,17 +9,31 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="{x:Static lan:Resources.settings}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Content="{x:Static lan:Resources.extension}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Grid Grid.Row="1" Grid.Column="1" Margin="30" Height="Auto" Width="Auto" VerticalAlignment="Center">
+        
+        <Label Content="{x:Static lan:Resources.extension}"
+               Grid.Row="0"
+               Grid.Column="0"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Foreground="White"
+               FontFamily="Helvetica"
+               FontWeight="Light"
+               FontSize="15"/>
+        
+        <Grid Grid.Row="0"
+              Grid.Column="1"
+              Margin="30"
+              Height="Auto"
+              Width="Auto"
+              VerticalAlignment="Center">
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -29,12 +43,46 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <CheckBox x:Name="cbx_pdf" Content=".pdf" Grid.Row="0" Grid.Column="0" Margin="5" IsChecked="{Binding Pdf}"/>
-            <CheckBox x:Name="cbx_jpg" Content=".jpg" Grid.Row="0" Grid.Column="1" Margin="5" IsChecked="{Binding Jpg}"/>
-            <CheckBox x:Name="cbx_docx" Content=".docx" Grid.Row="1" Grid.Column="0" Margin="5" IsChecked="{Binding Docx}"/>
-            <CheckBox x:Name="cbx_txt" Content=".txt" Grid.Row="1" Grid.Column="1" Margin="5" IsChecked="{Binding Txt}"/>
-            <CheckBox x:Name="cbx_exe" Content=".exe" Grid.Row="2" Grid.Column="0" Margin="5" IsChecked="{Binding Exe}"/>
+            
+            <CheckBox x:Name="cbx_pdf"
+                      Content=".pdf"
+                      Grid.Row="0"
+                      Grid.Column="0"
+                      IsChecked="{Binding Pdf}"
+                      Style="{StaticResource CheckboxTheme}"/>
+            <CheckBox x:Name="cbx_jpg"
+                      Content=".jpg"
+                      Grid.Row="0"
+                      Grid.Column="1"
+                      IsChecked="{Binding Jpg}"
+                      Style="{StaticResource CheckboxTheme}"/>
+            <CheckBox x:Name="cbx_docx"
+                      Content=".docx"
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      IsChecked="{Binding Docx}"
+                      Style="{StaticResource CheckboxTheme}"/>
+            <CheckBox x:Name="cbx_txt"
+                      Content=".txt"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      IsChecked="{Binding Txt}"
+                      Style="{StaticResource CheckboxTheme}"/>
+            <CheckBox x:Name="cbx_exe"
+                      Content=".exe"
+                      Grid.Row="2"
+                      Grid.Column="0"
+                      IsChecked="{Binding Exe}"
+                      Style="{StaticResource CheckboxTheme}"/>
         </Grid>
-        <Button x:Name="btn_save" Content="{x:Static lan:Resources.save}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" Command="{Binding GetSaveCommand}"/>
+        <Button x:Name="btn_save"
+                Content="{x:Static lan:Resources.save}"
+                Grid.Column="1"
+                Grid.Row="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="20"
+                Command="{Binding GetSaveCommand}"
+                Style="{StaticResource SaveSettingsButton}"/>
     </Grid>
 </UserControl>
