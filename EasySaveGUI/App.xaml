@@ -445,5 +445,66 @@
             </Style.Setters>
         </Style>
 
+        <Style TargetType="{x:Type RadioButton}"
+               x:Key="SaveTypeRadioButtonTheme">
+            <Style.Setters>
+                <Setter Property="SnapsToDevicePixels"
+                        Value="true" />
+                <Setter Property="OverridesDefaultStyle"
+                        Value="true" />
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RadioButton">
+
+                            <BulletDecorator Background="Transparent"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center">
+                                <BulletDecorator.Bullet>
+
+                                    <Grid Height="16"
+                                          Width="16">
+
+                                        <Border Name="RadioOuter"
+                                            Background="Transparent"
+                                            BorderBrush="#4e7e92"
+                                            BorderThickness="2"
+                                            CornerRadius="10"
+                                            Width="16"
+                                            Height="16"/>
+
+                                        <Border CornerRadius="10"
+                                            Margin="4"
+                                            Name="RadioMark"
+                                            Background="White"
+                                            Visibility="Hidden"/>
+
+                                    </Grid>
+
+                                </BulletDecorator.Bullet>
+
+                                <TextBlock Foreground="White"
+                                                   FontFamily="Helvetica"
+                                                   FontWeight="Light"
+                                                   FontSize="15"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Margin="5,0,0,0"
+                                                   Grid.Column="1"
+                                                   Text="{TemplateBinding Content}"/>
+                            </BulletDecorator>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="RadioMark" Property="Visibility" Value="Visible"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+
     </Application.Resources>
 </Application>
