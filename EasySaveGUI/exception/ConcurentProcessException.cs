@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace EasySaveGUI.viewmodel
+namespace EasySaveGUI.exception
 {
     [Serializable]
     internal class ConcurentProcessException : Exception

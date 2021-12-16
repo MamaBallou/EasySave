@@ -129,7 +129,6 @@ namespace EasySaveGUI.viewmodel
             SetToEncryptExtension(toEncrypt);
         }
 
-
         private bool CanDoCommand => this.command != null;
 
         #region INotifyPropertyChanged Members 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Resources;
-using EasySaveConsole.model.enums;
 using EasySaveConsole.model.log;
 using EasySaveConsole.model.save;
 using EasySaveConsole.tools;
@@ -17,10 +16,6 @@ namespace EasySaveConsole.controller
     /// </summary>
     public class ControllerSave
     {
-        /// <summary>
-        /// Store the language choose.
-        /// </summary>
-        private EnumLanguages chosenLanguage;
         /// <summary>
         /// List of stored saves.
         /// </summary>
@@ -52,7 +47,6 @@ namespace EasySaveConsole.controller
         {
             this.modelSaves = modelSaves;
             this.view = view;
-            this.chosenLanguage = EnumLanguages.English;
             this.cul = CultureInfo.CreateSpecificCulture("en");
             this.res_man = new ResourceManager("EasySaveConsole.Properties.Res",
                 typeof(ControllerSave).Assembly);
@@ -140,11 +134,9 @@ namespace EasySaveConsole.controller
                     switch (choiceIndex)
                     {
                         case 1:
-                            this.chosenLanguage = EnumLanguages.Francais;
                             this.cul = CultureInfo.CreateSpecificCulture("fr");
                             break;
                         case 2:
-                            this.chosenLanguage = EnumLanguages.English;
                             this.cul = CultureInfo.CreateSpecificCulture("en");
                             break;
                         default:

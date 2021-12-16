@@ -6,7 +6,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using EasySaveConsole.model.log;
-using EasySaveGUI.model;
+using EasySaveGUI.exception;
 using EasySaveGUI.retriever;
 using EasySaveGUI.views;
 
@@ -82,7 +82,6 @@ namespace EasySaveGUI.viewmodel
         }
         #endregion
         #region ICommand definition
-        private RessoucesModel model = new RessoucesModel();
 
         public ICommand GetRunAll
         {
@@ -123,7 +122,7 @@ namespace EasySaveGUI.viewmodel
             {
                 if (this.runOne == null)
                 {
-                    this.runOne = new RelayCommand(DoRunOne, CanDoRunOne);
+                    this.runOne = new RelayCommand(DoRunOne);
                 }
                 return this.runOne;
             }
@@ -144,11 +143,6 @@ namespace EasySaveGUI.viewmodel
                 }
             });
             t.Start();
-        }
-
-        private bool CanDoRunOne(object sender)
-        {
-            return this.model != null;
         }
         #endregion
         #region INotifyPropertyChanged Members 
