@@ -17,10 +17,5 @@ namespace EasySaveGUI.views
             DataContext = this.viewModel;
             InitializeComponent();
         }
-
-        private void RunAllClick(object sender, System.Windows.RoutedEventArgs e)
-        {
-            
-        }
     }
 }

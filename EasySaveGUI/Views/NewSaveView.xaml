@@ -88,7 +88,7 @@
         <Button  Grid.Column="2"
                  Grid.Row="1"
                  VerticalAlignment="Center"
-                 Click="sourceExplorer"
+                 Command="{Binding GetOpenBrowserSource}"
                  Style="{StaticResource BrowseFolderButtonTheme}">
             <iconPacks:PackIconFeatherIcons Kind="FolderPlus"/>
         </Button>
@@ -127,7 +127,8 @@
         <Button  Grid.Column="2"
                  Grid.Row="2"
                  VerticalAlignment="Center"
-                 Click="targetExplorer"
+                 Command="{Binding GetOpenBrowserTarget}"
+                 CommandParameter="{Binding}"
                  Style="{StaticResource BrowseFolderButtonTheme}">
         </Button>
 
@@ -170,6 +171,7 @@
                 Grid.Row="5"
                 Grid.ColumnSpan="3"
                 IsEnabled="True"
-                Style="{StaticResource CreateSaveButton}"/>
+                Style="{StaticResource CreateSaveButton}"
+                Command="{Binding GetCreateSave}"/>
     </Grid>
 </UserControl>
