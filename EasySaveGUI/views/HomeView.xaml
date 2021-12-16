@@ -19,7 +19,6 @@
             <Button x:Name="btn_run_a_save"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
-                    Margin="10,0,0,0"
                     Click="RunAllClick"
                     Style="{StaticResource RunAllSavesButtonTheme}"/>
         </Grid>
