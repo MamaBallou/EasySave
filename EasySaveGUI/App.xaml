@@ -621,11 +621,11 @@
                                                 <ColorAnimation To="White"
                                                                 Duration="0:0:0.25"
                                                                 Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
-                                                                Storyboard.TargetName="CreateSaveButtonLabel"/>
+                                                                Storyboard.TargetName="SaveSettingsButtonLabel"/>
                                                 <ColorAnimation To="White"
                                                                 Duration="0:0:0.25"
                                                                 Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
-                                                                Storyboard.TargetName="CreateSaveButtonIcon"/>
+                                                                Storyboard.TargetName="SaveSettingsButtonIcon"/>
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </EventTrigger>
@@ -638,11 +638,11 @@
                                                 <ColorAnimation To="Black"
                                                                 Duration="0:0:0.25"
                                                                 Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
-                                                                Storyboard.TargetName="CreateSaveButtonLabel"/>
+                                                                Storyboard.TargetName="SaveSettingsButtonLabel"/>
                                                 <ColorAnimation To="Black"
                                                                 Duration="0:0:0.25"
                                                                 Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
-                                                                Storyboard.TargetName="CreateSaveButtonIcon"/>
+                                                                Storyboard.TargetName="SaveSettingsButtonIcon"/>
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </EventTrigger>
