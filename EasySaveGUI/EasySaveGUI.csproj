@@ -11,6 +11,7 @@
 	<ItemGroup>
 		<Resource Include="Properties\fonts\Roboto-Regular.ttf" />
 		<Resource Include="Properties\fonts\Amatic_SC\AmaticSC-Bold.ttf" />
+		<Resource Include="Properties\fonts\borealis\borealisregular.ttf" />
 	</ItemGroup>
 
   <ItemGroup>

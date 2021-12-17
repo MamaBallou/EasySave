@@ -10,6 +10,7 @@
 
         <FontFamily x:Key="RobotoRegular">pack://application:,,,/Properties/fonts/#Roboto</FontFamily>
         <FontFamily x:Key="AmaticSC">pack://application:,,,/Properties/fonts/Amatic_SC/#Amatic SC</FontFamily>
+        <FontFamily x:Key="Borealis">pack://application:,,,/Properties/fonts/borealis/#Borealis</FontFamily>
 
         <Style x:Key="NavigationListBoxStyle" TargetType="{x:Type ListBox}">
             <Setter Property="Background" Value="Transparent"/>
