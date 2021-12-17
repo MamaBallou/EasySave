@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Xml.Serialization;
 using EasySaveConsole.model.log;
 using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -12,6 +13,14 @@ namespace EasySaveConsole.tools
     /// </summary>
     public sealed class Logger
     {
+        /// <summary>
+        /// Semaphore that limits the log writing to one file at a time.
+        /// </summary>
+        private static Semaphore semLog = new Semaphore(1, 1);
+        /// <summary>
+        /// Semaphore that limits the state log writing to one file at a time.
+        /// </summary>
+        private static Semaphore semState = new Semaphore(1, 1);
         /// <summary>
         /// Path to the logs.
         /// </summary>
@@ -57,14 +66,16 @@ namespace EasySaveConsole.tools
             {
                 Directory.CreateDirectory(String.Concat(PATH, "xml/"));
             }
+
+            semLog.WaitOne();
             File.AppendAllText(
                 String.Concat(PATH, @"\json\log.json"), jsonString + ",\n");
-
 
             XmlSerializer x = new XmlSerializer(typeof(ModelLog));
             var stream = File.AppendText(String.Concat(PATH, @"/xml/log.xml"));
             x.Serialize(stream, data);
             stream.Close();
+            semLog.Release();
         }
 
         /// <summary>
@@ -87,12 +98,14 @@ namespace EasySaveConsole.tools
             {
                 Directory.CreateDirectory(String.Concat(PATH, "xml/"));
             }
+            semState.WaitOne();
             File.WriteAllText(String.Concat(PATH, @"/json/state.json"), jsonString);
 
             XmlSerializer x = new XmlSerializer(typeof(List<ModelState>));
             var stream = File.CreateText(String.Concat(PATH, @"/xml/state.xml"));
             x.Serialize(stream, data);
             stream.Close();
+            semState.Release();
         }
     }
 }

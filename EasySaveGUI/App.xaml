@@ -679,5 +679,33 @@
             </Style.Setters>
         </Style>
 
+        <Style x:Key="ProgressBarTheme"
+               TargetType="{x:Type ProgressBar}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+
+                        <Grid x:Name="Root">
+                            <Border Name="PART_Track" 
+                                    CornerRadius="10"
+                                    Height="20"
+                                    Background="Transparent"
+                                    BorderBrush="#22202f"
+                                    BorderThickness="2"
+                                    Panel.ZIndex="99"/>
+                            <Border Name="PART_Indicator" 
+                                    CornerRadius="10"
+                                    Height="20"
+                                    Background="#4e7e92" 
+                                    BorderBrush="Transparent"
+                                    HorizontalAlignment="Left"
+                                    Panel.ZIndex="1"/>
+                        </Grid>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
 </Application>
