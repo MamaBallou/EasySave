@@ -687,21 +687,209 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ProgressBar}">
 
-                        <Grid x:Name="Root">
-                            <Border Name="PART_Track" 
+                        <Grid x:Name="Root"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              Margin="5">
+                            <Border Name="PART_Track"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
                                     CornerRadius="10"
                                     Height="20"
                                     Background="Transparent"
                                     BorderBrush="#22202f"
                                     BorderThickness="2"
                                     Panel.ZIndex="99"/>
-                            <Border Name="PART_Indicator" 
+                            <Border Name="PART_Indicator"
                                     CornerRadius="10"
                                     Height="20"
                                     Background="#4e7e92" 
                                     BorderBrush="Transparent"
                                     HorizontalAlignment="Left"
                                     Panel.ZIndex="1"/>
+                        </Grid>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PlayButtonTheme"
+               TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+
+                        <Grid>
+                            <Border x:Name="PlayButton"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Height="30"
+                                    Width="30"
+                                    CornerRadius="5"
+                                    Background="White"/>
+
+                            <iconPacks:PackIconFontAwesome Kind="PlaySolid"
+                                                       x:Name="PlayButtonIcon"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       Foreground="Black"
+                                                       FontSize="10"/>
+
+                            <Grid.Triggers>
+                                <EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation To="#4e7e92"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                            Storyboard.TargetName="PlayButton"/>
+                                            <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="PlayButtonIcon"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                            Storyboard.TargetName="PlayButton"/>
+                                            <ColorAnimation To="Black"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="PlayButtonIcon"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Grid.Triggers>
+
+                        </Grid>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PauseButtonTheme"
+               TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+
+                        <Grid>
+                            <Border x:Name="PauseButton"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Height="30"
+                                    Width="30"
+                                    CornerRadius="5"
+                                    Background="White"/>
+
+                            <iconPacks:PackIconTypicons Kind="MediaPause"
+                                                       x:Name="PauseButtonIcon"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       Foreground="Black"
+                                                       FontSize="10"/>
+
+                            <Grid.Triggers>
+                                <EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation To="#4e7e92"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                            Storyboard.TargetName="PauseButton"/>
+                                            <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="PauseButtonIcon"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                            Storyboard.TargetName="PauseButton"/>
+                                            <ColorAnimation To="Black"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="PauseButtonIcon"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Grid.Triggers>
+
+                        </Grid>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StopButtonTheme"
+               TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+
+                        <Grid>
+                            <Border x:Name="StopButton"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Height="30"
+                                    Width="30"
+                                    CornerRadius="5"
+                                    Background="White"/>
+
+                            <iconPacks:PackIconBootstrapIcons Kind="StopFill"
+                                                       x:Name="StopButtonIcon"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       Foreground="Black"
+                                                       FontSize="10"/>
+
+                            <Grid.Triggers>
+                                <EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation To="#4e7e92"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                            Storyboard.TargetName="StopButton"/>
+                                            <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="StopButtonIcon"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation To="White"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                            Storyboard.TargetName="StopButton"/>
+                                            <ColorAnimation To="Black"
+                                                                Duration="0:0:0.25"
+                                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Storyboard.TargetName="StopButtonIcon"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Grid.Triggers>
+
                         </Grid>
 
                     </ControlTemplate>

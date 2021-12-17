@@ -36,22 +36,19 @@
             </Grid.ColumnDefinitions>
             <Button
                 Grid.Column="0"
-                Margin="10"
-                Command="{Binding GetPlay}">
-                <iconPacks:PackIconBootstrapIcons Kind="PlayFill"/>
-            </Button>
+                Margin="2"
+                Command="{Binding GetPlay}"
+                Style="{StaticResource PlayButtonTheme}"/>
             <Button
                 Grid.Column="1"
-                Margin="10"
-                Command="{Binding GetPause}">
-                <iconPacks:PackIconBootstrapIcons Kind="PauseFill"/>
-            </Button>
+                Margin="2"
+                Command="{Binding GetPause}"
+                Style="{StaticResource PauseButtonTheme}"/>
             <Button
                 Grid.Column="2"
-                Margin="10"
-                Command="{Binding GetStop}">
-                <iconPacks:PackIconBootstrapIcons Kind="StopFill"/>
-            </Button>
+                Margin="2"
+                Command="{Binding GetStop}"
+                Style="{StaticResource StopButtonTheme}" Cursor="Hand"/>
         </Grid>
 
         <DataGrid x:Name="saves"
@@ -72,7 +69,7 @@
                 <DataGridTextColumn Header="{x:Static lan:Resources.target_path}"
                                     Binding="{Binding TargetFile}"
                                     CanUserSort="True"/>
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Command="{Binding Path=DataContext.GetRunOne, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
@@ -87,10 +84,11 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Width="100">
+                            <Grid HorizontalAlignment="Stretch">
                                 <ProgressBar x:Name="pgb_progression"
                                              Minimum="0"
                                              Maximum="100"
+                                             HorizontalAlignment="Stretch"
                                              Value="{Binding Progression, Mode=OneWay}"
                                              Style="{StaticResource ProgressBarTheme}"/>
                                 <Grid VerticalAlignment="Center"
