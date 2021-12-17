@@ -56,7 +56,31 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ProgressBar x:Name="pgb_progression" Minimum="0" Maximum="100" Value="{Binding Progression, Mode=OneWay}"/>
+                            <Grid Width="100">
+                                <ProgressBar x:Name="pgb_progression"
+                                             Minimum="0"
+                                             Maximum="100"
+                                             Value="{Binding Progression, Mode=OneWay}"
+                                             Style="{StaticResource ProgressBarTheme}"/>
+                                <Grid VerticalAlignment="Center"
+                                      HorizontalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding Progression, StringFormat=N0}"
+                                               FontFamily="Helvetica"
+                                               FontSize="10"
+                                               Foreground="#22202f"
+                                               Grid.Column="0"/>
+                                    <TextBlock Text="%"
+                                               FontFamily="Helvetica"
+                                               FontSize="10"
+                                               Foreground="#22202f"
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
