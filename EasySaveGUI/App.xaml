@@ -5,7 +5,7 @@
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:lan="clr-namespace:EasySaveGUI.Properties.languages"
-             StartupUri="HomeWindow.xaml">
+             Startup="Application_Startup">
     <Application.Resources>
 
         <FontFamily x:Key="RobotoRegular">pack://application:,,,/Properties/fonts/#Roboto</FontFamily>
