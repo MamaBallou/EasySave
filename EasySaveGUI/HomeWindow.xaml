@@ -54,7 +54,7 @@
             <TextBlock Text="EasySave"
                        Foreground="White"
                        FontSize="50"
-                       FontFamily="Amatic"
+                       FontFamily="{StaticResource AmaticSC}"
                        Margin="15,5,0,0"/>
 
             <ListBox x:Name="NavigationMenuListBox"
