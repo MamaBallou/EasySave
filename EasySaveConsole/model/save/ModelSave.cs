@@ -188,8 +188,10 @@ namespace EasySaveConsole.model.save
             }
             // For each file in the source directory, save it in the target
             // directory if to be saved.
-            foreach (string currentFile in
-                Directory.EnumerateFiles(folderSourcePath))
+            List<string> files = new List<string>(Directory.EnumerateFiles(folderSourcePath));
+            ExtensionComparer comparer = new ExtensionComparer();
+            files.Sort(comparer);
+            foreach (string currentFile in files)
             {
                 if (checkIfToSave(currentFile, String.Concat(this.targetPath,
                     this.name, "/initial/", subdir)))
