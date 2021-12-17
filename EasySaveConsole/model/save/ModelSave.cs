@@ -15,6 +15,7 @@ namespace EasySaveConsole.model.save
     public abstract class ModelSave
     {
         public static ManualResetEvent manualResetEvent = new ManualResetEvent(true);
+        public static bool stop = false;
         /// <summary>
         /// Logger attribute.
         /// </summary>
@@ -248,6 +249,10 @@ namespace EasySaveConsole.model.save
         protected void saveAFile(string currentFile, string folderTargetPath,
             ref ModelState modelState, ref List<ModelState> states)
         {
+            if(stop)
+            {
+                return;
+            }
             manualResetEvent.WaitOne();
             string destFilePath = String.Concat(folderTargetPath,
                             Path.GetFileName(currentFile));

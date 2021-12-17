@@ -163,6 +163,7 @@ namespace EasySaveGUI.viewmodel
 
         public void DoPlay()
         {
+            ModelSave.stop = false;
             ModelSave.manualResetEvent.Set();
         }
         public ICommand GetPause
@@ -181,6 +182,23 @@ namespace EasySaveGUI.viewmodel
         public void DoPause()
         {
             ModelSave.manualResetEvent.Reset();
+        }
+        public ICommand GetStop
+        {
+            get
+            {
+                if (this.stop == null)
+                {
+                    this.stop = new RelayCommand(param => DoStop());
+                }
+                return this.stop;
+            }
+            private set => this.stop = value;
+        }
+
+        public void DoStop()
+        {
+            ModelSave.stop = true;
         }
         #endregion
         #region INotifyPropertyChanged Members 
